@@ -15,3 +15,22 @@ themeToggle.addEventListener('change', () => {
         body.classList.remove('dark-mode');
     }
 });
+
+// Get the slider elements
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+
+// Set the current slide index
+let currentSlide = 0;
+
+// Set the interval for the slider
+setInterval(() => {
+    // Hide the current slide
+    slides[currentSlide].style.opacity = 0;
+
+    // Increment the current slide index
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // Show the next slide
+    slides[currentSlide].style.opacity = 1;
+}, 5000);
