@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Thrisha Rajkumar - Data Scientist</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <!-- Header with theme switcher -->
+    <!-- Header -->
     <header>
         <nav>
             <ul>
@@ -23,10 +21,13 @@
                 <li><a href="#campus">Campus Involvement</a></li>
             </ul>
         </nav>
-        <button id="theme-toggle">Switch Theme</button>
+        <!-- Theme switch button -->
+        <div id="theme-toggle">
+            <i class="fas fa-sun"></i>
+        </div>
     </header>
 
-    <!-- Full-screen introduction section -->
+    <!-- Full-screen Introduction section -->
     <section id="summary" class="intro">
         <div class="intro-content">
             <img src="black-placeholder.png" alt="Profile Picture" class="profile-pic">
@@ -37,100 +38,83 @@
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- Main content -->
     <main>
         <section id="education">
             <h2>Education</h2>
-            <div class="card">
-                <h3>University of Bristol, UK (Sep 2024 – Sep 2025)</h3>
-                <p>Master of Science, Data Science (Expected Merit)</p>
-            </div>
-            
-            <div class="card">
-                <h3>Dehradun Institute of Technology, India (Aug 2020 – Aug 2024)</h3>
-                <p>Bachelor of Technology in Computer Science and Engineering (Percentage: 81.13%, Grade: 2:1)<br>Specialization: Data Science and Analytics</p>
-            </div>
+            <p><strong>University of Bristol, UK</strong> (Sep 2024 – Sep 2025)<br>Master of Science, Data Science</p>
+            <p><strong>Dehradun Institute of Technology, India</strong> (Aug 2020 – Aug 2024)<br>Bachelor of Technology in Computer Science and Engineering</p>
         </section>
 
+        <!-- Work Experience Section with Hover Cards -->
         <section id="experience">
-            <h2>Relevant Experience</h2>
-
-            <!-- Cards for work experience -->
+            <h2>Work Experience</h2>
             <div class="experience-cards">
-                <div class="experience-card">
-                    <h3>Hindustan Unilever Limited (HUL) - Data Science and Analytics Internship (Jan 2024 – May 2024)</h3>
-                    <ul>
-                        <li>Completed 15 projects across departments: ManEx, Manufacturing, Supply Chain, Energy Management, and Safety.</li>
-                        <li>Led the configuration of BuildApp end-to-end process, optimizing 100+ SKUs, improving efficiency by 20%.</li>
-                        <li>Created Power BI dashboards to boost operational efficiency by 15%.</li>
-                    </ul>
+                <div class="experience-card" onmouseover="showPopup(1)" onmouseout="hidePopup(1)">
+                    <h3>Hindustan Unilever Limited (HUL)</h3>
+                    <p>Data Science and Analytics Intern (Jan 2024 – May 2024)</p>
+                    <div class="popup" id="popup-1">
+                        <ul>
+                            <li>Completed 15 projects across departments.</li>
+                            <li>Optimized 100+ SKUs and improved efficiency by 20%.</li>
+                            <li>Created Power BI dashboards that improved operational efficiency by 15%.</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="experience-card">
-                    <h3>OneLine Works Pvt. Ltd. - Frontend Flutter App Developer (Aug 2023)</h3>
-                    <p>Developed a responsive mobile app front end using Flutter, resulting in a 30% increase in user engagement.</p>
+                <div class="experience-card" onmouseover="showPopup(2)" onmouseout="hidePopup(2)">
+                    <h3>OneLine Works Pvt. Ltd.</h3>
+                    <p>Frontend Flutter App Developer (Aug 2023)</p>
+                    <div class="popup" id="popup-2">
+                        <ul>
+                            <li>Developed a responsive mobile app front end using Flutter.</li>
+                            <li>Boosted user engagement by 30%.</li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="experience-card">
-                    <h3>Deloitte Salesforce - Salesforce Developer Internship (Jun 2023 – Aug 2023)</h3>
-                    <p>Accomplished diverse modules, including Apex Development, Testing, and API Integration.</p>
+                <div class="experience-card" onmouseover="showPopup(3)" onmouseout="hidePopup(3)">
+                    <h3>Deloitte Salesforce</h3>
+                    <p>Salesforce Developer Intern (Jun 2023 – Aug 2023)</p>
+                    <div class="popup" id="popup-3">
+                        <ul>
+                            <li>Worked on Apex Development, Testing, and API Integration.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="skills">
             <h2>Skills</h2>
-            <h3>Technical Skills</h3>
             <ul>
-                <li>Programming: Python, Java, C, R</li>
-                <li>Web & App Development: JavaScript, HTML5, CSS3, React, Angular, Flutter</li>
-                <li>Data Tools: MySQL, MongoDB, MS Excel, Power BI</li>
-                <li>Machine Learning & Analytics: Pandas, NumPy, Scikit-learn, TensorFlow</li>
-                <li>DevOps & Cloud: AWS</li>
+                <li>Python, Java, C, R</li>
+                <li>JavaScript, HTML, CSS, React, Angular, Flutter</li>
+                <li>Power BI, MySQL, MongoDB</li>
+                <li>Machine Learning with Pandas, TensorFlow</li>
             </ul>
         </section>
 
         <section id="certifications">
             <h2>Certifications</h2>
-            
-            <!-- Cards for certifications with landscape layout -->
-            <div class="certification-cards">
-                <div class="certification-card">
-                    <h3>Full Stack Web Developer - LinkedIn</h3>
-                    <a href="https://www.linkedin.com/learning/" target="_blank">View Certification</a>
-                </div>
-                <div class="certification-card">
-                    <h3>Data Analysis Using Python - University of Pennsylvania</h3>
-                    <a href="https://www.coursera.org/certificates/" target="_blank">View Certification</a>
-                </div>
-                <div class="certification-card">
-                    <h3>Supply Chain Management & Analytics - Unilever</h3>
-                    <a href="https://www.coursera.org/certificates/" target="_blank">View Certification</a>
-                </div>
-                <!-- Add more certification cards similarly -->
-            </div>
+            <ul>
+                <li><strong>Full Stack Web Developer</strong> - LinkedIn (View)</li>
+                <li><strong>Data Analysis Using Python</strong> - University of Pennsylvania (View)</li>
+                <li><strong>Supply Chain Management & Analytics</strong> - Unilever (View)</li>
+            </ul>
         </section>
 
         <section id="projects">
-            <h2>Relevant Project Experience</h2>
-            <div class="project">
-                <h3>Spectrophotometer Automated Optimization Program</h3>
-                <p>Automated optimization using Python, resulting in a 25% increase in operational efficiency.</p>
-            </div>
-
-            <div class="project">
-                <h3>Covid CNN Xray Classification</h3>
-                <p>Engineered a machine learning model for classifying 5,000+ medical images.</p>
-            </div>
-            <!-- Add more projects similarly -->
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>Spectrophotometer Automated Optimization Program</strong> - Python automation project that increased efficiency by 25%.</li>
+                <li><strong>Covid CNN X-ray Classification</strong> - ML model classifying 5000+ images.</li>
+            </ul>
         </section>
 
         <section id="campus">
-            <h2>Campus Involvement & Accomplishments</h2>
+            <h2>Campus Involvement</h2>
             <ul>
-                <li>Copyright for the mobile app "Feed App."</li>
-                <li>Article on “Generative AI in Digital Healthcare.”</li>
-                <li>IEEE & Literature Club Activity Member.</li>
+                <li>Copyright for mobile app "Feed App."</li>
+                <li>Article: “Generative AI in Digital Healthcare.”</li>
             </ul>
         </section>
     </main>
@@ -142,7 +126,7 @@
         <a href="https://github.com/thrisharajkumar">GitHub</a></p>
     </footer>
 
-    <!-- Smooth Scrolling and Theme Toggle JavaScript -->
+    <!-- JavaScript for smooth scroll, theme toggle, and popups -->
     <script>
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -154,13 +138,25 @@
             });
         });
 
-        // Theme Toggle
+        // Theme toggle
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
+        const icon = document.querySelector('#theme-toggle i');
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-theme');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
         });
+
+        // Work experience popups
+        function showPopup(id) {
+            document.getElementById('popup-' + id).style.display = 'block';
+        }
+
+        function hidePopup(id) {
+            document.getElementById('popup-' + id).style.display = 'none';
+        }
     </script>
 </body>
 </html>
