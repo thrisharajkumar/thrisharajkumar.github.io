@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header with theme switcher -->
     <header>
         <nav>
             <ul>
@@ -23,39 +23,59 @@
                 <li><a href="#campus">Campus Involvement</a></li>
             </ul>
         </nav>
+        <button id="theme-toggle">Switch Theme</button>
     </header>
+
+    <!-- Full-screen introduction section -->
+    <section id="summary" class="intro">
+        <div class="intro-content">
+            <img src="black-placeholder.png" alt="Profile Picture" class="profile-pic">
+            <div class="intro-text">
+                <h1>Thrisha Rajkumar</h1>
+                <p>MSc Data Science postgraduate student with hands-on experience in data science, analytics, machine learning, and statistics. Actively seeking part-time opportunities and graduate placement roles. Eligible to work in the UK.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Main Content -->
     <main>
-        <section id="summary">
-            <h2>Summary</h2>
-            <p>MSc Data Science postgraduate student with hands-on experience in data science, analytics, machine learning, and statistics, actively seeking part-time opportunities in the field of study and graduate placement roles. Eligible to work in the UK.</p>
-        </section>
-
         <section id="education">
             <h2>Education</h2>
-            <h3>University of Bristol, UK (Sep 2024 – Sep 2025)</h3>
-            <p>Master of Science, Data Science (Expected Merit)</p>
+            <div class="card">
+                <h3>University of Bristol, UK (Sep 2024 – Sep 2025)</h3>
+                <p>Master of Science, Data Science (Expected Merit)</p>
+            </div>
             
-            <h3>Dehradun Institute of Technology, India (Aug 2020 – Aug 2024)</h3>
-            <p>Bachelor of Technology in Computer Science and Engineering (Percentage: 81.13%, Grade: 2:1)<br>
-            Specialization: Data Science and Analytics</p>
+            <div class="card">
+                <h3>Dehradun Institute of Technology, India (Aug 2020 – Aug 2024)</h3>
+                <p>Bachelor of Technology in Computer Science and Engineering (Percentage: 81.13%, Grade: 2:1)<br>Specialization: Data Science and Analytics</p>
+            </div>
         </section>
 
         <section id="experience">
             <h2>Relevant Experience</h2>
-            <h3>Hindustan Unilever Limited (HUL) - Data Science and Analytics Internship (Jan 2024 – May 2024)</h3>
-            <ul>
-                <li>Completed 15 projects across ManEx, Manufacturing, Supply Chain, Energy Management, and Safety</li>
-                <li>Led the configuration of BuildApp end-to-end process, optimizing 100+ SKUs and improving operational efficiency by 20%</li>
-                <li>Created Power BI dashboards, boosting efficiency by 15%</li>
-            </ul>
 
-            <h3>OneLine Works Pvt. Ltd. - Frontend Flutter App Developer (Aug 2023)</h3>
-            <p>Developed a responsive mobile app front end using Flutter, resulting in a 30% increase in user engagement</p>
+            <!-- Cards for work experience -->
+            <div class="experience-cards">
+                <div class="experience-card">
+                    <h3>Hindustan Unilever Limited (HUL) - Data Science and Analytics Internship (Jan 2024 – May 2024)</h3>
+                    <ul>
+                        <li>Completed 15 projects across departments: ManEx, Manufacturing, Supply Chain, Energy Management, and Safety.</li>
+                        <li>Led the configuration of BuildApp end-to-end process, optimizing 100+ SKUs, improving efficiency by 20%.</li>
+                        <li>Created Power BI dashboards to boost operational efficiency by 15%.</li>
+                    </ul>
+                </div>
 
-            <h3>Deloitte Salesforce - Salesforce Developer Internship (Jun 2023 – Aug 2023)</h3>
-            <p>Accomplished diverse modules, including Apex Development, Testing, and API Integration.</p>
+                <div class="experience-card">
+                    <h3>OneLine Works Pvt. Ltd. - Frontend Flutter App Developer (Aug 2023)</h3>
+                    <p>Developed a responsive mobile app front end using Flutter, resulting in a 30% increase in user engagement.</p>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Deloitte Salesforce - Salesforce Developer Internship (Jun 2023 – Aug 2023)</h3>
+                    <p>Accomplished diverse modules, including Apex Development, Testing, and API Integration.</p>
+                </div>
+            </div>
         </section>
 
         <section id="skills">
@@ -68,37 +88,49 @@
                 <li>Machine Learning & Analytics: Pandas, NumPy, Scikit-learn, TensorFlow</li>
                 <li>DevOps & Cloud: AWS</li>
             </ul>
-
-            <h3>Soft Skills</h3>
-            <p>Communication, Adaptability, Leadership, Decision-making, Problem-Solving</p>
         </section>
 
         <section id="certifications">
             <h2>Certifications</h2>
-            <ul>
-                <li>LinkedIn Certification: Full Stack Web Developer</li>
-                <li>Coursera: Data Analysis Using Python - University of Pennsylvania</li>
-                <li>Python Project for Data Engineering - IBM</li>
-                <!-- Add more certifications similarly -->
-            </ul>
+            
+            <!-- Cards for certifications with landscape layout -->
+            <div class="certification-cards">
+                <div class="certification-card">
+                    <h3>Full Stack Web Developer - LinkedIn</h3>
+                    <a href="https://www.linkedin.com/learning/" target="_blank">View Certification</a>
+                </div>
+                <div class="certification-card">
+                    <h3>Data Analysis Using Python - University of Pennsylvania</h3>
+                    <a href="https://www.coursera.org/certificates/" target="_blank">View Certification</a>
+                </div>
+                <div class="certification-card">
+                    <h3>Supply Chain Management & Analytics - Unilever</h3>
+                    <a href="https://www.coursera.org/certificates/" target="_blank">View Certification</a>
+                </div>
+                <!-- Add more certification cards similarly -->
+            </div>
         </section>
 
         <section id="projects">
             <h2>Relevant Project Experience</h2>
-            <h3>Spectrophotometer Automated Optimization Program</h3>
-            <p>Automated optimization using Python, resulting in a 25% increase in operational efficiency</p>
+            <div class="project">
+                <h3>Spectrophotometer Automated Optimization Program</h3>
+                <p>Automated optimization using Python, resulting in a 25% increase in operational efficiency.</p>
+            </div>
 
-            <h3>Covid CNN Xray Classification</h3>
-            <p>Engineered a machine learning model for classifying 5,000+ medical images.</p>
+            <div class="project">
+                <h3>Covid CNN Xray Classification</h3>
+                <p>Engineered a machine learning model for classifying 5,000+ medical images.</p>
+            </div>
             <!-- Add more projects similarly -->
         </section>
 
         <section id="campus">
             <h2>Campus Involvement & Accomplishments</h2>
             <ul>
-                <li>Copyright for the mobile app "Feed App"</li>
-                <li>Article on “Generative AI in Digital Healthcare”</li>
-                <li>IEEE & Literature Club Activity Member</li>
+                <li>Copyright for the mobile app "Feed App."</li>
+                <li>Article on “Generative AI in Digital Healthcare.”</li>
+                <li>IEEE & Literature Club Activity Member.</li>
             </ul>
         </section>
     </main>
@@ -110,8 +142,9 @@
         <a href="https://github.com/thrisharajkumar">GitHub</a></p>
     </footer>
 
-    <!-- Smooth Scrolling JavaScript -->
+    <!-- Smooth Scrolling and Theme Toggle JavaScript -->
     <script>
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -119,6 +152,14 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
         });
     </script>
 </body>
