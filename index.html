@@ -3,160 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrisha Rajkumar - Data Scientist</title>
+    <title>Thrisha Rajkumar - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#summary">Summary</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#campus">Campus Involvement</a></li>
-            </ul>
-        </nav>
-        <!-- Theme switch button -->
-        <div id="theme-toggle">
-            <i class="fas fa-sun"></i>
+    <!-- Introduction Section -->
+    <section class="intro">
+        <div class="container">
+            <h1>Thrisha Rajkumar</h1>
+            <p>Data Science Postgraduate Student</p>
+            <button class="theme-toggle" id="theme-toggle">☀️</button>
         </div>
-    </header>
+    </section>
 
-    <!-- Full-screen Introduction section -->
-    <section id="summary" class="intro">
-        <div class="intro-content">
-            <img src="black-placeholder.png" alt="Profile Picture" class="profile-pic">
-            <div class="intro-text">
-                <h1>Thrisha Rajkumar</h1>
-                <p>MSc Data Science postgraduate student with hands-on experience in data science, analytics, machine learning, and statistics. Actively seeking part-time opportunities and graduate placement roles. Eligible to work in the UK.</p>
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="cards">
+                <!-- Card 1: Hindustan Unilever Limited (HUL) - Data Science and Analytics Internship -->
+                <div class="card" data-toggle="popover" data-content="...">
+                    <h3>Hindustan Unilever Limited (HUL)</h3>
+                    <p>Data Science and Analytics Internship</p>
+                </div>
+                <!-- Card 2: OneLine Works Pvt. Ltd. Frontend Flutter App Developer -->
+                <div class="card" data-toggle="popover" data-content="...">
+                    <h3>OneLine Works Pvt. Ltd.</h3>
+                    <p>Frontend Flutter App Developer</p>
+                </div>
+                <!-- ... -->
             </div>
         </div>
     </section>
 
-    <!-- Main content -->
-    <main>
-        <section id="education">
-            <h2>Education</h2>
-            <p><strong>University of Bristol, UK</strong> (Sep 2024 – Sep 2025)<br>Master of Science, Data Science</p>
-            <p><strong>Dehradun Institute of Technology, India</strong> (Aug 2020 – Aug 2024)<br>Bachelor of Technology in Computer Science and Engineering</p>
-        </section>
-
-        <!-- Work Experience Section with Hover Cards -->
-        <section id="experience">
-            <h2>Work Experience</h2>
-            <div class="experience-cards">
-                <div class="experience-card" onmouseover="showPopup(1)" onmouseout="hidePopup(1)">
-                    <h3>Hindustan Unilever Limited (HUL)</h3>
-                    <p>Data Science and Analytics Intern (Jan 2024 – May 2024)</p>
-                    <div class="popup" id="popup-1">
-                        <ul>
-                            <li>Completed 15 projects across departments.</li>
-                            <li>Optimized 100+ SKUs and improved efficiency by 20%.</li>
-                            <li>Created Power BI dashboards that improved operational efficiency by 15%.</li>
-                        </ul>
-                    </div>
+    <!-- Certificates Section -->
+    <section class="certificates">
+        <div class="container">
+            <h2>Certificates</h2>
+            <div class="cards">
+                <!-- Certificate 1: LinkedIn Certifications: Full Stack Web Developer -->
+                <div class="card" data-toggle="modal" data-target="#certificate-modal-1">
+                    <img src="certificate-1.jpg" alt="Certificate 1">
                 </div>
-                <div class="experience-card" onmouseover="showPopup(2)" onmouseout="hidePopup(2)">
-                    <h3>OneLine Works Pvt. Ltd.</h3>
-                    <p>Frontend Flutter App Developer (Aug 2023)</p>
-                    <div class="popup" id="popup-2">
-                        <ul>
-                            <li>Developed a responsive mobile app front end using Flutter.</li>
-                            <li>Boosted user engagement by 30%.</li>
-                        </ul>
-                    </div>
+                <!-- Certificate 2: Coursera Certifications: Data Analysis Using Python -->
+                <div class="card" data-toggle="modal" data-target="#certificate-modal-2">
+                    <img src="certificate-2.jpg" alt="Certificate 2">
                 </div>
-                <div class="experience-card" onmouseover="showPopup(3)" onmouseout="hidePopup(3)">
-                    <h3>Deloitte Salesforce</h3>
-                    <p>Salesforce Developer Intern (Jun 2023 – Aug 2023)</p>
-                    <div class="popup" id="popup-3">
-                        <ul>
-                            <li>Worked on Apex Development, Testing, and API Integration.</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- ... -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="skills">
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="container">
             <h2>Skills</h2>
-            <ul>
-                <li>Python, Java, C, R</li>
-                <li>JavaScript, HTML, CSS, React, Angular, Flutter</li>
-                <li>Power BI, MySQL, MongoDB</li>
-                <li>Machine Learning with Pandas, TensorFlow</li>
-            </ul>
-        </section>
+            <div class="bubbles">
+                <!-- Bubble 1: Python -->
+                <div class="bubble" data-toggle="popover" data-content="...">
+                    <p>Python</p>
+                </div>
+                <!-- Bubble 2: Java -->
+                <div class="bubble" data-toggle="popover" data-content="...">
+                    <p>Java</p>
+                </div>
+                <!-- ... -->
+            </div>
+        </div>
+    </section>
 
-        <section id="certifications">
-            <h2>Certifications</h2>
-            <ul>
-                <li><strong>Full Stack Web Developer</strong> - LinkedIn (View)</li>
-                <li><strong>Data Analysis Using Python</strong> - University of Pennsylvania (View)</li>
-                <li><strong>Supply Chain Management & Analytics</strong> - Unilever (View)</li>
-            </ul>
-        </section>
+    <!-- Projects Section -->
+    <section class="projects">
+        <!-- Project 1: Spectrophotometer Automated Optimization Program -->
+        <div class="project">
+            <h3>Spectrophotometer Automated Optimization Program</h3>
+            <p>Automated optimization using Python, resulting in a 25% increase in operational efficiency</p>
+        </div>
+        <!-- Project 2: Data Science Project - Covid CNN Xray Classification -->
+        <div class="project">
+            <h3>Data Science Project - Covid CNN Xray Classification</h3>
+            <p>Engineered a machine learning model in Python for classifying 5,000+ medical images, improving risk assessment with 20% fewer false positives</p>
+        </div>
+        <!-- ... -->
+    </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <ul>
-                <li><strong>Spectrophotometer Automated Optimization Program</strong> - Python automation project that increased efficiency by 25%.</li>
-                <li><strong>Covid CNN X-ray Classification</strong> - ML model classifying 5000+ images.</li>
-            </ul>
-        </section>
+    <!-- Modals for Certificates -->
+    <div class="modal" id="certificate-modal-1">
+        <img src="certificate-1.jpg" alt="Certificate 1">
+    </div>
+    <div class="modal" id="certificate-modal-2">
+        <img src="certificate-2.jpg" alt="Certificate 2">
+    </div>
+    <!-- ... -->
 
-        <section id="campus">
-            <h2>Campus Involvement</h2>
-            <ul>
-                <li>Copyright for mobile app "Feed App."</li>
-                <li>Article: “Generative AI in Digital Healthcare.”</li>
-            </ul>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Thrisha Rajkumar | <a href="mailto:thrisharajkumar5@gmail.com">Email Me</a> | 
-        <a href="https://www.linkedin.com/in/thrisha-rajkumar/">LinkedIn</a> | 
-        <a href="https://github.com/thrisharajkumar">GitHub</a></p>
-    </footer>
-
-    <!-- JavaScript for smooth scroll, theme toggle, and popups -->
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const icon = document.querySelector('#theme-toggle i');
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-            icon.classList.toggle('fa-moon');
-            icon.classList.toggle('fa-sun');
-        });
-
-        // Work experience popups
-        function showPopup(id) {
-            document.getElementById('popup-' + id).style.display = 'block';
-        }
-
-        function hidePopup(id) {
-            document.getElementById('popup-' + id).style.display = 'none';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
