@@ -1,61 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 0 20px;
-    background-color: #f4f4f4;
-    color: #333;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-}
-
-header nav ul li {
-    display: inline;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 15px;
-    transition: background-color 0.3s;
-}
-
-header nav ul li a:hover {
-    background-color: #575757;
-    border-radius: 5px;
-}
-
-#theme-toggle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #575757;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 
 .intro {
@@ -63,63 +9,10 @@ header nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: #ffffff;
-    color: #000;
+    background-color: #f0f0f0;
 }
 
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-.intro h1 {
-    margin-bottom: 10px;
-}
-
-.card {
-    margin: 10px;
-    padding: 20px;
-    background-color: #e7f3ff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.experience-cards .experience-card,
-.certification-cards .certification-card {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-}
-
-/* Dark theme styles */
-.dark-theme {
-    background-color: #222;
-    color: #eee;
-}
-
-.dark-theme header {
-    background-color: #444;
-}
-
-.dark-theme .intro {
-    background-color: #1a1a1a;
-}
-
-.dark-theme .card, 
-.dark-theme .experience-card, 
-.dark-theme .certification-card {
-    background-color: #333;
-    color: #eee;
-}
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 
