@@ -32,3 +32,82 @@ body {
         height: 30vh;
     }
 }
+
+/* Style the experience section */
+.experience {
+    background-color: #f7f7f7;
+    padding: 20px;
+}
+
+/* Style the container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style the cards */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.caption {
+    padding: 20px;
+}
+
+.caption h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.caption p {
+    font-size: 16px;
+    color: #666;
+}
+
+.details {
+    padding: 20px;
+    display: none;
+}
+
+.card:hover .details {
+    display: block;
+}
+
+.details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.details li {
+    margin-bottom: 10px;
+}
+
+.details li::before {
+    content: "\2022";
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-right: 10px;
+}
