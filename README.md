@@ -1,2 +1,3 @@
 # thrisharajkumar.github.io
-My website CV
+my wesite 
+https://thrisharajkumar.github.io/
