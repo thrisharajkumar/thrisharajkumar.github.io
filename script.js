@@ -1,36 +1,27 @@
-// Get the theme toggle checkbox
+// Toggle dark mode
 const themeToggle = document.getElementById('theme-toggle');
-
-// Add an event listener to the theme toggle checkbox
 themeToggle.addEventListener('change', () => {
-    // Get the body element
     const body = document.body;
-
-    // Check if the theme toggle checkbox is checked
-    if (themeToggle.checked) {
-        // Add the dark mode class to the body element
-        body.classList.add('dark-mode');
-    } else {
-        // Remove the dark mode class from the body element
-        body.classList.remove('dark-mode');
-    }
+    body.classList.toggle('dark-mode', themeToggle.checked);
 });
 
-// Get the slider elements
+// Slider functionality
 const slider = document.querySelector('.slider');
 const slides = document.querySelectorAll('.slide');
 
-// Set the current slide index
-let currentSlide = 0;
+if (slider && slides.length > 0) {
+    let currentSlide = 0;
 
-// Set the interval for the slider
-setInterval(() => {
-    // Hide the current slide
-    slides[currentSlide].style.opacity = 0;
-
-    // Increment the current slide index
-    currentSlide = (currentSlide + 1) % slides.length;
-
-    // Show the next slide
-    slides[currentSlide].style.opacity = 1;
-}, 5000);
+    slides[currentSlide].classList.add('active');
+    
+    setInterval(() => {
+        // Hide current slide
+        slides[currentSlide].classList.remove('active');
+        
+        // Increment the current slide index
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Show next slide
+        slides[currentSlide].classList.add('active');
+    }, 5000);
+}
