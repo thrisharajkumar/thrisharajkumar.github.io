@@ -1,221 +1,145 @@
-/* Style the header */
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Header Styles */
 header {
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
     position: fixed;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin: 0;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header ul li a:hover {
+    color: #007BFF;
+}
+
+/* Hero Section Styles */
+#hero {
+    background-color: #f4f4f4;
+    padding: 100px 0;
+    text-align: center;
+}
+
+#hero .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#hero .slider {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+#hero .slide {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-header nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-header nav a {
-    text-decoration: none;
-    color: #333;
-}
-
-header nav a:hover {
-    color: #666;
-}
-
-.theme-toggle {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-}
-
-.theme-toggle input[type="checkbox"] {
-    display: none;
-}
-
-.theme-toggle label {
-    cursor: pointer;
-}
-
-.theme-toggle label::before {
-    content: "\2600"; /* Sun icon for light mode */
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-.theme-toggle input[type="checkbox"]:checked + label::before {
-    content: "\2601"; /* Cloud icon for dark mode */
-}
-
-/* Style the hero section */
-#hero {
-    background-color: #f7f7f7;
+#hero .slide img {
     width: 100%;
-    height: 100vh; /* Full viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center; /* Center the text */
+    height: auto;
+}
+
+#hero .slide.active {
+    opacity: 1;
 }
 
 #hero .caption {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+}
+
+/* Experience Section */
+#experience {
+    padding: 60px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+#experience h2 {
+    margin-bottom: 40px;
+}
+
+#experience .cards {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-#hero h1 {
-    font-size: 3em;
-    margin: 0;
-}
-
-#hero p {
-    font-size: 1.5em;
-    margin-top: 10px;
-}
-
-/* Style the experience section */
-.experience {
-    background-color: #f7f7f7;
-    width: 100%;
-    padding: 50px 0; /* Adjust padding to create space */
-}
-
-/* Style the container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Style the cards */
-.cards {
-    display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .card {
-    background-color: #fff;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
     margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative; /* Add relative positioning */
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
 }
 
 .card img {
     width: 100%;
-    height: 100%;
+    height: 150px;
     object-fit: cover;
-    border-radius: 10px;
 }
 
-.caption {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.caption h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.caption p {
-    font-size: 16px;
-    color: #666;
-}
-
-/* Show details on hover */
-.card:hover .details {
-    display: block;
-}
-
-.details {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+.card .caption {
     padding: 20px;
-    border-radius: 10px;
 }
 
-.details ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.card .details {
+    padding: 20px;
+    text-align: left;
 }
 
-.details li {
-    margin-bottom: 10px;
-}
-
-.details li::before {
-    content: "\2022"; /* Bullet point */
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
-    margin-right: 10px;
-}
-
-/* Dark mode styles */
-body.dark-mode {
+/* Dark mode adjustments for elements */
+.dark-mode header {
     background-color: #333;
 }
 
-body.dark-mode header {
-    background-color: #444;
-}
-
-body.dark-mode header nav a {
+.dark-mode header ul li a {
     color: #fff;
 }
 
-body.dark-mode header nav a:hover {
-    color: #ccc;
-}
-
-body.dark-mode .experience {
-    background-color: #444;
-}
-
-body.dark-mode .card {
-    background-color: #555;
-}
-
-body.dark-mode .caption {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-body.dark-mode .details {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-body.dark-mode .details li::before {
+.dark-mode .card {
+    background-color: #2e2e2e;
     color: #fff;
 }
