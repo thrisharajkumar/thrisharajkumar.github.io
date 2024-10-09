@@ -1,134 +1,139 @@
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
 header {
-    background-color: #333;
-    color: white;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    padding: 10px 0; /* Reduced padding for a smaller header */
+    background-color: #f0f0f0;
+    padding: 20px;
+    position: relative;
 }
 
 nav {
     display: flex;
-    justify-content: space-between; /* Spread items across the nav */
+    justify-content: space-between;
     align-items: center;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex; /* Make the navigation items display in a row */
+.nav-logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-nav ul li {
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+li {
     margin: 0 15px;
 }
 
-nav ul li a {
-    color: white;
+nav a {
     text-decoration: none;
+    color: black;
+    transition: color 0.3s;
 }
 
-/* Align the theme toggle to the right */
+nav a:hover {
+    color: #007BFF; /* Change color on hover */
+}
+
 .theme-toggle {
-    margin-left: auto; /* Push the toggle to the right */
-    margin-right: 20px; /* Add some margin to the right */
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
-#hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-    color: white;
-    text-align: center;
-}
-
-.experience, .education, .skills, .projects, .contact {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px;
-    justify-items: center;
-}
-
-.card {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 100%;
-    transition: transform 0.3s;
-    position: relative;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card h3 {
-    margin: 0;
-}
-
-.card p {
-    margin: 5px 0;
-}
-
-.details {
-    display: none; /* Hide details by default */
-}
-
-.card:hover .details {
-    display: block; /* Show details on hover */
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-
-/* Light theme */
+/* Light Theme */
 body {
     background-color: white;
     color: black;
 }
 
-nav a {
-    color: black;
+nav {
+    background-color: #f0f0f0;
 }
 
-/* Dark theme */
+header .dark {
+    background-color: #333;
+}
+
+/* Dark Theme */
 body.dark {
     background-color: #121212; /* Dark background */
     color: white; /* Light text */
+}
+
+nav.dark {
+    background-color: #333; /* Dark nav background */
 }
 
 nav.dark a {
     color: white; /* Light link color */
 }
 
-input[type="checkbox"] {
-    display: none;
+/* Hero Section */
+#hero {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: url('your-background-image.jpg'); /* Add your background image */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the background image */
+    color: white;
+    transition: color 0.3s;
 }
 
-.theme-toggle label {
-    cursor: pointer;
+#hero h1 {
+    font-size: 48px;
+    margin: 0;
+}
+
+#hero p {
+    font-size: 24px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 32px; /* Smaller heading on mobile */
+    }
+
+    #hero p {
+        font-size: 18px; /* Smaller paragraph on mobile */
+    }
+
+    ul {
+        flex-direction: column; /* Stack navigation items vertically */
+    }
+
+    li {
+        margin: 10px 0; /* Vertical spacing */
+    }
 }
