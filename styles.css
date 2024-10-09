@@ -1,145 +1,125 @@
-/* General Styles */
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
-
-/* Header Styles */
 header {
+    background-color: #333;
+    color: white;
     position: fixed;
     width: 100%;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    margin: 0;
-}
-
-header ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-header ul li a:hover {
-    color: #007BFF;
-}
-
-/* Hero Section Styles */
-#hero {
-    background-color: #f4f4f4;
-    padding: 100px 0;
-    text-align: center;
-}
-
-#hero .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-#hero .slider {
-    position: relative;
-    overflow: hidden;
-    height: 400px;
-}
-
-#hero .slide {
-    position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    z-index: 1000;
 }
 
-#hero .slide img {
-    width: 100%;
-    height: auto;
+nav ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-#hero .slide.active {
-    opacity: 1;
+nav ul li {
+    display: inline;
+    margin: 0 15px;
 }
 
-#hero .caption {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 20px;
+nav ul li a {
+    color: white;
+    text-decoration: none;
 }
 
-/* Experience Section */
-#experience {
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: url('background.jpg') no-repeat center center/cover;
+}
+
+.experience, .education, .skills, .projects, .contact {
     padding: 60px 20px;
-    background-color: #fff;
     text-align: center;
 }
 
-#experience h2 {
-    margin-bottom: 40px;
-}
-
-#experience .cards {
+.cards {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     width: 300px;
-    margin: 20px;
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
 }
 
 .card img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: auto;
 }
 
-.card .caption {
-    padding: 20px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.card .details {
-    padding: 20px;
-    text-align: left;
-}
-
-/* Dark mode adjustments for elements */
-.dark-mode header {
+footer {
     background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
 }
 
-.dark-mode header ul li a {
-    color: #fff;
+/* Theme Styles */
+body.light {
+    background-color: white;
+    color: black;
 }
 
-.dark-mode .card {
-    background-color: #2e2e2e;
-    color: #fff;
+body.dark {
+    background-color: #333;
+    color: white;
 }
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.theme-toggle label {
+    cursor: pointer;
+}
+
+/* Slider Styles */
+.slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+.caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.caption h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.caption p {
+    font-size: 1.5em;
+}
+
