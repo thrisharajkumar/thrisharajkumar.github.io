@@ -5,17 +5,16 @@ const toggle = document.getElementById('toggle');
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
     toggle.checked = true; // Set the toggle to checked
-} else {
-    document.body.classList.remove('dark');
 }
 
 // Add an event listener for the toggle
 toggle.addEventListener('change', () => {
-    if (toggle.checked) {
-        document.body.classList.add('dark'); // Add dark class
-        localStorage.setItem('theme', 'dark'); // Save the preference
+    // Toggle the dark class on the body
+    document.body.classList.toggle('dark'); 
+    // Save the user's preference
+    if (document.body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark'); // Save as dark
     } else {
-        document.body.classList.remove('dark'); // Remove dark class
-        localStorage.setItem('theme', 'light'); // Save the preference
+        localStorage.setItem('theme', 'light'); // Save as light
     }
 });
