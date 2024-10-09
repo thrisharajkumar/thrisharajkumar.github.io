@@ -11,7 +11,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 10px 0; /* Reduced padding for a smaller header */
+   */ padding: 10px 0;  Reduced padding for a smaller header */
 }
 
 nav ul {
