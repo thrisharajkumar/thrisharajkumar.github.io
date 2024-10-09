@@ -1,27 +1,20 @@
-// Toggle dark mode
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('change', () => {
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    body.classList.toggle('dark-mode', themeToggle.checked);
-});
-
-// Slider functionality
-const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slide');
-
-if (slider && slides.length > 0) {
+    const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
 
-    slides[currentSlide].classList.add('active');
-    
+    // Theme toggle functionality
+    themeToggle.addEventListener('change', () => {
+        body.classList.toggle('dark');
+        body.classList.toggle('light');
+    });
+
+    // Slider functionality
     setInterval(() => {
-        // Hide current slide
         slides[currentSlide].classList.remove('active');
-        
-        // Increment the current slide index
         currentSlide = (currentSlide + 1) % slides.length;
-        
-        // Show next slide
         slides[currentSlide].classList.add('active');
-    }, 5000);
-}
+    }, 5000); // Change slide every 5 seconds
+});
