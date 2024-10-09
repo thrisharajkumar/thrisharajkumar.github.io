@@ -11,22 +11,32 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-   */ padding: 10px 0;  Reduced padding for a smaller header */
+     /*padding: 10px 0; Reduced padding for a smaller header */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between; /* Spread items across the nav */
+    align-items: center;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
+    display: flex; /* Make the navigation items display in a row */
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
+}
+
+.theme-toggle {
+    margin-right: 20px; /* Add some margin to the right */
 }
 
 #hero {
