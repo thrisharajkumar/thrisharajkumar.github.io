@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark" data-accent="fuchsia">
+<html lang="en" data-theme="dark" data-accent="fuchsia">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,136 +8,94 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <script>
-    // Tailwind CDN with dark mode enabled via class
-    window.tailwind = { config: { darkMode: 'class' } };
-  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    :root { --accent:#d946ef; }
-    html[data-accent="emerald"] { --accent:#34d399; }
-    html[data-accent="sky"] { --accent:#0ea5e9; }
-
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
-    .accent-bg { background: var(--accent); }
-    .accent-text { color: var(--accent); }
-    .accent-ring { box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 40%, transparent); }
-
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
-    .glass-light { background: rgba(15,23,42,0.06); }
-
-    .gradient-dark { background: radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--accent) 30%, transparent), transparent), radial-gradient(900px 500px at 110% 10%, rgba(56,189,248,.18), transparent), linear-gradient(180deg, #0b1020, #0b1226); }
-    .gradient-light { background: radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--accent) 18%, transparent), transparent), linear-gradient(180deg, #ffffff, #f8fafc); }
-
+    /* Base */
     html { scroll-behavior: smooth; }
-      .fun-underline { background: linear-gradient(90deg, var(--accent), #0ea5e9 50%, var(--accent)); -webkit-background-clip:text; background-clip:text; color: transparent; background-size:200% 100%; animation: shift 6s linear infinite; }
-    @keyframes shift { 0%{background-position:0 0} 100%{background-position:200% 0} }
-    .floaty { animation: floaty 6s ease-in-out infinite; }
-    @keyframes floaty { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } }
-    .tilt:hover { transform: translateY(-4px) rotateX(2deg) rotateY(-2deg); transition: transform .25s ease; }
-    .confetti { position: fixed; inset:0; pointer-events:none; z-index:60; }
-      .fun-underline { background: linear-gradient(90deg, var(--accent), #0ea5e9 50%, var(--accent)); -webkit-background-clip:text; background-clip:text; color: transparent; background-size:200% 100%; animation: shift 6s linear infinite; }
-    @keyframes shift { 0%{background-position:0 0} 100%{background-position:200% 0} }
-    .floaty { animation: floaty 6s ease-in-out infinite; }
-    @keyframes floaty { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } }
-    .tilt:hover { transform: translateY(-4px) rotateX(2deg) rotateY(-2deg); transition: transform .25s ease; }
-    .confetti { position: fixed; inset:0; pointer-events:none; z-index:60; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
 
-    /* ===== Fancy Project Cards (rail + gradient borders) ===== */
-    .cards-rail { scroll-snap-type: x mandatory; overflow-x: auto; display: grid; grid-auto-flow: column; grid-auto-columns: 90%; gap: 1rem; padding-bottom: .75rem; }
-    @media (min-width: 768px){ .cards-rail{ grid-auto-columns: 48%; } }
-    @media (min-width: 1024px){ .cards-rail{ grid-auto-columns: 32%; } }
-    .pcard { position: relative; scroll-snap-align: start; border-radius: 1rem; overflow: hidden; }
-    .pcard::before { content: ""; position:absolute; inset:-1px; padding:1px; border-radius:1rem; background: conic-gradient(from 180deg, var(--accent), #0ea5e9, #34d399, var(--accent)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
-    .pcard-inner { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border-radius: .95rem; height: 100%; border:1px solid rgba(255,255,255,.10); }
-    .pcard.light .pcard-inner{ background: rgba(15,23,42,0.06); border-color: rgba(15,23,42,.12); }
-    .pcard .sticker { position:absolute; top:.6rem; right:.6rem; font-size:1.1rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
-    .pcard .img-wrap{ position:relative; height: 11rem; overflow:hidden; }
-    .pcard img{ width:100%; height:100%; object-fit:cover; transform: scale(1.04); transition: transform .45s ease; }
-    .pcard:hover img{ transform: scale(1.07); }
-    .pcard .blob{ position:absolute; bottom:-20px; left:-20px; width:120px; height:120px; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%); opacity:.25; filter: blur(12px); }
-    .rail-controls{ display:flex; align-items:center; gap:.5rem; justify-content:center; margin-top: .75rem; }
-    .rail-dot{ width: 8px; height:8px; border-radius:999px; background: rgba(255,255,255,.35); border:1px solid rgba(255,255,255,.5); }
-    .rail-dot.active{ background: var(--accent); box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent); }
-    .rail-arrow{ width:36px; height:36px; border-radius:10px; display:grid; place-items:center; }
-  
-    /* === Fun flow upgrades === */
-    .pcard { transition: transform .25s ease; }
-    .pcard:active { transform: scale(.995); }
-    .pcard .ribbon{position:absolute;left:-6px;top:12px;background:linear-gradient(135deg,var(--accent),#0ea5e9);color:#fff;padding:.25rem .6rem;border-radius:.5rem;box-shadow:0 6px 16px rgba(0,0,0,.25);font-size:.7rem;font-weight:700;letter-spacing:.02em}
-    .pcard .img-wrap{perspective:800px}
-    .pcard .img-tilt{will-change:transform;transform:translateZ(0);transition:transform .2s ease}
-    .pcard:hover .img-tilt{transform:scale(1.03)}
+    /* THEME VARIABLES */
+    :root {
+      --bg: #0b1226;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.10);
+      --accent: #d946ef; /* fuchsia */
+      --grad-a: color-mix(in oklab, var(--accent) 30%, transparent);
+      --grad-b: rgba(56,189,248,.18);
+    }
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #334155;
+      --card: rgba(15,23,42,0.05);
+      --border: rgba(15,23,42,0.12);
+      --grad-a: color-mix(in oklab, var(--accent) 18%, transparent);
+      --grad-b: rgba(2,132,199,.12);
+    }
+    html[data-accent="fuchsia"] { --accent:#d946ef; }
+    html[data-accent="emerald"] { --accent:#34d399; }
+    html[data-accent="sky"]     { --accent:#0ea5e9; }
 
-    /* marquee tech strip */
-    .marquee{position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-    .marquee__inner{display:flex;gap:.75rem;min-width:200%;animation:scroll-left 16s linear infinite}
-    .marquee__pill{white-space:nowrap;font-size:.7rem;padding:.35rem .6rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--border)}
-    @keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* Utility classes using variables */
+    .u-bg        { background: var(--bg); color: var(--text); }
+    .u-muted     { color: var(--muted); }
+    .u-card      { background: var(--card); border: 1px solid var(--border); }
+    .u-chip      { background: var(--card); border: 1px solid var(--border); border-radius: .6rem; padding: .4rem .75rem; font-size:.75rem; }
+    .u-border    { border-color: var(--border); }
+    .u-accent-bg { background: var(--accent); color: #fff; }
+    .u-accent    { color: var(--accent); }
 
-    /* progress bar */
-    .rail-progress{height:6px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--border);overflow:hidden}
-    .rail-progress-bar{height:100%;width:33.33%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 25%, transparent)}
+    /* Glass + gradient background */
+    .glass { background: var(--card); backdrop-filter: blur(10px); }
+    .gradient {
+      background:
+        radial-gradient(1200px 600px at 10% -10%, var(--grad-a), transparent),
+        radial-gradient(900px 500px at 110% 10%, var(--grad-b), transparent),
+        linear-gradient(180deg, color-mix(in oklab, var(--bg) 92%, black), var(--bg));
+    }
 
-    /* fun CTA buttons on cards */
-    .btn-ghost{border:1px solid var(--border);padding:.45rem .7rem;border-radius:.7rem}
-    .btn-accent{background:var(--accent);color:#fff;padding:.45rem .7rem;border-radius:.7rem}
+    .hero-img-wrap { background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 35%, transparent), rgba(14,165,233,.28)); }
+
     /* Slide badges + slide navigator */
     .slide-badge{display:inline-flex;align-items:center;gap:.5rem;font-weight:800;font-size:.75rem;letter-spacing:.05em;padding:.35rem .6rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
     .slide-badge .num{display:inline-grid;place-items:center;width:1.4rem;height:1.4rem;border-radius:999px;background:var(--accent);color:#fff;font-weight:900;font-size:.75rem;}
     .slide-nav{position:fixed;right:.75rem;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:.5rem}
     .slide-dot{width:12px;height:12px;border-radius:999px;background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.5);}
     .slide-dot.active{background:var(--accent);box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent)}
+
+    a:hover { opacity: .92; }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-<body class="min-h-screen dark:gradient-dark gradient-light text-slate-900 dark:text-slate-100">
-  <svg class="pointer-events-none fixed -z-10 top-0 left-0 w-[140vw] h-[140vh] opacity-[.15]" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <radialGradient id="g1" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="var(--accent)"/>
-        <stop offset="100%" stop-color="transparent"/>
-      </radialGradient>
-      <radialGradient id="g2" cx="30%" cy="30%" r="60%">
-        <stop offset="0%" stop-color="#0ea5e9"/>
-        <stop offset="100%" stop-color="transparent"/>
-      </radialGradient>
-    </defs>
-    <circle cx="250" cy="160" r="220" fill="url(#g1)">
-      <animate attributeName="cx" values="240;260;240" dur="10s" repeatCount="indefinite"/>
-      <animate attributeName="cy" values="150;170;150" dur="12s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="620" cy="420" r="260" fill="url(#g2)">
-      <animate attributeName="cx" values="610;630;610" dur="14s" repeatCount="indefinite"/>
-      <animate attributeName="cy" values="440;400;440" dur="16s" repeatCount="indefinite"/>
-    </circle>
-  </svg>
+<body class="gradient u-bg">
   <!-- NAVBAR -->
-    <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 backdrop-blur border-b border-black/5 dark:border-white/10 bg-white/70 dark:bg-slate-900/60">
+  <header class="sticky top-0 z-50 backdrop-blur border-b u-border" style="background: color-mix(in oklab, var(--bg) 70%, transparent);">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
       <nav class="hidden md:flex gap-6 text-sm">
-        <a class="hover:accent-text" href="#about">About</a>
-        <a class="hover:accent-text" href="#projects">Projects</a>
-        <a class="hover:accent-text" href="#wins">Wins</a>
-        <a class="hover:accent-text" href="#linkedin">LinkedIn</a>
-        <a class="hover:accent-text" href="#experience">Experience</a>
-        <a class="hover:accent-text" href="#skills">Skills</a>
-        <a class="hover:accent-text" href="#awards">Awards</a>
-        <a class="hover:accent-text" href="#stats">Stats</a>
-        <a class="hover:accent-text" href="#contact">Contact</a>
+        <a class="hover:u-accent" href="#about">About</a>
+        <a class="hover:u-accent" href="#wins">Wins</a>
+        <a class="hover:u-accent" href="#projects">Projects</a>
+        <a class="hover:u-accent" href="#linkedin">LinkedIn</a>
+        <a class="hover:u-accent" href="#experience">Experience</a>
+        <a class="hover:u-accent" href="#skills">Skills</a>
+        <a class="hover:u-accent" href="#awards">Awards</a>
+        <a class="hover:u-accent" href="#testimonials">Testimonials</a>
+        <a class="hover:u-accent" href="#stats">Stats</a>
+        <a class="hover:u-accent" href="#contact">Contact</a>
       </nav>
       <div class="flex items-center gap-3">
-        <button id="themeToggle" class="px-3 py-1.5 rounded-xl text-xs font-semibold border border-black/10 dark:border-white/15">Theme</button>
-        <div class="flex items-center gap-1">
-          <button title="Fuchsia" data-accent="fuchsia" class="w-4 h-4 rounded-full" style="background:#d946ef"></button>
-          <button title="Emerald" data-accent="emerald" class="w-4 h-4 rounded-full" style="background:#34d399"></button>
-          <button title="Sky" data-accent="sky" class="w-4 h-4 rounded-full" style="background:#0ea5e9"></button>
+        <!-- Theme & Accent controls -->
+        <button id="themeToggle" class="px-3 py-1.5 rounded-full text-xs font-semibold u-card">Theme</button>
+        <div class="flex items-center gap-2">
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia" style="background:#d946ef"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald" style="background:#34d399"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="sky"     title="Sky"     style="background:#0ea5e9"></button>
         </div>
-        <a href="https://www.linkedin.com/in/thrisha-rajkumar/" class="px-3 py-1.5 rounded-full text-xs font-semibold accent-bg hover:opacity-90 text-white" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500 hover:opacity-90 text-white" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/thrisha-rajkumar/" class="px-3 py-1.5 rounded-full text-xs font-semibold u-accent-bg" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold" style="background:#0ea5e9;color:#fff" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </header>
@@ -157,229 +115,141 @@
     <a href="#contact" class="slide-dot" title="11 — Contact" data-slide-dot="contact"></a>
   </nav>
 
-  <!-- HERO -->
-    <!-- HERO -->
+  <!-- 01 — HELLO / HERO -->
   <section id="home" class="relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full border border-black/10 dark:border-white/15 bg-white/60 dark:bg-white/10">
-          <span class="w-2 h-2 rounded-full accent-bg"></span>
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full u-card">
+          <span class="w-2 h-2 rounded-full u-accent-bg" aria-hidden="true"></span>
           <span>#OPEN_TO_WORK</span>
-          <span class="opacity-70">• She/Her</span>
+          <span class="u-muted">• She/Her</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mt-3 fun-underline">Thrisha Rajkumar</h1>
-        <p class="mt-3 text-lg opacity-90">MSc Data Science @ University of Bristol ’25 (Russell Group) • AI/ML Research Support – NIHR • Ex‑Unilever • Python · R · SQL · Machine Learning · AI</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mt-4">Thrisha Rajkumar</h1>
+        <p class="mt-3 text-lg u-muted">MSc Data Science @ University of Bristol ’25 (Russell Group) • AI/ML Research Support – NIHR • Ex-Unilever • Python · R · SQL · Machine Learning · AI</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#projects" class="px-5 py-2 rounded-xl accent-bg hover:opacity-90 font-semibold text-white">View Projects</a>
-          <a href="assets/cv/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl border border-black/10 dark:border-white/15 font-semibold">Download CV</a>
-          <a href="#contact" class="px-5 py-2 rounded-xl bg-white/70 dark:bg-white/10 border border-black/10 dark:border-white/15 font-semibold">Contact</a>
+          <a href="#projects" class="px-5 py-2 rounded-xl u-accent-bg font-semibold">View Projects</a>
+          <a href="assets/cv/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl u-card font-semibold">Download CV</a>
+          <a href="#contact" class="px-5 py-2 rounded-xl u-card font-semibold">Contact</a>
         </div>
         <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <span class="glass rounded-lg px-3 py-2 tilt">NIHR/NHS</span>
-          <span class="glass rounded-lg px-3 py-2 tilt">Unilever</span>
-          <span class="glass rounded-lg px-3 py-2 tilt">University of Bristol</span>
-          <span class="glass rounded-lg px-3 py-2 tilt">Sapienza</span>
+          <span class="u-chip">NIHR/NHS</span>
+          <span class="u-chip">Unilever</span>
+          <span class="u-chip">University of Bristol</span>
+          <span class="u-chip">Sapienza</span>
         </div>
       </div>
       <div class="relative">
-        <div class="aspect-square rounded-3xl bg-gradient-to-br from-[color:var(--accent)]/35 to-sky-500/30 border border-white/10 p-2 floaty">
+        <div class="aspect-square rounded-3xl hero-img-wrap u-border border p-2">
           <img src="assets/profile.jpg" alt="Thrisha Rajkumar" class="w-full h-full object-cover rounded-2xl">
         </div>
-        <div class="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 border border-white/10 text-sm">
+        <div class="absolute -bottom-4 -left-4 u-card rounded-2xl px-4 py-3 u-border text-sm">
           <div class="font-bold">Bristol PLUS Award</div>
-          <div class="opacity-80">Employability ’25</div>
+          <div class="u-muted">Employability ’25</div>
         </div>
-        <div class="absolute -top-4 -right-4 glass rounded-2xl px-4 py-3 border border-white/10 text-sm">
+        <div class="absolute -top-4 -right-4 u-card rounded-2xl px-4 py-3 u-border text-sm">
           <div class="font-bold">McKinsey Forward</div>
-          <div class="opacity-80">Oct–Dec ’25</div>
+          <div class="u-muted">Oct–Dec ’25</div>
         </div>
       </div>
     </div>
-    <!-- Wavy divider -->
-    <svg viewBox="0 0 1440 90" class="block w-full -mb-px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" opacity="0.08" d="M0,64L80,58.7C160,53,320,43,480,53.3C640,64,800,96,960,96C1120,96,1280,64,1360,48L1440,32L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
   </section>
 
-  <!-- ABOUT + OPEN TO WORK PANEL -->
-  <section id="about" class="py-16 border-t border-black/5 dark:border-white/10 bg-white/60 dark:bg-slate-900/40">
+  <!-- 02 — ABOUT -->
+  <section id="about" class="py-16 border-t u-border" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10);">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">01</span> Hello / Hero</div>
+      <div class="slide-badge"><span class="num">02</span> About & Open to Work</div>
       <h2 class="text-3xl font-extrabold mt-3">About</h2>
-      <p class="mt-4 leading-relaxed opacity-90">Hi, I’m Thrisha. I recently completed my MSc in Data Science (University of Bristol, Russell Group) and I build socially impactful AI — from clinician‑co‑designed stroke‑rehab tools (NIHR/NHS) to socio‑economic analytics over UK Census data and physics‑informed deep learning for EMI prediction. I love clean data pipelines, interpretable ML, and visuals that help decisions.</p>
+      <p class="mt-4 leading-relaxed u-muted">
+        Hi, I’m Thrisha. I recently completed my MSc in Data Science (University of Bristol, Russell Group) and I build socially impactful AI — from clinician-co-designed stroke-rehab tools (NIHR/NHS) to socio-economic analytics over UK Census data and physics-informed deep learning for EMI prediction. I love clean data pipelines, interpretable ML, and visuals that help decisions.
+      </p>
       <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
-        <div class="glass dark:glass rounded-xl p-4 border border-white/10">
-          <div class="font-semibold">Actively seeking</div>
-          <div class="opacity-80 mt-1">Data Scientist • ML Specialist • AI Scientist • Data/Business Analyst</div>
-        </div>
-        <div class="glass dark:glass rounded-xl p-4 border border-white/10">
-          <div class="font-semibold">Locations</div>
-          <div class="opacity-80 mt-1">UK / Ireland (onsite/hybrid) • Remote (global)</div>
-        </div>
-        <div class="glass dark:glass rounded-xl p-4 border border-white/10">
-          <div class="font-semibold">Availability</div>
-          <div class="opacity-80 mt-1">Immediate</div>
-        </div>
+        <div class="u-card rounded-xl p-4"><div class="font-semibold">Actively seeking</div><div class="u-muted mt-1">Data Scientist • ML Specialist • AI Scientist • Data/Business Analyst</div></div>
+        <div class="u-card rounded-xl p-4"><div class="font-semibold">Locations</div><div class="u-muted mt-1">UK / Ireland (onsite/hybrid) • Remote (global)</div></div>
+        <div class="u-card rounded-xl p-4"><div class="font-semibold">Availability</div><div class="u-muted mt-1">Immediate</div></div>
       </div>
     </div>
   </section>
 
-  <!-- WINS / ANALYTICS -->
+  <!-- 03 — WINS -->
   <section id="wins" class="py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">03</span> Impact & Analytics</div>
-      <h2 class="text-3xl font-extrabold mt-3">Impact & Analytics</h2</h2>
+      <h2 class="text-3xl font-extrabold mt-3">Impact & Analytics</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="rounded-2xl p-6 border border-white/10 glass"><div class="text-3xl font-extrabold">-40%</div><div class="opacity-80">Changeover time</div></div>
-        <div class="rounded-2xl p-6 border border-white/10 glass"><div class="text-3xl font-extrabold">-25%</div><div class="opacity-80">Forecast error</div></div>
-        <div class="rounded-2xl p-6 border border-white/10 glass"><div class="text-3xl font-extrabold">R² > 0.90</div><div class="opacity-80">EMI targets (13)</div></div>
-        <div class="rounded-2xl p-6 border border-white/10 glass"><div class="text-3xl font-extrabold">7,067</div><div class="opacity-80">Post impressions (7 days)</div></div>
+        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">-40%</div><div class="u-muted">Changeover time</div></div>
+        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">-25%</div><div class="u-muted">Forecast error</div></div>
+        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">R² &gt; 0.90</div><div class="u-muted">EMI targets (13)</div></div>
+        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">7,067</div><div class="u-muted">Post impressions (7 days)</div></div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS GRID (EDIT CARDS ONE BY ONE) -->
-    <!-- PROJECTS GRID -->
-    <!-- PROJECTS RAIL (fun flow) -->
-  <section id="projects" class="py-16 bg-white/60 dark:bg-slate-900/40 border-y border-black/5 dark:border-white/10">
+  <!-- 04 — PROJECTS -->
+  <section id="projects" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-7xl mx-auto px-4">
       <div class="slide-badge"><span class="num">04</span> Featured Projects</div>
       <div class="flex items-end justify-between mt-3">
-        <h2 class="text-3xl font-extrabold">Featured Projects</h2></h2>
-        <div class="flex items-center gap-2">
-          <button class="rail-arrow glass border border-white/10" id="railPrev" aria-label="Previous">‹</button>
-          <button class="rail-arrow glass border border-white/10" id="railNext" aria-label="Next">›</button>
-          <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="text-sky-500 hover:underline ml-2">See all →</a>
-        </div>
+        <h2 class="text-3xl font-extrabold">Featured Projects</h2>
+        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="u-accent hover:underline">See all →</a>
       </div>
-
-      <div class="mt-6 cards-rail" id="cardsRail">
-        <!-- CARD 1: NHS APP -->
-        <article id="card-nhs" class="pcard">
-          <div class="pcard-inner">
-            <span class="ribbon">Healthcare • AI</span>
-            <div class="sticker">💡</div>
-            <div class="img-wrap">
-              <img class="img-tilt" src="assets/img/projects/nhs_app.png" alt="NIHR/NHS Stroke Rehab App">
-              <div class="blob"></div>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <!-- CARD 1 -->
+        <article id="card-census" class="u-card rounded-2xl overflow-hidden">
+          <img src="assets/census_dashboard.png" alt="UK Census Socio-Economic Analysis" class="w-full h-44 object-cover">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">UK Census Socio-Economic (2011→2021)</h3>
+            <p class="mt-2 text-sm u-muted">Bayesian Ridge imputation for 31 LADs; UMAP/t-SNE + KMeans; interactive Tableau dashboards; report linked.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">Bayesian</span>
+              <span class="u-chip">UMAP</span>
+              <span class="u-chip">Tableau</span>
             </div>
-            <div class="p-5">
-              <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
-              <p class="mt-2 text-sm opacity-90">Flutter app + AI personalisation, co‑designed with clinicians & people with stroke for inclusive routines and feedback.</p>
-              <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                <span class="px-2 py-1 rounded u-chip">Flutter</span>
-                <span class="px-2 py-1 rounded u-chip">ML</span>
-                <span class="px-2 py-1 rounded u-chip">Firebase</span>
-              </div>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="btn-accent">Demo</a>
-                <a href="#" class="btn-ghost">Repo</a>
-              </div>
-            </div>
-            <div class="marquee">
-              <div class="marquee__inner">
-                <span class="marquee__pill">Codesign</span>
-                <span class="marquee__pill">Inclusive UX</span>
-                <span class="marquee__pill">Realtime feedback</span>
-                <span class="marquee__pill">PwS workshops</span>
-                <span class="marquee__pill">Clinical input</span>
-                <span class="marquee__pill">Codesign</span>
-                <span class="marquee__pill">Inclusive UX</span>
-                <span class="marquee__pill">Realtime feedback</span>
-                <span class="marquee__pill">PwS workshops</span>
-                <span class="marquee__pill">Clinical input</span>
-              </div>
+            <div class="mt-4 flex gap-4 text-sm">
+              <a href="#" class="u-accent hover:underline">Repo</a>
+              <a href="#" class="u-accent hover:underline">Dashboards</a>
+              <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="hover:underline">Report</a>
             </div>
           </div>
         </article>
-        <!-- CARD 2: UK CENSUS -->
-        <article id="card-census" class="pcard">
-          <div class="pcard-inner">
-            <span class="ribbon">Public Data • Viz</span>
-            <div class="sticker">📊</div>
-            <div class="img-wrap">
-              <img class="img-tilt" src="assets/img/projects/census_dashboard.png" alt="UK Census Socio‑Economic Analysis">
-              <div class="blob"></div>
+        <!-- CARD 2 -->
+        <article id="card-emi" class="u-card rounded-2xl overflow-hidden">
+          <img src="assets/emi_model.png" alt="EMI Surrogate Modelling" class="w-full h-44 object-cover">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">EMI Surrogate Modelling</h3>
+            <p class="mt-2 text-sm u-muted">Multi-output ANN with physics-informed features; R² &gt; 0.90 across 13 targets; evaluation in seconds.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">TensorFlow</span>
+              <span class="u-chip">Multi-Task</span>
+              <span class="u-chip">Optuna</span>
             </div>
-            <div class="p-5">
-              <h3 class="font-bold text-lg">UK Census Socio‑Economic (2011→2021)</h3>
-              <p class="mt-2 text-sm opacity-90">Bayesian Ridge imputation for 31 LADs; UMAP/t‑SNE + KMeans; interactive Tableau dashboards; report linked.</p>
-              <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                <span class="px-2 py-1 rounded u-chip">Bayesian</span>
-                <span class="px-2 py-1 rounded u-chip">UMAP</span>
-                <span class="px-2 py-1 rounded u-chip">Tableau</span>
-              </div>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="btn-accent">Dashboards</a>
-                <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="btn-ghost">Report</a>
-                <a href="#" class="btn-ghost">Repo</a>
-              </div>
-            </div>
-            <div class="marquee">
-              <div class="marquee__inner">
-                <span class="marquee__pill">348 LADs</span>
-                <span class="marquee__pill">2011 vs 2021</span>
-                <span class="marquee__pill">Level 4+ rise</span>
-                <span class="marquee__pill">Education ↔ Skilled work</span>
-                <span class="marquee__pill">Migration clusters</span>
-                <span class="marquee__pill">348 LADs</span>
-                <span class="marquee__pill">2011 vs 2021</span>
-                <span class="marquee__pill">Level 4+ rise</span>
-                <span class="marquee__pill">Education ↔ Skilled work</span>
-                <span class="marquee__pill">Migration clusters</span>
-              </div>
+            <div class="mt-4 flex gap-4 text-sm">
+              <a href="#" class="u-accent hover:underline">Repo</a>
+              <a href="#" class="u-accent hover:underline">Notebook</a>
             </div>
           </div>
         </article>
-        <!-- CARD 3: EMI SURROGATE -->
-        <article id="card-emi" class="pcard">
-          <div class="pcard-inner">
-            <span class="ribbon">Deep Learning • EV</span>
-            <div class="sticker">⚡</div>
-            <div class="img-wrap">
-              <img class="img-tilt" src="assets/img/projects/emi_model.png" alt="EMI Surrogate Modelling">
-              <div class="blob"></div>
+        <!-- CARD 3 -->
+        <article id="card-nhs" class="u-card rounded-2xl overflow-hidden">
+          <img src="assets/nhs_app.png" alt="NIHR/NHS Stroke Rehab App" class="w-full h-44 object-cover">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
+            <p class="mt-2 text-sm u-muted">Flutter app + AI personalisation, co-designed with clinicians & people with stroke for inclusive routines and feedback.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">Flutter</span>
+              <span class="u-chip">Firebase</span>
+              <span class="u-chip">NHS/NIHR</span>
             </div>
-            <div class="p-5">
-              <h3 class="font-bold text-lg">EMI Surrogate Modelling</h3>
-              <p class="mt-2 text-sm opacity-90">Multi‑output ANN with physics‑informed features; R² > 0.90 across 13 targets; evaluation in seconds.</p>
-              <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                <span class="px-2 py-1 rounded u-chip">TensorFlow</span>
-                <span class="px-2 py-1 rounded u-chip">Multi‑Task</span>
-                <span class="px-2 py-1 rounded u-chip">Optuna</span>
-              </div>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="btn-accent">Notebook</a>
-                <a href="#" class="btn-ghost">Repo</a>
-              </div>
-            </div>
-            <div class="marquee">
-              <div class="marquee__inner">
-                <span class="marquee__pill">13 targets</span>
-                <span class="marquee__pill">Physics‑informed</span>
-                <span class="marquee__pill">Hyper‑tuned</span>
-                <span class="marquee__pill">R² > 0.90</span>
-                <span class="marquee__pill">Seconds‑level</span>
-                <span class="marquee__pill">13 targets</span>
-                <span class="marquee__pill">Physics‑informed</span>
-                <span class="marquee__pill">Hyper‑tuned</span>
-                <span class="marquee__pill">R² > 0.90</span>
-                <span class="marquee__pill">Seconds‑level</span>
-              </div>
+            <div class="mt-4 flex gap-4 text-sm">
+              <a href="#" class="u-accent hover:underline">Repo</a>
+              <a href="#" class="u-accent hover:underline">Demo</a>
             </div>
           </div>
         </article>
-      </div>
-
-      <div class="mt-4 rail-progress" aria-hidden="true"><div id="railProg" class="rail-progress-bar"></div></div>
-      <div class="rail-controls mt-2">
-        <span class="rail-dot" data-dot="0"></span>
-        <span class="rail-dot" data-dot="1"></span>
-        <span class="rail-dot" data-dot="2"></span>
       </div>
     </div>
-    <svg viewBox="0 0 1440 90" class="block w-full -mt-px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="currentColor" opacity="0.08" d="M0,64L80,58.7C160,53,320,43,480,53.3C640,64,800,96,960,96C1120,96,1280,64,1360,48L1440,32L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
   </section>
 
-  <!-- LINKEDIN SPOTLIGHT -->
+  <!-- 05 — LINKEDIN -->
   <section id="linkedin" class="py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">05</span> LinkedIn Spotlight</div>
@@ -388,8 +258,8 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE TIMELINE -->
-  <section id="experience" class="py-16 bg-white/60 dark:bg-slate-900/40 border-y border-black/5 dark:border-white/10">
+  <!-- 06 — EXPERIENCE -->
+  <section id="experience" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-5xl mx-auto px-4">
       <div class="slide-badge"><span class="num">06</span> Experience Timeline</div>
       <h2 class="text-3xl font-extrabold mt-3">Experience</h2>
@@ -397,195 +267,122 @@
         <div class="relative pl-8">
           <div class="absolute left-1 top-2 w-3 h-3 rounded-full" style="background:var(--accent)"></div>
           <h3 class="font-semibold">Research Support — NIHR/NHS (University of Bristol)</h3>
-          <p class="text-sm opacity-80">Apr 2025 – Present • Flutter app + ML pipelines • Co‑design with clinicians & PwS • NIHR i4i FAST in ABI (London) presentation</p>
+          <p class="text-sm u-muted">Apr 2025 – Present • Flutter app + ML pipelines • Co-design with clinicians & PwS • NIHR i4i FAST in ABI (London) presentation</p>
         </div>
         <div class="relative pl-8">
           <div class="absolute left-1 top-2 w-3 h-3 rounded-full bg-sky-400"></div>
           <h3 class="font-semibold">Data Science & Analytics Intern — Unilever</h3>
-          <p class="text-sm opacity-80">Jan 2024 – May 2024 • 15+ initiatives • −40% changeover • −25% forecast error • +15–20% KPI visibility</p>
+          <p class="text-sm u-muted">Jan 2024 – May 2024 • 15+ initiatives • −40% changeover • −25% forecast error • +15–20% KPI visibility</p>
         </div>
         <div class="relative pl-8">
           <div class="absolute left-1 top-2 w-3 h-3 rounded-full bg-emerald-400"></div>
           <h3 class="font-semibold">Applied Neural Networks — Sapienza × Bristol</h3>
-          <p class="text-sm opacity-80">Jan 2025 – May 2025 • CIRNet improvements • PCA + hydropathy • 78% accuracy</p>
+          <p class="text-sm u-muted">Jan 2025 – May 2025 • CIRNet improvements • PCA + hydropathy • 78% accuracy</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- 07 — SKILLS -->
   <section id="skills" class="py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">07</span> Skills Stack</div>
       <h2 class="text-3xl font-extrabold mt-3">Skills</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        <div class="glass rounded-2xl p-4 border border-white/10"><h4 class="font-semibold">ML / AI</h4><p class="mt-2 opacity-90">TensorFlow, Keras, scikit‑learn, NLP (BERT, BiLSTM), Bayesian</p></div>
-        <div class="glass rounded-2xl p-4 border border-white/10"><h4 class="font-semibold">Data</h4><p class="mt-2 opacity-90">Pandas, NumPy, ETL, SQL, Power Automate, SAP</p></div>
-        <div class="glass rounded-2xl p-4 border border-white/10"><h4 class="font-semibold">Cloud / DevOps</h4><p class="mt-2 opacity-90">AWS (EC2, Lambda, S3, DynamoDB), Docker, Node‑RED, Grafana</p></div>
-        <div class="glass rounded-2xl p-4 border border-white/10"><h4 class="font-semibold">Viz / Apps</h4><p class="mt-2 opacity-90">Tableau, Power BI, Matplotlib, Seaborn, React, Angular, Flutter</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">ML / AI</h4><p class="mt-2 u-muted">TensorFlow, Keras, scikit-learn, NLP (BERT, BiLSTM), Bayesian</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Data</h4><p class="mt-2 u-muted">Pandas, NumPy, ETL, SQL, Power Automate, SAP</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Cloud / DevOps</h4><p class="mt-2 u-muted">AWS (EC2, Lambda, S3, DynamoDB), Docker, Node-RED, Grafana</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Viz / Apps</h4><p class="mt-2 u-muted">Tableau, Power BI, Matplotlib, Seaborn, React, Angular, Flutter</p></div>
       </div>
     </div>
   </section>
 
-  <!-- AWARDS & CERTS -->
-  <section id="awards" class="py-16">
+  <!-- 08 — AWARDS -->
+  <section id="awards" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">08</span> Awards & Certifications</div>
       <h2 class="text-3xl font-extrabold mt-3">Awards & Certifications</h2>
       <ul class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
-        <li class="glass rounded-xl p-4 border border-white/10"><strong>Bristol PLUS Award</strong> — Employability & leadership (2025)</li>
-        <li class="glass rounded-xl p-4 border border-white/10"><strong>BILT Highly Commendable</strong> — Student Research Festival (2025)</li>
-        <li class="glass rounded-xl p-4 border border-white/10"><strong>McKinsey Forward Program</strong> — Oct–Dec 2025</li>
-        <li class="glass rounded-xl p-4 border border-white/10"><strong>AWS Academy Graduate</strong> — Cloud Foundations</li>
+        <li class="u-card rounded-xl p-4"><strong>Bristol PLUS Award</strong> — Employability & leadership (2025)</li>
+        <li class="u-card rounded-xl p-4"><strong>BILT Highly Commendable</strong> — Student Research Festival (2025)</li>
+        <li class="u-card rounded-xl p-4"><strong>McKinsey Forward Program</strong> — Oct–Dec 2025</li>
+        <li class="u-card rounded-xl p-4"><strong>AWS Academy Graduate</strong> — Cloud Foundations</li>
       </ul>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="py-16 bg-white/60 dark:bg-slate-900/40 border-y border-black/5 dark:border-white/10">
+  <!-- 09 — TESTIMONIALS -->
+  <section id="testimonials" class="py-16">
     <div class="max-w-5xl mx-auto px-4">
       <div class="slide-badge"><span class="num">09</span> Testimonials</div>
       <h2 class="text-3xl font-extrabold mt-3">What People Say</h2>
       <div class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
-        <blockquote class="glass rounded-xl p-5 border border-white/10">“Thrisha blends attention to detail, creativity, and real‑world orientation. I confidently recommend her for roles in Data Science and AI.” <span class="block mt-3 opacity-70">— Telmo de Menezes e Silva Filho, Senior Lecturer</span></blockquote>
-        <blockquote class="glass rounded-xl p-5 border border-white/10">“Exceptional team member on our NIHR project… strong communicator and proactive collaborator.” <span class="block mt-3 opacity-70">— James Pope, Senior Lecturer</span></blockquote>
+        <blockquote class="u-card rounded-xl p-5">“Thrisha blends attention to detail, creativity, and real-world orientation. I confidently recommend her for roles in Data Science and AI.” <span class="block mt-3 u-muted">— Telmo de Menezes e Silva Filho, Senior Lecturer</span></blockquote>
+        <blockquote class="u-card rounded-xl p-5">“Exceptional team member on our NIHR project… strong communicator and proactive collaborator.” <span class="block mt-3 u-muted">— James Pope, Senior Lecturer</span></blockquote>
       </div>
     </div>
   </section>
 
-  <!-- GITHUB STATS -->
-  <section id="stats" class="py-16">
+  <!-- 10 — GITHUB STATS -->
+  <section id="stats" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">10</span> GitHub Stats</div>
       <h2 class="text-3xl font-extrabold mt-3">GitHub Stats</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <img alt="GitHub stats" class="rounded-xl border border-white/10" src="https://github-readme-stats.vercel.app/api?username=thrisharajkumar&show_icons=true&theme=radical" />
-        <img alt="Top languages" class="rounded-xl border border-white/10" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thrisharajkumar&layout=compact&theme=radical" />
-        <img alt="Streak" class="rounded-xl border border-white/10" src="https://github-readme-streak-stats.herokuapp.com/?user=thrisharajkumar&theme=radical" />
-        <img alt="Activity graph" class="rounded-xl border border-white/10 md:col-span-2" src="https://github-readme-activity-graph.vercel.app/graph?username=thrisharajkumar&theme=react-dark&bg_color=20232a&hide_border=true" />
+        <img alt="GitHub stats" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-stats.vercel.app/api?username=thrisharajkumar&show_icons=true&theme=radical" />
+        <img alt="Top languages" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thrisharajkumar&layout=compact&theme=radical" />
+        <img alt="Streak" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-streak-stats.herokuapp.com/?user=thrisharajkumar&theme=radical" />
+        <img alt="Activity graph" class="rounded-xl u-border md:col-span-2" style="border-width:1px" src="https://github-readme-activity-graph.vercel.app/graph?username=thrisharajkumar&theme=react-dark&bg_color=20232a&hide_border=true" />
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- 11 — CONTACT -->
   <section id="contact" class="py-16">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <div class="slide-badge"><span class="num">11</span> Contact</div>
       <h2 class="text-3xl font-extrabold mt-3">Let’s Connect</h2>
-      <p class="mt-3 opacity-90">Open to full‑time roles, collaborations, and research projects in AI/ML & Data Science.</p>
+      <p class="mt-3 u-muted">Open to full-time roles, collaborations, and research projects in AI/ML & Data Science.</p>
       <div class="mt-6 flex items-center justify-center gap-4">
-        <a class="px-5 py-2 rounded-xl accent-bg hover:opacity-90 font-semibold text-white" href="mailto:thrisharajkumar5@gmail.com">Email</a>
-        <a class="px-5 py-2 rounded-xl bg-sky-500 hover:opacity-90 font-semibold text-white" href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="px-5 py-2 rounded-xl border border-black/10 dark:border-white/15 font-semibold" href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+        <a class="px-5 py-2 rounded-xl u-accent-bg font-semibold" href="mailto:thrisharajkumar5@gmail.com">Email</a>
+        <a class="px-5 py-2 rounded-xl" style="background:#0ea5e9;color:#fff" href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="px-5 py-2 rounded-xl u-card font-semibold" href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
 
-  <footer class="py-10 text-center text-xs opacity-70">
+  <footer class="py-10 text-center text-xs u-muted">
     © <span id="y"></span> Thrisha Rajkumar — Built with Tailwind on GitHub Pages
-    </footer>
-
-  <!-- Confetti canvas -->
-  <canvas id="confetti" class="confetti"></canvas>
+  </footer>
 
   <script>
-    // Persisted theme + accent toggle
+    // Persisted theme & accent
     const root = document.documentElement;
-    const storedDark = localStorage.getItem('theme');
-    const storedAccent = localStorage.getItem('accent');
-    if (storedDark === 'light') document.documentElement.classList.remove('dark');
-    if (storedDark === 'dark') document.documentElement.classList.add('dark');
-    if (storedAccent) document.documentElement.setAttribute('data-accent', storedAccent);
-
+    const applyStored = () => {
+      const t = localStorage.getItem('theme');
+      const a = localStorage.getItem('accent');
+      if (t) root.setAttribute('data-theme', t);
+      if (a) root.setAttribute('data-accent', a);
+    };
+    applyStored();
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Theme toggle
     document.getElementById('themeToggle').addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      const v = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      localStorage.setItem('theme', v);
-      popConfetti();
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
     });
+
+    // Accent picker
     document.querySelectorAll('[data-accent]').forEach(btn => {
       btn.addEventListener('click', () => {
         const v = btn.getAttribute('data-accent');
-        document.documentElement.setAttribute('data-accent', v);
+        root.setAttribute('data-accent', v);
         localStorage.setItem('accent', v);
-        popConfetti();
       });
     });
 
-    // Tiny confetti burst (no deps)
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let W, H; function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; } resize(); window.addEventListener('resize', resize);
-    function popConfetti(){
-      const pieces = Array.from({length: 50}, () => ({
-        x: Math.random()*W, y: Math.random()*H*0.3 + 40,
-        r: Math.random()*4+2, vx:(Math.random()-0.5)*2, vy: Math.random()*2+1,
-        c: ['#d946ef','#34d399','#0ea5e9','#f59e0b'][Math.floor(Math.random()*4)]
-      }));
-      let t=0; const id = setInterval(()=>{
-        t++; ctx.clearRect(0,0,W,H);
-        pieces.forEach(p=>{ ctx.beginPath(); ctx.fillStyle=p.c; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); p.x+=p.vx; p.y+=p.vy; p.vy+=0.03; });
-        if(t>60){ clearInterval(id); ctx.clearRect(0,0,W,H);} }, 16);
-    }
-      // === Projects rail JS ===
-    const rail = document.getElementById('cardsRail');
-    const dots = Array.from(document.querySelectorAll('.rail-dot'));
-    const prev = document.getElementById('railPrev');
-    const next = document.getElementById('railNext');
-
-    function updateDots(){
-      const cardWidth = rail.firstElementChild.getBoundingClientRect().width + 16; // gap
-      const idx = Math.round(rail.scrollLeft / cardWidth);
-      dots.forEach((d,i)=> d.classList.toggle('active', i===idx));
-      const prog = document.getElementById('railProg');
-      const pct = ((idx+1)/dots.length)*100;
-      prog.style.width = pct + '%';
-    }
-    updateDots();
-    rail.addEventListener('scroll', () => { requestAnimationFrame(updateDots); });
-
-    dots.forEach((d,i)=> d.addEventListener('click', ()=>{
-      const cardWidth = rail.firstElementChild.getBoundingClientRect().width + 16;
-      rail.scrollTo({ left: i*cardWidth, behavior: 'smooth' });
-    }));
-
-    function move(delta){
-      const cardWidth = rail.firstElementChild.getBoundingClientRect().width + 16;
-      const idx = Math.round(rail.scrollLeft / cardWidth) + delta;
-      const target = Math.max(0, Math.min(dots.length-1, idx));
-      rail.scrollTo({ left: target*cardWidth, behavior: 'smooth' });
-    }
-    prev.addEventListener('click', ()=> move(-1));
-    next.addEventListener('click', ()=> move(1));
-
-    // autoplay with pause on hover / visibility
-    let auto = setInterval(()=> move(1), 6000);
-    const stop = ()=> { clearInterval(auto); auto = null; };
-    const start = ()=> { if(!auto) auto = setInterval(()=> move(1), 6000); };
-    rail.addEventListener('mouseenter', stop);
-    rail.addEventListener('mouseleave', start);
-    document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
-
-    // keyboard navigation
-    window.addEventListener('keydown', (e)=>{
-      if(e.key==='ArrowRight') move(1);
-      if(e.key==='ArrowLeft') move(-1);
-    });
-
-    // lightweight parallax on hover
-    document.querySelectorAll('.pcard').forEach(card=>{
-      const img = card.querySelector('.img-tilt');
-      if(!img) return;
-      card.addEventListener('mousemove', (e)=>{
-        const b = card.getBoundingClientRect();
-        const rx = ((e.clientX - b.left)/b.width - .5)*6; // rotateY
-        const ry = ((e.clientY - b.top)/b.height - .5)*-6; // rotateX
-        img.style.transform = `scale(1.05) rotateX(${ry}deg) rotateY(${rx}deg)`;
-      });
-      card.addEventListener('mouseleave', ()=>{ img.style.transform='scale(1.03) rotateX(0) rotateY(0)'; });
-    });
     // Slide dot activator on scroll
     const sections = ['home','about','wins','projects','linkedin','experience','skills','awards','testimonials','stats','contact'];
     const dotsMap = new Map(sections.map(id => [id, document.querySelector(`[data-slide-dot="${id}"]`)]));
@@ -599,7 +396,22 @@
       });
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
     sections.forEach(id => { const el = document.getElementById(id); if(el) obs.observe(el); });
+
+    // LinkedIn Spotlight — replace # with your real post links
+    const posts = [
+      { title: 'MSc Data Science — reflections & gratitude', teaser: 'Proud to complete MSc at the University of Bristol.', url: '#', date: '2025-09-15' },
+      { title: 'Presenting at i4i FAST in ABI, London', teaser: 'Co-presented NIHR project: AI for personalised stroke rehab.', url: '#', date: '2025-09-19' },
+      { title: 'Turing GW4 — AI & Net Zero (Bath)', teaser: 'Highlights from research talks and climate AI applications.', url: '#', date: '2025-07-14' },
+      { title: 'McKinsey Forward Program — accepted', teaser: 'Building future-ready skills Oct–Dec 2025.', url: '#', date: '2025-09-20' }
+    ];
+    const ul = document.getElementById('li-posts');
+    ul.innerHTML = posts.map(p => `
+      <li class="u-card rounded-xl p-5">
+        <div class="text-xs u-muted">${new Date(p.date).toLocaleDateString()}</div>
+        <h3 class="font-semibold mt-1">${p.title}</h3>
+        <p class="text-sm u-muted mt-1">${p.teaser}</p>
+        <a class="u-accent hover:underline text-sm" target="_blank" href="${p.url}">Read on LinkedIn →</a>
+      </li>`).join('');
   </script>
 </body>
-</html>
 </html>
