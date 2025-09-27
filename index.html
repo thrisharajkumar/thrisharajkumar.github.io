@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-accent="fuchsia">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thrisha Rajkumar — MSc Data Science</title>
-  <meta name="description" content="Portfolio of Thrisha Rajkumar — MSc Data Science @ University of Bristol ’25. AI/ML Research (NIHR/NHS), Visual Analytics, Cloud, and Full‑Stack." />
+  <meta name="description" content="Portfolio of Thrisha Rajkumar — MSc Data Science @ University of Bristol ’25. AI/ML Research (NIHR/NHS), Visual Analytics, Cloud, and Full-Stack." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -12,26 +12,83 @@
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
-    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
-    .gradient { background: radial-gradient(1200px 600px at 10% -10%, #9333ea22, transparent), radial-gradient(900px 500px at 110% 10%, #06b6d422, transparent), linear-gradient(180deg, #0b1020, #0b1226); }
+
+    /* THEME VARIABLES */
+    :root {
+      --bg: #0b1226;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.10);
+      --accent: #d946ef; /* fuchsia */
+      --grad-a: color-mix(in oklab, var(--accent) 30%, transparent);
+      --grad-b: rgba(56,189,248,.18);
+    }
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --muted: #334155;
+      --card: rgba(15,23,42,0.05);
+      --border: rgba(15,23,42,0.12);
+      --grad-a: color-mix(in oklab, var(--accent) 18%, transparent);
+      --grad-b: rgba(2,132,199,.12);
+    }
+    html[data-accent="fuchsia"] { --accent:#d946ef; }
+    html[data-accent="emerald"] { --accent:#34d399; }
+    html[data-accent="sky"]     { --accent:#0ea5e9; }
+
+    /* UTIL CLASSES USING VARIABLES */
+    .u-bg        { background: var(--bg); color: var(--text); }
+    .u-muted     { color: var(--muted); }
+    .u-card      { background: var(--card); border: 1px solid var(--border); }
+    .u-chip      { background: var(--card); border: 1px solid var(--border); }
+    .u-border    { border-color: var(--border); }
+    .u-accent-bg { background: var(--accent); color: #fff; }
+    .u-accent    { color: var(--accent); }
+    .u-accent-b  { border-color: color-mix(in oklab, var(--accent) 50%, transparent); }
+
+    /* GLASS + GRADIENT */
+    .glass { background: var(--card); backdrop-filter: blur(10px); }
+    .gradient {
+      background:
+        radial-gradient(1200px 600px at 10% -10%, var(--grad-a), transparent),
+        radial-gradient(900px 500px at 110% 10%, var(--grad-b), transparent),
+        linear-gradient(180deg, color-mix(in oklab, var(--bg) 92%, black), var(--bg));
+    }
+
+    a:hover { opacity: .92; }
+
+    /* images */
+    .hero-img-wrap { background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 35%, transparent), rgba(14,165,233,.28)); }
+
+    /* chips row */
+    .chip { border-radius: .6rem; padding: .4rem .75rem; font-size:.75rem; }
   </style>
 </head>
-<body class="gradient text-slate-100">
+<body class="gradient u-bg">
   <!-- Nav -->
-  <header class="sticky top-0 z-50 bg-slate-900/70 backdrop-blur border-b border-white/10">
+  <header class="sticky top-0 z-50 backdrop-blur border-b u-border" style="background: color-mix(in oklab, var(--bg) 70%, transparent);">
     <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
       <nav class="hidden md:flex gap-6 text-sm">
-        <a class="hover:text-fuchsia-300" href="#about">About</a>
-        <a class="hover:text-fuchsia-300" href="#projects">Projects</a>
-        <a class="hover:text-fuchsia-300" href="#timeline">Timeline</a>
-        <a class="hover:text-fuchsia-300" href="#skills">Skills</a>
-        <a class="hover:text-fuchsia-300" href="#stats">Stats</a>
-        <a class="hover:text-fuchsia-300" href="#contact">Contact</a>
+        <a class="hover:u-accent" href="#about">About</a>
+        <a class="hover:u-accent" href="#projects">Projects</a>
+        <a class="hover:u-accent" href="#timeline">Timeline</a>
+        <a class="hover:u-accent" href="#skills">Skills</a>
+        <a class="hover:u-accent" href="#stats">Stats</a>
+        <a class="hover:u-accent" href="#contact">Contact</a>
       </nav>
+
+      <!-- Theme & Accent controls -->
       <div class="flex items-center gap-3">
-        <a href="https://www.linkedin.com/in/thrisha-rajkumar/" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-fuchsia-500 hover:bg-fuchsia-400 text-white" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-white" target="_blank" rel="noopener">GitHub</a>
+        <button id="themeToggle" class="px-3 py-1.5 rounded-full text-xs font-semibold u-card">Theme</button>
+        <div class="flex items-center gap-2">
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia" style="background:#d946ef"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald" style="background:#34d399"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="sky"     title="Sky"     style="background:#0ea5e9"></button>
+        </div>
+        <a href="https://www.linkedin.com/in/thrisha-rajkumar/" class="px-3 py-1.5 rounded-full text-xs font-semibold u-accent-bg" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold" style="background:#0ea5e9;color:#fff" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </header>
@@ -40,46 +97,54 @@
   <section id="home" class="relative overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Thrisha Rajkumar</h1>
-        <p class="mt-4 text-lg text-slate-300">MSc Data Science @ University of Bristol ’25 • AI/ML Research Support (NIHR/NHS) • Python · R · AWS · Tableau · Flutter</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#projects" class="px-5 py-2 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 font-semibold">View Projects</a>
-          <a href="./assets/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 font-semibold">Download CV</a>
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full u-card">
+          <span class="w-2 h-2 rounded-full u-accent-bg" aria-hidden="true"></span>
+          <span>#OPEN_TO_WORK</span>
+          <span class="u-muted">• She/Her</span>
         </div>
-        <div class="mt-8 grid grid-cols-3 md:grid-cols-6 gap-3 text-xs text-slate-300">
-          <span class="glass rounded-lg px-3 py-2">TensorFlow</span>
-          <span class="glass rounded-lg px-3 py-2">scikit-learn</span>
-          <span class="glass rounded-lg px-3 py-2">Bayesian Modelling</span>
-          <span class="glass rounded-lg px-3 py-2">Tableau</span>
-          <span class="glass rounded-lg px-3 py-2">AWS</span>
-          <span class="glass rounded-lg px-3 py-2">Flutter</span>
+
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mt-3">Thrisha Rajkumar</h1>
+        <p class="mt-4 text-lg u-muted">MSc Data Science @ University of Bristol ’25 • AI/ML Research Support (NIHR/NHS) • Python · R · AWS · Tableau · Flutter</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="px-5 py-2 rounded-xl u-accent-bg font-semibold">View Projects</a>
+          <a href="./assets/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl u-card font-semibold">Download CV</a>
+        </div>
+        <div class="mt-8 grid grid-cols-3 md:grid-cols-6 gap-3 text-xs">
+          <span class="chip u-chip">TensorFlow</span>
+          <span class="chip u-chip">scikit-learn</span>
+          <span class="chip u-chip">Bayesian Modelling</span>
+          <span class="chip u-chip">Tableau</span>
+          <span class="chip u-chip">AWS</span>
+          <span class="chip u-chip">Flutter</span>
         </div>
       </div>
       <div class="relative">
-        <div class="aspect-square rounded-3xl bg-gradient-to-br from-fuchsia-600/40 to-sky-500/40 border border-white/10 p-2">
+        <div class="aspect-square rounded-3xl hero-img-wrap u-border border p-2">
           <img src="assets/profile.jpg" alt="Thrisha Rajkumar" class="w-full h-full object-cover rounded-2xl">
         </div>
-        <div class="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 border border-white/10 text-sm">
+        <div class="absolute -bottom-4 -left-4 u-card rounded-2xl px-4 py-3 u-border text-sm">
           <div class="font-bold">McKinsey Forward</div>
-          <div class="text-slate-300">Global Program ’25</div>
+          <div class="u-muted">Global Program ’25</div>
         </div>
-        <div class="absolute -top-4 -right-4 glass rounded-2xl px-4 py-3 border border-white/10 text-sm">
+        <div class="absolute -top-4 -right-4 u-card rounded-2xl px-4 py-3 u-border text-sm">
           <div class="font-bold">Bristol PLUS Award</div>
-          <div class="text-slate-300">Employability ’25</div>
+          <div class="u-muted">Employability ’25</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-20 border-t border-white/10 bg-slate-900/40">
+  <section id="about" class="py-20 border-t u-border" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10);">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-3xl font-extrabold">About</h2>
-      <p class="mt-4 text-slate-300 leading-relaxed">I’m a data scientist focused on building socially impactful AI. At the University of Bristol, I support an NIHR/NHS project co‑designing an AI algorithm and a cross‑platform Flutter app for personalised stroke rehabilitation. My background spans healthcare analytics, socio‑economic modelling with UK census data, and physics‑informed deep learning for EMI prediction.</p>
-      <ul class="mt-6 grid md:grid-cols-3 gap-4 text-sm text-slate-200">
-        <li class="glass rounded-xl p-4 border border-white/10"><span class="font-semibold">MSc Data Science</span> — University of Bristol (’25)</li>
-        <li class="glass rounded-xl p-4 border border-white/10"><span class="font-semibold">Data Science Intern</span> — Unilever (’24)</li>
-        <li class="glass rounded-xl p-4 border border-white/10"><span class="font-semibold">Awards</span> — Bristol PLUS • BILT • AWS Academy</li>
+      <p class="mt-4 u-muted leading-relaxed">
+        I’m a data scientist focused on building socially impactful AI. At the University of Bristol, I support an NIHR/NHS project co-designing an AI algorithm and a cross-platform Flutter app for personalised stroke rehabilitation. My background spans healthcare analytics, socio-economic modelling with UK census data, and physics-informed deep learning for EMI prediction.
+      </p>
+      <ul class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+        <li class="u-card rounded-xl p-4"><span class="font-semibold">MSc Data Science</span> — University of Bristol (’25)</li>
+        <li class="u-card rounded-xl p-4"><span class="font-semibold">Data Science Intern</span> — Unilever (’24)</li>
+        <li class="u-card rounded-xl p-4"><span class="font-semibold">Awards</span> — Bristol PLUS • BILT • AWS Academy</li>
       </ul>
     </div>
   </section>
@@ -89,58 +154,58 @@
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex items-end justify-between">
         <h2 class="text-3xl font-extrabold">Featured Projects</h2>
-        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="text-sky-300 hover:underline">See all →</a>
+        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="u-accent hover:underline">See all →</a>
       </div>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <!-- Project 1 -->
-        <article class="glass rounded-2xl border border-white/10 overflow-hidden">
-          <img src="assets/census_dashboard.png" alt="UK Census Socio‑Economic Analysis" class="w-full h-40 object-cover">
+        <article class="u-card rounded-2xl overflow-hidden">
+          <img src="assets/census_dashboard.png" alt="UK Census Socio-Economic Analysis" class="w-full h-40 object-cover">
           <div class="p-5">
-            <h3 class="font-bold text-lg">UK Census Socio‑Economic Analysis</h3>
-            <p class="mt-2 text-sm text-slate-300">Bayesian Ridge imputation for 31 LADs, UMAP/t‑SNE + KMeans, interactive Tableau dashboards across 2011 vs 2021.</p>
+            <h3 class="font-bold text-lg">UK Census Socio-Economic Analysis</h3>
+            <p class="mt-2 text-sm u-muted">Bayesian Ridge imputation for 31 LADs, UMAP/t-SNE + KMeans, interactive Tableau dashboards across 2011 vs 2021.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              <span class="px-2 py-1 rounded bg-white/10">Bayesian</span>
-              <span class="px-2 py-1 rounded bg-white/10">UMAP</span>
-              <span class="px-2 py-1 rounded bg-white/10">Tableau</span>
+              <span class="px-2 py-1 rounded u-chip">Bayesian</span>
+              <span class="px-2 py-1 rounded u-chip">UMAP</span>
+              <span class="px-2 py-1 rounded u-chip">Tableau</span>
             </div>
             <div class="mt-4 flex gap-3 text-sm">
-              <a href="#" class="text-fuchsia-300 hover:underline">Repo</a>
-              <a href="#" class="text-sky-300 hover:underline">Live Dashboards</a>
-              <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="text-slate-200 hover:underline">Report (PDF)</a>
+              <a href="#" class="u-accent hover:underline">Repo</a>
+              <a href="#" class="u-accent hover:underline">Live Dashboards</a>
+              <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="hover:underline">Report (PDF)</a>
             </div>
           </div>
         </article>
         <!-- Project 2 -->
-        <article class="glass rounded-2xl border border-white/10 overflow-hidden">
+        <article class="u-card rounded-2xl overflow-hidden">
           <img src="assets/emi_model.png" alt="EMI Surrogate Modelling" class="w-full h-40 object-cover">
           <div class="p-5">
             <h3 class="font-bold text-lg">EMI Surrogate Modelling</h3>
-            <p class="mt-2 text-sm text-slate-300">Multi‑output ANN with physics‑informed features; R² > 0.90 on 13 EMI targets; seconds‑level evaluation.</p>
+            <p class="mt-2 text-sm u-muted">Multi-output ANN with physics-informed features; R² > 0.90 on 13 EMI targets; seconds-level evaluation.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              <span class="px-2 py-1 rounded bg-white/10">TensorFlow</span>
-              <span class="px-2 py-1 rounded bg-white/10">Multi‑Task</span>
-              <span class="px-2 py-1 rounded bg-white/10">Optuna</span>
+              <span class="px-2 py-1 rounded u-chip">TensorFlow</span>
+              <span class="px-2 py-1 rounded u-chip">Multi-Task</span>
+              <span class="px-2 py-1 rounded u-chip">Optuna</span>
             </div>
             <div class="mt-4 flex gap-3 text-sm">
-              <a href="#" class="text-fuchsia-300 hover:underline">Repo</a>
-              <a href="#" class="text-sky-300 hover:underline">Notebook</a>
+              <a href="#" class="u-accent hover:underline">Repo</a>
+              <a href="#" class="u-accent hover:underline">Notebook</a>
             </div>
           </div>
         </article>
         <!-- Project 3 -->
-        <article class="glass rounded-2xl border border-white/10 overflow-hidden">
+        <article class="u-card rounded-2xl overflow-hidden">
           <img src="assets/nhs_app.png" alt="NIHR/NHS Stroke Rehab App" class="w-full h-40 object-cover">
           <div class="p-5">
             <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
-            <p class="mt-2 text-sm text-slate-300">Flutter app + AI personalisation, co‑designed with clinicians and patients for inclusive rehab routines.</p>
+            <p class="mt-2 text-sm u-muted">Flutter app + AI personalisation, co-designed with clinicians and patients for inclusive rehab routines.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              <span class="px-2 py-1 rounded bg-white/10">Flutter</span>
-              <span class="px-2 py-1 rounded bg-white/10">Firebase</span>
-              <span class="px-2 py-1 rounded bg-white/10">NHS/NIHR</span>
+              <span class="px-2 py-1 rounded u-chip">Flutter</span>
+              <span class="px-2 py-1 rounded u-chip">Firebase</span>
+              <span class="px-2 py-1 rounded u-chip">NHS/NIHR</span>
             </div>
             <div class="mt-4 flex gap-3 text-sm">
-              <a href="#" class="text-fuchsia-300 hover:underline">Repo</a>
-              <a href="#" class="text-sky-300 hover:underline">Demo</a>
+              <a href="#" class="u-accent hover:underline">Repo</a>
+              <a href="#" class="u-accent hover:underline">Demo</a>
             </div>
           </div>
         </article>
@@ -149,24 +214,24 @@
   </section>
 
   <!-- Timeline -->
-  <section id="timeline" class="py-20 bg-slate-900/40 border-y border-white/10">
+  <section id="timeline" class="py-20" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-3xl font-extrabold">Highlights</h2>
       <div class="mt-8 space-y-6">
         <div class="relative pl-8">
-          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-fuchsia-400"></div>
+          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full" style="background:var(--accent)"></div>
           <h3 class="font-semibold">McKinsey Forward Program (Global)</h3>
-          <p class="text-sm text-slate-300">Oct–Dec 2025 • Leadership & future‑skills program.</p>
+          <p class="text-sm u-muted">Oct–Dec 2025 • Leadership & future-skills program.</p>
         </div>
         <div class="relative pl-8">
-          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-sky-400"></div>
+          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full" style="background:#0ea5e9"></div>
           <h3 class="font-semibold">Speaker — NIHR ABI Conference, London</h3>
-          <p class="text-sm text-slate-300">Sept 2025 • Presented stroke rehab AI work.</p>
+          <p class="text-sm u-muted">Sept 2025 • Presented stroke rehab AI work.</p>
         </div>
         <div class="relative pl-8">
-          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-emerald-400"></div>
+          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full" style="background:#34d399"></div>
           <h3 class="font-semibold">Bristol PLUS Award</h3>
-          <p class="text-sm text-slate-300">2025 • Employability & leadership recognition.</p>
+          <p class="text-sm u-muted">2025 • Employability & leadership recognition.</p>
         </div>
       </div>
     </div>
@@ -177,35 +242,23 @@
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-extrabold">Skills</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        <div class="glass rounded-2xl p-4 border border-white/10">
-          <h4 class="font-semibold">ML / AI</h4>
-          <p class="mt-2 text-slate-300">TensorFlow, Keras, scikit‑learn, NLP (BERT, BiLSTM), Bayesian modelling</p>
-        </div>
-        <div class="glass rounded-2xl p-4 border border-white/10">
-          <h4 class="font-semibold">Data</h4>
-          <p class="mt-2 text-slate-300">Pandas, NumPy, ETL, SQL, Power Automate, SAP integration</p>
-        </div>
-        <div class="glass rounded-2xl p-4 border border-white/10">
-          <h4 class="font-semibold">Cloud / DevOps</h4>
-          <p class="mt-2 text-slate-300">AWS (EC2, Lambda, S3, DynamoDB), Docker, Node‑RED, Grafana</p>
-        </div>
-        <div class="glass rounded-2xl p-4 border border-white/10">
-          <h4 class="font-semibold">Viz / Apps</h4>
-          <p class="mt-2 text-slate-300">Tableau, Power BI, Matplotlib, Seaborn, React, Angular, Flutter</p>
-        </div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">ML / AI</h4><p class="mt-2 u-muted">TensorFlow, Keras, scikit-learn, NLP (BERT, BiLSTM), Bayesian modelling</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Data</h4><p class="mt-2 u-muted">Pandas, NumPy, ETL, SQL, Power Automate, SAP integration</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Cloud / DevOps</h4><p class="mt-2 u-muted">AWS (EC2, Lambda, S3, DynamoDB), Docker, Node-RED, Grafana</p></div>
+        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Viz / Apps</h4><p class="mt-2 u-muted">Tableau, Power BI, Matplotlib, Seaborn, React, Angular, Flutter</p></div>
       </div>
     </div>
   </section>
 
   <!-- Stats -->
-  <section id="stats" class="py-20 bg-slate-900/40 border-y border-white/10">
+  <section id="stats" class="py-20" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-extrabold">GitHub Stats</h2>
       <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <img alt="GitHub stats" class="rounded-xl border border-white/10" src="https://github-readme-stats.vercel.app/api?username=thrisharajkumar&show_icons=true&theme=radical" />
-        <img alt="Top languages" class="rounded-xl border border-white/10" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thrisharajkumar&layout=compact&theme=radical" />
-        <img alt="Streak" class="rounded-xl border border-white/10" src="https://github-readme-streak-stats.herokuapp.com/?user=thrisharajkumar&theme=radical" />
-        <img alt="Activity graph" class="rounded-xl border border-white/10 md:col-span-2" src="https://github-readme-activity-graph.vercel.app/graph?username=thrisharajkumar&theme=react-dark&bg_color=20232a&hide_border=true" />
+        <img alt="GitHub stats" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-stats.vercel.app/api?username=thrisharajkumar&show_icons=true&theme=radical" />
+        <img alt="Top languages" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thrisharajkumar&layout=compact&theme=radical" />
+        <img alt="Streak" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-streak-stats.herokuapp.com/?user=thrisharajkumar&theme=radical" />
+        <img alt="Activity graph" class="rounded-xl u-border md:col-span-2" style="border-width:1px" src="https://github-readme-activity-graph.vercel.app/graph?username=thrisharajkumar&theme=react-dark&bg_color=20232a&hide_border=true" />
       </div>
     </div>
   </section>
@@ -214,19 +267,47 @@
   <section id="contact" class="py-20">
     <div class="max-w-3xl mx-auto px-4 text-center">
       <h2 class="text-3xl font-extrabold">Let’s Connect</h2>
-      <p class="mt-3 text-slate-300">Open to graduate roles, research collaborations, and data projects with social impact.</p>
+      <p class="mt-3 u-muted">Open to graduate roles, research collaborations, and data projects with social impact.</p>
       <div class="mt-6 flex items-center justify-center gap-4">
-        <a class="px-5 py-2 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 font-semibold" href="mailto:thrisharajkumar5@gmail.com">Email</a>
-        <a class="px-5 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 font-semibold" href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 font-semibold" href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+        <a class="px-5 py-2 rounded-xl u-accent-bg font-semibold" href="mailto:thrisharajkumar5@gmail.com">Email</a>
+        <a class="px-5 py-2 rounded-xl" style="background:#0ea5e9;color:#fff" href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="px-5 py-2 rounded-xl u-card font-semibold" href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
 
-  <footer class="py-10 text-center text-xs text-slate-400">
+  <footer class="py-10 text-center text-xs u-muted">
     © <span id="y"></span> Thrisha Rajkumar — Built with Tailwind on GitHub Pages
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    // Persisted theme & accent
+    const root = document.documentElement;
+    const applyStored = () => {
+      const t = localStorage.getItem('theme');
+      const a = localStorage.getItem('accent');
+      if (t) root.setAttribute('data-theme', t);
+      if (a) root.setAttribute('data-accent', a);
+    };
+    applyStored();
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Accent picker
+    document.querySelectorAll('[data-accent]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.getAttribute('data-accent');
+        root.setAttribute('data-accent', v);
+        localStorage.setItem('accent', v);
+      });
+    });
+  </script>
 </body>
 </html>
