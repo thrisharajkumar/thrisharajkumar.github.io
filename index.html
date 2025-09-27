@@ -1,134 +1,232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thrisha Rajkumar — MSc Data Science</title>
+  <meta name="description" content="Portfolio of Thrisha Rajkumar — MSc Data Science @ University of Bristol ’25. AI/ML Research (NIHR/NHS), Visual Analytics, Cloud, and Full‑Stack." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
+    .gradient { background: radial-gradient(1200px 600px at 10% -10%, #9333ea22, transparent), radial-gradient(900px 500px at 110% 10%, #06b6d422, transparent), linear-gradient(180deg, #0b1020, #0b1226); }
+  </style>
 </head>
-<body class="light">
-    <!-- Header Section -->
-    <header>
-        <nav>
-            <div class="nav-logo">Thrisha Rajkumar</div>
-            <ul>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="theme-toggle">
-                <input type="checkbox" id="toggle">
-                <label for="toggle">🌙</label> <!-- Using an icon for the toggle -->
+<body class="gradient text-slate-100">
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 bg-slate-900/70 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a class="hover:text-fuchsia-300" href="#about">About</a>
+        <a class="hover:text-fuchsia-300" href="#projects">Projects</a>
+        <a class="hover:text-fuchsia-300" href="#timeline">Timeline</a>
+        <a class="hover:text-fuchsia-300" href="#skills">Skills</a>
+        <a class="hover:text-fuchsia-300" href="#stats">Stats</a>
+        <a class="hover:text-fuchsia-300" href="#contact">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="https://www.linkedin.com/in/thrisha-rajkumar/" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-fuchsia-500 hover:bg-fuchsia-400 text-white" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-500 hover:bg-sky-400 text-white" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Thrisha Rajkumar</h1>
+        <p class="mt-4 text-lg text-slate-300">MSc Data Science @ University of Bristol ’25 • AI/ML Research Support (NIHR/NHS) • Python · R · AWS · Tableau · Flutter</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="px-5 py-2 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 font-semibold">View Projects</a>
+          <a href="./assets/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 font-semibold">Download CV</a>
+        </div>
+        <div class="mt-8 grid grid-cols-3 md:grid-cols-6 gap-3 text-xs text-slate-300">
+          <span class="glass rounded-lg px-3 py-2">TensorFlow</span>
+          <span class="glass rounded-lg px-3 py-2">scikit-learn</span>
+          <span class="glass rounded-lg px-3 py-2">Bayesian Modelling</span>
+          <span class="glass rounded-lg px-3 py-2">Tableau</span>
+          <span class="glass rounded-lg px-3 py-2">AWS</span>
+          <span class="glass rounded-lg px-3 py-2">Flutter</span>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-square rounded-3xl bg-gradient-to-br from-fuchsia-600/40 to-sky-500/40 border border-white/10 p-2">
+          <img src="assets/profile.jpg" alt="Thrisha Rajkumar" class="w-full h-full object-cover rounded-2xl">
+        </div>
+        <div class="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 border border-white/10 text-sm">
+          <div class="font-bold">McKinsey Forward</div>
+          <div class="text-slate-300">Global Program ’25</div>
+        </div>
+        <div class="absolute -top-4 -right-4 glass rounded-2xl px-4 py-3 border border-white/10 text-sm">
+          <div class="font-bold">Bristol PLUS Award</div>
+          <div class="text-slate-300">Employability ’25</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 border-t border-white/10 bg-slate-900/40">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">About</h2>
+      <p class="mt-4 text-slate-300 leading-relaxed">I’m a data scientist focused on building socially impactful AI. At the University of Bristol, I support an NIHR/NHS project co‑designing an AI algorithm and a cross‑platform Flutter app for personalised stroke rehabilitation. My background spans healthcare analytics, socio‑economic modelling with UK census data, and physics‑informed deep learning for EMI prediction.</p>
+      <ul class="mt-6 grid md:grid-cols-3 gap-4 text-sm text-slate-200">
+        <li class="glass rounded-xl p-4 border border-white/10"><span class="font-semibold">MSc Data Science</span> — University of Bristol (’25)</li>
+        <li class="glass rounded-xl p-4 border border-white/10"><span class="font-semibold">Data Science Intern</span> — Unilever (’24)</li>
+        <li class="glass rounded-xl p-4 border border-white/10"><span class="font-semibold">Awards</span> — Bristol PLUS • BILT • AWS Academy</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between">
+        <h2 class="text-3xl font-extrabold">Featured Projects</h2>
+        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="text-sky-300 hover:underline">See all →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <article class="glass rounded-2xl border border-white/10 overflow-hidden">
+          <img src="assets/census_dashboard.png" alt="UK Census Socio‑Economic Analysis" class="w-full h-40 object-cover">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">UK Census Socio‑Economic Analysis</h3>
+            <p class="mt-2 text-sm text-slate-300">Bayesian Ridge imputation for 31 LADs, UMAP/t‑SNE + KMeans, interactive Tableau dashboards across 2011 vs 2021.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="px-2 py-1 rounded bg-white/10">Bayesian</span>
+              <span class="px-2 py-1 rounded bg-white/10">UMAP</span>
+              <span class="px-2 py-1 rounded bg-white/10">Tableau</span>
             </div>
-        </nav>
-    </header>
-  <!-- Hero Section -->
-    <section id="hero" style="margin-top: 0px; background-color: black; height: 100vh; display: flex; align-items: center; justify-content: center; color: white;">
-        <div class="container">
-            <h1>Thrisha Rajkumar</h1>
-            <p>Data Science and Analytics Enthusiast</p>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <div class="container">
-            <h2>Experience</h2>
-            <div class="cards">
-                <div class="card" data-company="Hindustan Unilever Limited (HUL)" data-role="Data Science and Analytics Internship">
-                    <h3>HUL</h3>
-                    <p>Data Science and Analytics Internship</p>
-                </div>
-                <div class="card" data-company="OneLine Works Pvt. Ltd." data-role="Frontend Flutter App Developer">
-                    <h3>OneLine Works</h3>
-                    <p>Frontend Flutter App Developer</p>
-                </div>
-                <div class="card" data-company="Deloitte" data-role="Salesforce Developer Internship">
-                    <h3>Deloitte</h3>
-                    <p>Salesforce Developer Internship</p>
-                </div>
-                <div class="card" data-company="Infosys" data-role="Artificial Intelligence Primer Certification">
-                    <h3>Infosys</h3>
-                    <p>AI Primer Certification</p>
-                </div>
-                <div class="card" data-company="DLithe Consultancy" data-role="Full Stack Web Developer Intern">
-                    <h3>DLithe</h3>
-                    <p>Full Stack Web Developer Intern</p>
-                </div>
+            <div class="mt-4 flex gap-3 text-sm">
+              <a href="#" class="text-fuchsia-300 hover:underline">Repo</a>
+              <a href="#" class="text-sky-300 hover:underline">Live Dashboards</a>
+              <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="text-slate-200 hover:underline">Report (PDF)</a>
             </div>
-        </div>
-    </section>
+          </div>
+        </article>
+        <!-- Project 2 -->
+        <article class="glass rounded-2xl border border-white/10 overflow-hidden">
+          <img src="assets/emi_model.png" alt="EMI Surrogate Modelling" class="w-full h-40 object-cover">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">EMI Surrogate Modelling</h3>
+            <p class="mt-2 text-sm text-slate-300">Multi‑output ANN with physics‑informed features; R² > 0.90 on 13 EMI targets; seconds‑level evaluation.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="px-2 py-1 rounded bg-white/10">TensorFlow</span>
+              <span class="px-2 py-1 rounded bg-white/10">Multi‑Task</span>
+              <span class="px-2 py-1 rounded bg-white/10">Optuna</span>
+            </div>
+            <div class="mt-4 flex gap-3 text-sm">
+              <a href="#" class="text-fuchsia-300 hover:underline">Repo</a>
+              <a href="#" class="text-sky-300 hover:underline">Notebook</a>
+            </div>
+          </div>
+        </article>
+        <!-- Project 3 -->
+        <article class="glass rounded-2xl border border-white/10 overflow-hidden">
+          <img src="assets/nhs_app.png" alt="NIHR/NHS Stroke Rehab App" class="w-full h-40 object-cover">
+          <div class="p-5">
+            <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
+            <p class="mt-2 text-sm text-slate-300">Flutter app + AI personalisation, co‑designed with clinicians and patients for inclusive rehab routines.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="px-2 py-1 rounded bg-white/10">Flutter</span>
+              <span class="px-2 py-1 rounded bg-white/10">Firebase</span>
+              <span class="px-2 py-1 rounded bg-white/10">NHS/NIHR</span>
+            </div>
+            <div class="mt-4 flex gap-3 text-sm">
+              <a href="#" class="text-fuchsia-300 hover:underline">Repo</a>
+              <a href="#" class="text-sky-300 hover:underline">Demo</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education">
-        <div class="container">
-            <h2>Education</h2>
-            <ul>
-                <li><strong>University of Bristol</strong>, MSc Data Science (2024-2025)</li>
-                <li><strong>Bachelor's Degree in Computer Science</strong>, (Specialization in Data Science and Analytics)</li>
-            </ul>
+  <!-- Timeline -->
+  <section id="timeline" class="py-20 bg-slate-900/40 border-y border-white/10">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">Highlights</h2>
+      <div class="mt-8 space-y-6">
+        <div class="relative pl-8">
+          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-fuchsia-400"></div>
+          <h3 class="font-semibold">McKinsey Forward Program (Global)</h3>
+          <p class="text-sm text-slate-300">Oct–Dec 2025 • Leadership & future‑skills program.</p>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <ul>
-                <li>Data Science & Analytics</li>
-                <li>Machine Learning</li>
-                <li>Statistical Analysis</li>
-                <li>Python, R, SQL</li>
-                <li>Data Visualization (Power BI, Tableau)</li>
-                <li>Web Development (HTML, CSS, JavaScript)</li>
-                <li>Flutter, Salesforce</li>
-            </ul>
+        <div class="relative pl-8">
+          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-sky-400"></div>
+          <h3 class="font-semibold">Speaker — NIHR ABI Conference, London</h3>
+          <p class="text-sm text-slate-300">Sept 2025 • Presented stroke rehab AI work.</p>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <ul>
-                <li><strong>Feed App:</strong> Innovative mobile application focused on user engagement and analytics.</li>
-                <li><strong>Production Optimizer:</strong> Algorithm developed for optimizing production schedules in the cosmetics industry.</li>
-                <li><strong>Energy Management System:</strong> Designed for real-time monitoring and reduction of energy consumption.</li>
-            </ul>
+        <div class="relative pl-8">
+          <div class="absolute left-1 top-1.5 w-3 h-3 rounded-full bg-emerald-400"></div>
+          <h3 class="font-semibold">Bristol PLUS Award</h3>
+          <p class="text-sm text-slate-300">2025 • Employability & leadership recognition.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <p>If you'd like to get in touch, feel free to reach out!</p>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">Send</button>
-            </form>
+  <!-- Skills -->
+  <section id="skills" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">Skills</h2>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+        <div class="glass rounded-2xl p-4 border border-white/10">
+          <h4 class="font-semibold">ML / AI</h4>
+          <p class="mt-2 text-slate-300">TensorFlow, Keras, scikit‑learn, NLP (BERT, BiLSTM), Bayesian modelling</p>
         </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Thrisha Rajkumar. All rights reserved.</p>
+        <div class="glass rounded-2xl p-4 border border-white/10">
+          <h4 class="font-semibold">Data</h4>
+          <p class="mt-2 text-slate-300">Pandas, NumPy, ETL, SQL, Power Automate, SAP integration</p>
         </div>
-    </footer>
+        <div class="glass rounded-2xl p-4 border border-white/10">
+          <h4 class="font-semibold">Cloud / DevOps</h4>
+          <p class="mt-2 text-slate-300">AWS (EC2, Lambda, S3, DynamoDB), Docker, Node‑RED, Grafana</p>
+        </div>
+        <div class="glass rounded-2xl p-4 border border-white/10">
+          <h4 class="font-semibold">Viz / Apps</h4>
+          <p class="mt-2 text-slate-300">Tableau, Power BI, Matplotlib, Seaborn, React, Angular, Flutter</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- Stats -->
+  <section id="stats" class="py-20 bg-slate-900/40 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-extrabold">GitHub Stats</h2>
+      <div class="mt-8 grid md:grid-cols-2 gap-6">
+        <img alt="GitHub stats" class="rounded-xl border border-white/10" src="https://github-readme-stats.vercel.app/api?username=thrisharajkumar&show_icons=true&theme=radical" />
+        <img alt="Top languages" class="rounded-xl border border-white/10" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thrisharajkumar&layout=compact&theme=radical" />
+        <img alt="Streak" class="rounded-xl border border-white/10" src="https://github-readme-streak-stats.herokuapp.com/?user=thrisharajkumar&theme=radical" />
+        <img alt="Activity graph" class="rounded-xl border border-white/10 md:col-span-2" src="https://github-readme-activity-graph.vercel.app/graph?username=thrisharajkumar&theme=react-dark&bg_color=20232a&hide_border=true" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-extrabold">Let’s Connect</h2>
+      <p class="mt-3 text-slate-300">Open to graduate roles, research collaborations, and data projects with social impact.</p>
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <a class="px-5 py-2 rounded-xl bg-fuchsia-600 hover:bg-fuchsia-500 font-semibold" href="mailto:thrisharajkumar5@gmail.com">Email</a>
+        <a class="px-5 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 font-semibold" href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 font-semibold" href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 text-center text-xs text-slate-400">
+    © <span id="y"></span> Thrisha Rajkumar — Built with Tailwind on GitHub Pages
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
-
-
