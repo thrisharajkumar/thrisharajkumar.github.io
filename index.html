@@ -43,7 +43,7 @@
     .u-bg        { background: var(--bg); color: var(--text); }
     .u-muted     { color: var(--muted); }
     .u-card      { background: var(--card); border: 1px solid var(--border); }
-    .u-chip      { background: var(--card); border: 1px solid var(--border); border-radius: .6rem; padding: .4rem .75rem; font-size:.75rem; }
+    .u-chip      { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: .5rem .8rem; font-size:.8rem; white-space:nowrap; }
     .u-border    { border-color: var(--border); }
     .u-accent-bg { background: var(--accent); color: #fff; }
     .u-accent    { color: var(--accent); }
@@ -67,6 +67,31 @@
     .slide-dot.active{background:var(--accent);box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent)}
 
     a:hover { opacity: .92; }
+
+    /* HERO tweaks: smaller portrait box */
+    .hero-portrait { width: 220px; height: 220px; }
+    @media (min-width: 768px){ .hero-portrait{ width: 280px; height: 280px; } }
+
+    /* --- SKILLS MARQUEE (3 rows, alternating directions) --- */
+    #skills.in-view .u-chip { opacity: 1; transform: scale(1); }
+    #skills .u-chip { opacity: .65; transform: scale(.96); transition: transform .3s ease, opacity .3s ease, box-shadow .3s ease; }
+    #skills .u-chip:hover { transform: scale(1.06); opacity: 1; box-shadow: 0 8px 24px rgba(0,0,0,.25), 0 0 0 2px color-mix(in oklab, var(--accent) 22%, transparent); }
+
+    .marquee-wrap{ overflow:hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+    .marquee-row{ display:flex; gap:.75rem; white-space:nowrap; }
+    .marquee-content{ display:flex; gap:.75rem; white-space:nowrap; will-change: transform; }
+
+    @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes scroll-right{ from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+    /* Only animate when section is in view */
+    #skills.in-view .dir-left  .marquee-content{ animation: scroll-left var(--speed, 28s) linear infinite; }
+    #skills.in-view .dir-right .marquee-content{ animation: scroll-right var(--speed, 32s) linear infinite; }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      #skills .marquee-content{ animation: none !important; }
+    }
   </style>
 </head>
 <body class="gradient u-bg">
@@ -75,12 +100,13 @@
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
       <nav class="hidden md:flex gap-6 text-sm">
+        <a class="hover:u-accent" href="#home">Home</a>
+        <a class="hover:u-accent" href="#skills">Skills</a>
         <a class="hover:u-accent" href="#about">About</a>
         <a class="hover:u-accent" href="#wins">Wins</a>
         <a class="hover:u-accent" href="#projects">Projects</a>
         <a class="hover:u-accent" href="#linkedin">LinkedIn</a>
         <a class="hover:u-accent" href="#experience">Experience</a>
-        <a class="hover:u-accent" href="#skills">Skills</a>
         <a class="hover:u-accent" href="#awards">Awards</a>
         <a class="hover:u-accent" href="#testimonials">Testimonials</a>
         <a class="hover:u-accent" href="#stats">Stats</a>
@@ -103,21 +129,21 @@
   <!-- SLIDE NAVIGATOR -->
   <nav class="slide-nav" aria-label="Slide navigation">
     <a href="#home" class="slide-dot" title="01 — Hello / Hero" data-slide-dot="home"></a>
-    <a href="#about" class="slide-dot" title="02 — About & Open to Work" data-slide-dot="about"></a>
-    <a href="#wins" class="slide-dot" title="03 — Impact & Analytics" data-slide-dot="wins"></a>
-    <a href="#projects" class="slide-dot" title="04 — Featured Projects" data-slide-dot="projects"></a>
-    <a href="#linkedin" class="slide-dot" title="05 — LinkedIn Spotlight" data-slide-dot="linkedin"></a>
-    <a href="#experience" class="slide-dot" title="06 — Experience Timeline" data-slide-dot="experience"></a>
-    <a href="#skills" class="slide-dot" title="07 — Skills Stack" data-slide-dot="skills"></a>
+    <a href="#skills" class="slide-dot" title="02 — Skills" data-slide-dot="skills"></a>
+    <a href="#about" class="slide-dot" title="03 — About & Open to Work" data-slide-dot="about"></a>
+    <a href="#wins" class="slide-dot" title="04 — Impact & Analytics" data-slide-dot="wins"></a>
+    <a href="#projects" class="slide-dot" title="05 — Featured Projects" data-slide-dot="projects"></a>
+    <a href="#linkedin" class="slide-dot" title="06 — LinkedIn Spotlight" data-slide-dot="linkedin"></a>
+    <a href="#experience" class="slide-dot" title="07 — Experience" data-slide-dot="experience"></a>
     <a href="#awards" class="slide-dot" title="08 — Awards & Certifications" data-slide-dot="awards"></a>
     <a href="#testimonials" class="slide-dot" title="09 — Testimonials" data-slide-dot="testimonials"></a>
     <a href="#stats" class="slide-dot" title="10 — GitHub Stats" data-slide-dot="stats"></a>
     <a href="#contact" class="slide-dot" title="11 — Contact" data-slide-dot="contact"></a>
   </nav>
 
-  <!-- 01 — HELLO / HERO -->
-  <section id="home" class="relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+  <!-- 01 — HELLO / HERO (FULL SCREEN) -->
+  <section id="home" class="relative overflow-hidden min-h-[92vh] flex items-center">
+    <div class="max-w-7xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full u-card">
           <span class="w-2 h-2 rounded-full u-accent-bg" aria-hidden="true"></span>
@@ -138,15 +164,15 @@
           <span class="u-chip">Sapienza</span>
         </div>
       </div>
-      <div class="relative">
-        <div class="aspect-square rounded-3xl hero-img-wrap u-border border p-2">
+      <div class="relative justify-self-center">
+        <div class="hero-portrait rounded-3xl hero-img-wrap u-border border p-2">
           <img src="assets/profile.jpg" alt="Thrisha Rajkumar" class="w-full h-full object-cover rounded-2xl">
         </div>
-        <div class="absolute -bottom-4 -left-4 u-card rounded-2xl px-4 py-3 u-border text-sm">
+        <div class="absolute -bottom-4 -left-4 u-card rounded-2xl px-4 py-2 u-border text-xs md:text-sm">
           <div class="font-bold">Bristol PLUS Award</div>
           <div class="u-muted">Employability ’25</div>
         </div>
-        <div class="absolute -top-4 -right-4 u-card rounded-2xl px-4 py-3 u-border text-sm">
+        <div class="absolute -top-4 -right-4 u-card rounded-2xl px-4 py-2 u-border text-xs md:text-sm">
           <div class="font-bold">McKinsey Forward</div>
           <div class="u-muted">Oct–Dec ’25</div>
         </div>
@@ -154,10 +180,43 @@
     </div>
   </section>
 
-  <!-- 02 — ABOUT -->
-  <section id="about" class="py-16 border-t u-border" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10);">
+  <!-- 02 — SKILLS (3-row rolling marquee; appears on second screen) -->
+  <section id="skills" class="py-16 min-h-[92vh] flex items-center" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="max-w-7xl mx-auto px-4 w-full">
+      <div class="slide-badge"><span class="num">02</span> Skills</div>
+      <h2 class="text-3xl font-extrabold mt-3">Skills I Work With</h2>
+      <p class="u-muted mt-2">Pulled from my CV — scroll to see them glide ✨</p>
+
+      <div class="mt-8 space-y-6">
+        <!-- Row 1 -->
+        <div class="marquee-wrap">
+          <div class="marquee-row dir-left" style="--speed:26s">
+            <div class="marquee-content" id="row1"></div>
+            <div class="marquee-content" id="row1_clone" aria-hidden="true"></div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="marquee-wrap">
+          <div class="marquee-row dir-right" style="--speed:30s">
+            <div class="marquee-content" id="row2"></div>
+            <div class="marquee-content" id="row2_clone" aria-hidden="true"></div>
+          </div>
+        </div>
+        <!-- Row 3 -->
+        <div class="marquee-wrap">
+          <div class="marquee-row dir-left" style="--speed:34s">
+            <div class="marquee-content" id="row3"></div>
+            <div class="marquee-content" id="row3_clone" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — ABOUT -->
+  <section id="about" class="py-16">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">02</span> About & Open to Work</div>
+      <div class="slide-badge"><span class="num">03</span> About & Open to Work</div>
       <h2 class="text-3xl font-extrabold mt-3">About</h2>
       <p class="mt-4 leading-relaxed u-muted">
         Hi, I’m Thrisha. I recently completed my MSc in Data Science (University of Bristol, Russell Group) and I build socially impactful AI — from clinician-co-designed stroke-rehab tools (NIHR/NHS) to socio-economic analytics over UK Census data and physics-informed deep learning for EMI prediction. I love clean data pipelines, interpretable ML, and visuals that help decisions.
@@ -170,10 +229,10 @@
     </div>
   </section>
 
-  <!-- 03 — WINS -->
-  <section id="wins" class="py-16">
+  <!-- 04 — WINS -->
+  <section id="wins" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-6xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">03</span> Impact & Analytics</div>
+      <div class="slide-badge"><span class="num">04</span> Impact & Analytics</div>
       <h2 class="text-3xl font-extrabold mt-3">Impact & Analytics</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">-40%</div><div class="u-muted">Changeover time</div></div>
@@ -184,10 +243,10 @@
     </div>
   </section>
 
-  <!-- 04 — PROJECTS -->
-  <section id="projects" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- 05 — PROJECTS -->
+  <section id="projects" class="py-16">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">04</span> Featured Projects</div>
+      <div class="slide-badge"><span class="num">05</span> Featured Projects</div>
       <div class="flex items-end justify-between mt-3">
         <h2 class="text-3xl font-extrabold">Featured Projects</h2>
         <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="u-accent hover:underline">See all →</a>
@@ -249,19 +308,19 @@
     </div>
   </section>
 
-  <!-- 05 — LINKEDIN -->
-  <section id="linkedin" class="py-16">
+  <!-- 06 — LINKEDIN -->
+  <section id="linkedin" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="max-w-6xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">05</span> LinkedIn Spotlight</div>
+      <div class="slide-badge"><span class="num">06</span> LinkedIn Spotlight</div>
       <h2 class="text-3xl font-extrabold mt-3">Latest on LinkedIn</h2>
       <ul id="li-posts" class="mt-6 grid md:grid-cols-3 gap-4"></ul>
     </div>
   </section>
 
-  <!-- 06 — EXPERIENCE -->
-  <section id="experience" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- 07 — EXPERIENCE -->
+  <section id="experience" class="py-16">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">06</span> Experience Timeline</div>
+      <div class="slide-badge"><span class="num">07</span> Experience Timeline</div>
       <h2 class="text-3xl font-extrabold mt-3">Experience</h2>
       <div class="mt-8 space-y-6">
         <div class="relative pl-8">
@@ -279,20 +338,6 @@
           <h3 class="font-semibold">Applied Neural Networks — Sapienza × Bristol</h3>
           <p class="text-sm u-muted">Jan 2025 – May 2025 • CIRNet improvements • PCA + hydropathy • 78% accuracy</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 07 — SKILLS -->
-  <section id="skills" class="py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">07</span> Skills Stack</div>
-      <h2 class="text-3xl font-extrabold mt-3">Skills</h2>
-      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">ML / AI</h4><p class="mt-2 u-muted">TensorFlow, Keras, scikit-learn, NLP (BERT, BiLSTM), Bayesian</p></div>
-        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Data</h4><p class="mt-2 u-muted">Pandas, NumPy, ETL, SQL, Power Automate, SAP</p></div>
-        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Cloud / DevOps</h4><p class="mt-2 u-muted">AWS (EC2, Lambda, S3, DynamoDB), Docker, Node-RED, Grafana</p></div>
-        <div class="u-card rounded-2xl p-4"><h4 class="font-semibold">Viz / Apps</h4><p class="mt-2 u-muted">Tableau, Power BI, Matplotlib, Seaborn, React, Angular, Flutter</p></div>
       </div>
     </div>
   </section>
@@ -384,7 +429,7 @@
     });
 
     // Slide dot activator on scroll
-    const sections = ['home','about','wins','projects','linkedin','experience','skills','awards','testimonials','stats','contact'];
+    const sections = ['home','skills','about','wins','projects','linkedin','experience','awards','testimonials','stats','contact'];
     const dotsMap = new Map(sections.map(id => [id, document.querySelector(`[data-slide-dot="${id}"]`)]));
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -412,6 +457,46 @@
         <p class="text-sm u-muted mt-1">${p.teaser}</p>
         <a class="u-accent hover:underline text-sm" target="_blank" href="${p.url}">Read on LinkedIn →</a>
       </li>`).join('');
+
+    // ---------------- SKILLS BUBBLES ----------------
+    // Put ALL your resume skills here (order doesn’t matter). Duplicate content is handled.
+    const skills = [
+      'Python','R','SQL','Pandas','NumPy','scikit-learn','TensorFlow','Keras','PyTorch','NLP','BERT','BiLSTM',
+      'Bayesian Methods','UMAP','t-SNE','KMeans','Optuna','XGBoost','LightGBM','Random Forest','Ridge','Lasso',
+      'Time Series','EDA','Data Cleaning','ETL','Feature Engineering','Statistics','A/B Testing',
+      'Tableau','Power BI','Matplotlib','Seaborn','Plotly',
+      'AWS EC2','AWS Lambda','S3','DynamoDB','Docker','Grafana','Node-RED',
+      'Git','GitHub','Linux','CI/CD','Flutter','Firebase','React','Angular',
+      'Physics-informed ML','Multi-task Learning','Attention','Embeddings','SHAP','LIME',
+      'SAP','Power Automate','Jupyter','LaTeX'
+    ];
+
+    // Utility to create a chip element
+    const chip = (txt) => `<span class="u-chip">${txt}</span>`;
+
+    // Split skills roughly into 3 buckets for visual variety
+    const chunkSize = Math.ceil(skills.length / 3);
+    const rows = [skills.slice(0, chunkSize), skills.slice(chunkSize, 2*chunkSize), skills.slice(2*chunkSize)];
+
+    // Fill each row twice for seamless loop
+    const mountRow = (id, items) => {
+      const el = document.getElementById(id);
+      el.innerHTML = items.map(chip).join('');
+    };
+
+    mountRow('row1', rows[0]);  mountRow('row1_clone', rows[0]);
+    mountRow('row2', rows[1]);  mountRow('row2_clone', rows[1]);
+    mountRow('row3', rows[2]);  mountRow('row3_clone', rows[2]);
+
+    // Start/stop marquee only when #skills is in view (and add subtle highlight)
+    const skillsSection = document.getElementById('skills');
+    const skillsObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){ skillsSection.classList.add('in-view'); }
+        else { skillsSection.classList.remove('in-view'); }
+      });
+    }, { threshold: .2 });
+    skillsObs.observe(skillsSection);
   </script>
 </body>
 </html>
