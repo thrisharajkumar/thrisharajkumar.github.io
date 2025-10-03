@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en" data-theme="dark" data-accent="fuchsia">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thrisha Rajkumar — Portfolio</title>
-  <meta name="description" content="MSc Data Science ’25 @ University of Bristol — AI/ML Research (NIHR/NHS), Bayesian & DL, Tableau, Cloud. Open to work." />
+  <meta name="description"
+    content="MSc Data Science ’25 @ University of Bristol — AI/ML Research (NIHR/NHS), Bayesian & DL, Tableau, Cloud. Open to work." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -12,116 +14,364 @@
 
   <style>
     /* Base */
-    html { scroll-behavior: smooth; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      overflow-x: hidden;
+    }
+
+    /* Make anchors land lower to clear sticky header + glow */
+    section {
+      scroll-margin-top: calc(var(--scroll-offset, 96px) + 24px);
+    }
 
     /* THEME VARIABLES */
     :root {
       --bg: #0b1226;
       --text: #e5e7eb;
       --muted: #94a3b8;
-      --card: rgba(255,255,255,0.08);
-      --border: rgba(255,255,255,0.10);
-      --accent: #d946ef; /* fuchsia */
-      --grad-a: color-mix(in oklab, var(--accent) 30%, transparent);
-      --grad-b: rgba(56,189,248,.18);
+      --card: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.10);
+      --accent: #d946ef;
+      /* fuchsia */
+      --grad-a: color-mix(in oklab, var(--accent) 20%, transparent);
+      /* was 45% */
+      --grad-b: rgba(56, 189, 248, .15);
+      /* was .28 */
+      --grad-c: color-mix(in oklab, var(--accent) 12%, rgba(99, 102, 241, .12));
+      /* was 22% */
     }
+
     html[data-theme="light"] {
       --bg: #ffffff;
       --text: #0f172a;
       --muted: #334155;
-      --card: rgba(15,23,42,0.05);
-      --border: rgba(15,23,42,0.12);
+      --card: rgba(15, 23, 42, 0.05);
+      --border: rgba(15, 23, 42, 0.12);
       --grad-a: color-mix(in oklab, var(--accent) 18%, transparent);
-      --grad-b: rgba(2,132,199,.12);
+      --grad-b: rgba(2, 132, 199, .12);
+      --grad-c: rgba(99, 102, 241, .12);
     }
-    html[data-accent="fuchsia"] { --accent:#d946ef; }
-    html[data-accent="emerald"] { --accent:#34d399; }
-    html[data-accent="sky"]     { --accent:#0ea5e9; }
 
-    /* Utility classes using variables */
-    .u-bg        { background: var(--bg); color: var(--text); }
-    .u-muted     { color: var(--muted); }
-    .u-card      { background: var(--card); border: 1px solid var(--border); }
-    .u-chip      { background: var(--card); border: 1px solid var(--border); border-radius: .75rem; padding: .5rem .8rem; font-size:.8rem; white-space:nowrap; }
-    .u-border    { border-color: var(--border); }
-    .u-accent-bg { background: var(--accent); color: #fff; }
-    .u-accent    { color: var(--accent); }
+    html[data-accent="fuchsia"] {
+      --accent: #d946ef
+    }
 
-    /* Glass + gradient background */
-    .glass { background: var(--card); backdrop-filter: blur(10px); }
+    html[data-accent="emerald"] {
+      --accent: #34d399
+    }
+
+    html[data-accent="sky"] {
+      --accent: #0ea5e9
+    }
+
+    /* Utility classes */
+    .u-bg {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .u-muted {
+      color: var(--muted);
+    }
+
+    .u-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .u-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      padding: .5rem .8rem;
+      font-size: .8rem;
+      white-space: nowrap;
+    }
+
+    .u-border {
+      border-color: var(--border);
+    }
+
+    .u-accent-bg {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .u-accent {
+      color: var(--accent);
+    }
+
+    a:hover {
+      opacity: .92;
+    }
+
+    /* Continuous gradient background (applied on <body>) */
     .gradient {
       background:
-        radial-gradient(1200px 600px at 10% -10%, var(--grad-a), transparent),
-        radial-gradient(900px 500px at 110% 10%, var(--grad-b), transparent),
-        linear-gradient(180deg, color-mix(in oklab, var(--bg) 92%, black), var(--bg));
+        radial-gradient(1200px 650px at -10% -10%, var(--grad-a), transparent),
+        radial-gradient(1200px 650px at 110% -10%, var(--grad-b), transparent),
+        radial-gradient(900px 480px at 50% 120%, var(--grad-c), transparent),
+        linear-gradient(180deg, color-mix(in oklab, var(--bg) 90%, black), var(--bg));
+      background-attachment: fixed;
     }
 
-    .hero-img-wrap { background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 35%, transparent), rgba(14,165,233,.28)); }
 
-    /* Slide badges + slide navigator */
-    .slide-badge{display:inline-flex;align-items:center;gap:.5rem;font-weight:800;font-size:.75rem;letter-spacing:.05em;padding:.35rem .6rem;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
-    .slide-badge .num{display:inline-grid;place-items:center;width:1.4rem;height:1.4rem;border-radius:999px;background:var(--accent);color:#fff;font-weight:900;font-size:.75rem;}
-    .slide-nav{position:fixed;right:.75rem;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:.5rem}
-    .slide-dot{width:12px;height:12px;border-radius:999px;background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.5);}
-    .slide-dot.active{background:var(--accent);box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent)}
+    /* Sticky header */
+    header.sticky {
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--bg) 78%, transparent);
+    }
 
-    a:hover { opacity: .92; }
+    /* Slide badges + navigator */
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 800;
+      font-size: .75rem;
+      letter-spacing: .05em;
+      padding: .35rem .6rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .18)
+    }
 
-    /* HERO tweaks: smaller portrait box */
-    .hero-portrait { width: 220px; height: 220px; }
-    @media (min-width: 768px){ .hero-portrait{ width: 280px; height: 280px; } }
+    .slide-badge .num {
+      display: inline-grid;
+      place-items: center;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 900;
+      font-size: .75rem;
+    }
 
-    /* --- SKILLS MARQUEE (3 rows, alternating directions) --- */
-    #skills.in-view .u-chip { opacity: 1; transform: scale(1); }
-    #skills .u-chip { opacity: .65; transform: scale(.96); transition: transform .3s ease, opacity .3s ease, box-shadow .3s ease; }
-    #skills .u-chip:hover { transform: scale(1.06); opacity: 1; box-shadow: 0 8px 24px rgba(0,0,0,.25), 0 0 0 2px color-mix(in oklab, var(--accent) 22%, transparent); }
+    .slide-nav {
+      position: fixed;
+      right: .75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: none;
+      flex-direction: column;
+      gap: .5rem
+    }
 
-    .marquee-wrap{ overflow:hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-    .marquee-row{ display:flex; gap:.75rem; white-space:nowrap; }
-    .marquee-content{ display:flex; gap:.75rem; white-space:nowrap; will-change: transform; }
+    @media (min-width: 1024px) {
+      .slide-nav {
+        display: flex;
+      }
+    }
 
-    @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @keyframes scroll-right{ from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .slide-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .35);
+      border: 1px solid rgba(255, 255, 255, .5);
+    }
 
-    /* Only animate when section is in view */
-    #skills.in-view .dir-left  .marquee-content{ animation: scroll-left var(--speed, 28s) linear infinite; }
-    #skills.in-view .dir-right .marquee-content{ animation: scroll-right var(--speed, 32s) linear infinite; }
+    .slide-dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent)
+    }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      #skills .marquee-content{ animation: none !important; }
+    /* HERO image wrap */
+    /* --- HERO portrait bigger + tidy --- */
+    /* Portrait resized smaller */
+    .hero-portrait {
+      width: 260px;
+      height: 260px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-portrait {
+        width: 300px;
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-portrait {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    /* Education stack refined */
+    .edu-stack {
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .edu-card {
+      display: flex;
+      gap: .9rem;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-radius: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .edu-ico {
+      width: 44px;
+      height: 44px;
+      border-radius: .9rem;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      background: color-mix(in oklab, var(--accent) 18%, transparent);
+    }
+
+    .edu-meta {
+      line-height: 1.2;
+    }
+
+    .edu-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .edu-sub {
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* Skills marquee */
+    #skills.in-view .u-chip {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #skills .u-chip {
+      opacity: .7;
+      transform: scale(.96);
+      transition: transform .3s ease, opacity .3s ease, box-shadow .3s ease;
+    }
+
+    #skills .u-chip:hover {
+      transform: scale(1.06);
+      opacity: 1;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .25), 0 0 0 2px color-mix(in oklab, var(--accent) 22%, transparent);
+    }
+
+    .marquee-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+
+    .marquee-row {
+      display: flex;
+      gap: .75rem;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: flex;
+      gap: .75rem;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    @keyframes scroll-left {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes scroll-right {
+      from {
+        transform: translateX(-50%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    #skills.in-view .dir-left .marquee-content {
+      animation: scroll-left var(--speed, 26s) linear infinite;
+    }
+
+    #skills.in-view .dir-right .marquee-content {
+      animation: scroll-right var(--speed, 30s) linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #skills .marquee-content {
+        animation: none !important;
+      }
+    }
+
+    /* Mobile viewport unit fix */
+    .vh-section {
+      min-height: 92vh;
+    }
+
+    @supports (height: 100svh) {
+      .vh-section {
+        min-height: 92svh;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
+
 <body class="gradient u-bg">
   <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 backdrop-blur border-b u-border" style="background: color-mix(in oklab, var(--bg) 70%, transparent);">
+  <header class="sticky top-0 z-50 border-b u-border">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
       <nav class="hidden md:flex gap-6 text-sm">
         <a class="hover:u-accent" href="#home">Home</a>
         <a class="hover:u-accent" href="#skills">Skills</a>
+        <a class="hover:u-accent" href="#expertise">Expertise</a>
         <a class="hover:u-accent" href="#about">About</a>
-        <a class="hover:u-accent" href="#wins">Wins</a>
         <a class="hover:u-accent" href="#projects">Projects</a>
         <a class="hover:u-accent" href="#linkedin">LinkedIn</a>
         <a class="hover:u-accent" href="#experience">Experience</a>
         <a class="hover:u-accent" href="#awards">Awards</a>
-        <a class="hover:u-accent" href="#testimonials">Testimonials</a>
-        <a class="hover:u-accent" href="#stats">Stats</a>
+        <a class="hover:u-accent" href="#references">References</a>
         <a class="hover:u-accent" href="#contact">Contact</a>
       </nav>
       <div class="flex items-center gap-3">
-        <!-- Theme & Accent controls -->
+        <!-- Theme & Accent -->
         <button id="themeToggle" class="px-3 py-1.5 rounded-full text-xs font-semibold u-card">Theme</button>
         <div class="flex items-center gap-2">
-          <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia" style="background:#d946ef"></button>
-          <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald" style="background:#34d399"></button>
-          <button class="w-4 h-4 rounded-full border u-border" data-accent="sky"     title="Sky"     style="background:#0ea5e9"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia"
+            style="background:#d946ef"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald"
+            style="background:#34d399"></button>
+          <button class="w-4 h-4 rounded-full border u-border" data-accent="sky" title="Sky"
+            style="background:#0ea5e9"></button>
         </div>
-        <a href="https://www.linkedin.com/in/thrisha-rajkumar/" class="px-3 py-1.5 rounded-full text-xs font-semibold u-accent-bg" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold" style="background:#0ea5e9;color:#fff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/thrisha-rajkumar/"
+          class="px-3 py-1.5 rounded-full text-xs font-semibold u-accent-bg" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold"
+          style="background:#0ea5e9;color:#fff" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </header>
@@ -130,33 +380,42 @@
   <nav class="slide-nav" aria-label="Slide navigation">
     <a href="#home" class="slide-dot" title="01 — Hello / Hero" data-slide-dot="home"></a>
     <a href="#skills" class="slide-dot" title="02 — Skills" data-slide-dot="skills"></a>
-    <a href="#about" class="slide-dot" title="03 — About & Open to Work" data-slide-dot="about"></a>
-    <a href="#wins" class="slide-dot" title="04 — Impact & Analytics" data-slide-dot="wins"></a>
-    <a href="#projects" class="slide-dot" title="05 — Featured Projects" data-slide-dot="projects"></a>
-    <a href="#linkedin" class="slide-dot" title="06 — LinkedIn Spotlight" data-slide-dot="linkedin"></a>
+    <a href="#expertise" class="slide-dot" title="03 — Technical Expertise" data-slide-dot="expertise"></a>
+    <a href="#about" class="slide-dot" title="04 — About" data-slide-dot="about"></a>
+    <a href="#projects" class="slide-dot" title="05 — Projects" data-slide-dot="projects"></a>
+    <a href="#linkedin" class="slide-dot" title="06 — LinkedIn" data-slide-dot="linkedin"></a>
     <a href="#experience" class="slide-dot" title="07 — Experience" data-slide-dot="experience"></a>
-    <a href="#awards" class="slide-dot" title="08 — Awards & Certifications" data-slide-dot="awards"></a>
-    <a href="#testimonials" class="slide-dot" title="09 — Testimonials" data-slide-dot="testimonials"></a>
-    <a href="#stats" class="slide-dot" title="10 — GitHub Stats" data-slide-dot="stats"></a>
-    <a href="#contact" class="slide-dot" title="11 — Contact" data-slide-dot="contact"></a>
+    <a href="#awards" class="slide-dot" title="08 — Awards" data-slide-dot="awards"></a>
+    <a href="#references" class="slide-dot" title="09 — References" data-slide-dot="references"></a>
+    <a href="#contact" class="slide-dot" title="10 — Contact" data-slide-dot="contact"></a>
   </nav>
 
-  <!-- 01 — HELLO / HERO (FULL SCREEN) -->
-  <section id="home" class="relative overflow-hidden min-h-[92vh] flex items-center">
+  <!-- 01 — HERO -->
+  <section id="home" class="relative overflow-hidden vh-section flex items-center">
     <div class="max-w-7xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+      <!-- Left: intro -->
       <div>
         <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full u-card">
           <span class="w-2 h-2 rounded-full u-accent-bg" aria-hidden="true"></span>
           <span>#OPEN_TO_WORK</span>
           <span class="u-muted">• She/Her</span>
         </div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mt-4">Thrisha Rajkumar</h1>
-        <p class="mt-3 text-lg u-muted">MSc Data Science @ University of Bristol ’25 (Russell Group) • AI/ML Research Support – NIHR • Ex-Unilever • Python · R · SQL · Machine Learning · AI</p>
+
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mt-4">
+          Thrisha Rajkumar
+        </h1>
+
+        <p class="mt-3 text-lg u-muted">
+          MSc Data Science @ University of Bristol ’25 (Russell Group) • AI/ML Research Support – NIHR • Ex-Unilever •
+          Python · R · SQL · Machine Learning · AI
+        </p>
+
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="#projects" class="px-5 py-2 rounded-xl u-accent-bg font-semibold">View Projects</a>
           <a href="assets/cv/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl u-card font-semibold">Download CV</a>
           <a href="#contact" class="px-5 py-2 rounded-xl u-card font-semibold">Contact</a>
         </div>
+
         <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
           <span class="u-chip">NIHR/NHS</span>
           <span class="u-chip">Unilever</span>
@@ -164,47 +423,63 @@
           <span class="u-chip">Sapienza</span>
         </div>
       </div>
+
+      <!-- Right: large portrait + education (badges removed) -->
       <div class="relative justify-self-center">
         <div class="hero-portrait rounded-3xl hero-img-wrap u-border border p-2">
           <img src="assets/profile.jpg" alt="Thrisha Rajkumar" class="w-full h-full object-cover rounded-2xl">
         </div>
-        <div class="absolute -bottom-4 -left-4 u-card rounded-2xl px-4 py-2 u-border text-xs md:text-sm">
-          <div class="font-bold">Bristol PLUS Award</div>
-          <div class="u-muted">Employability ’25</div>
+
+        <!-- Education mini-cards -->
+        <div class="edu-stack max-w-sm">
+          <div class="edu-card">
+            <div class="edu-ico">🎓</div>
+            <div class="edu-meta">
+              <div class="edu-title">MSc Data Science</div>
+              <div class="edu-sub">University of Bristol · Sep 2024 – Sep 2025<br />Expected Distinction</div>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-ico">📘</div>
+            <div class="edu-meta">
+              <div class="edu-title">B.Tech Computer Science (Data Science & Analytics)</div>
+              <div class="edu-sub">DIT University · Aug 2020 – Aug 2024<br />First-Class Honours (81.13%)</div>
+            </div>
+          </div>
         </div>
-        <div class="absolute -top-4 -right-4 u-card rounded-2xl px-4 py-2 u-border text-xs md:text-sm">
-          <div class="font-bold">McKinsey Forward</div>
-          <div class="u-muted">Oct–Dec ’25</div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- 02 — SKILLS (3-row rolling marquee; appears on second screen) -->
-  <section id="skills" class="py-16 min-h-[92vh] flex items-center" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="max-w-7xl mx-auto px-4 w-full">
-      <div class="slide-badge"><span class="num">02</span> Skills</div>
-      <h2 class="text-3xl font-extrabold mt-3">Skills I Work With</h2>
-      <p class="u-muted mt-2">Pulled from my CV — scroll to see them glide ✨</p>
 
-      <div class="mt-8 space-y-6">
-        <!-- Row 1 -->
+  <!-- 02 — SKILLS -->
+  <section id="skills" class="py-20 vh-section flex items-center relative border-y u-border">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute -top-20 -left-10 w-80 h-80 rounded-full blur-3xl"
+        style="background: color-mix(in oklab, var(--accent) 22%, transparent);"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl" style="background: rgba(56,189,248,.22);">
+      </div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 w-full">
+      <div class="slide-badge"><span class="num">02</span> Skills</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3">Skills I Work With</h2>
+
+      <div class="mt-10 space-y-6">
         <div class="marquee-wrap">
-          <div class="marquee-row dir-left" style="--speed:26s">
+          <div class="marquee-row dir-left" style="--speed:24s">
             <div class="marquee-content" id="row1"></div>
             <div class="marquee-content" id="row1_clone" aria-hidden="true"></div>
           </div>
         </div>
-        <!-- Row 2 -->
         <div class="marquee-wrap">
-          <div class="marquee-row dir-right" style="--speed:30s">
+          <div class="marquee-row dir-right" style="--speed:28s">
             <div class="marquee-content" id="row2"></div>
             <div class="marquee-content" id="row2_clone" aria-hidden="true"></div>
           </div>
         </div>
-        <!-- Row 3 -->
         <div class="marquee-wrap">
-          <div class="marquee-row dir-left" style="--speed:34s">
+          <div class="marquee-row dir-left" style="--speed:32s">
             <div class="marquee-content" id="row3"></div>
             <div class="marquee-content" id="row3_clone" aria-hidden="true"></div>
           </div>
@@ -213,51 +488,174 @@
     </div>
   </section>
 
-  <!-- 03 — ABOUT -->
-  <section id="about" class="py-16">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">03</span> About & Open to Work</div>
-      <h2 class="text-3xl font-extrabold mt-3">About</h2>
-      <p class="mt-4 leading-relaxed u-muted">
-        Hi, I’m Thrisha. I recently completed my MSc in Data Science (University of Bristol, Russell Group) and I build socially impactful AI — from clinician-co-designed stroke-rehab tools (NIHR/NHS) to socio-economic analytics over UK Census data and physics-informed deep learning for EMI prediction. I love clean data pipelines, interpretable ML, and visuals that help decisions.
-      </p>
-      <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
-        <div class="u-card rounded-xl p-4"><div class="font-semibold">Actively seeking</div><div class="u-muted mt-1">Data Scientist • ML Specialist • AI Scientist • Data/Business Analyst</div></div>
-        <div class="u-card rounded-xl p-4"><div class="font-semibold">Locations</div><div class="u-muted mt-1">UK / Ireland (onsite/hybrid) • Remote (global)</div></div>
-        <div class="u-card rounded-xl p-4"><div class="font-semibold">Availability</div><div class="u-muted mt-1">Immediate</div></div>
+  <!-- 03 — TECHNICAL EXPERTISE -->
+  <section id="expertise" class="py-20 border-b u-border">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="slide-badge"><span class="num">03</span> Technical Expertise</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3">Technical Expertise</h2>
+      <p class="u-muted mt-2">Your original layout, upgraded with themed cards and gentle hover accents.</p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
+        <div class="u-card rounded-2xl p-6 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center u-border"
+              style="background: color-mix(in oklab, var(--accent) 18%, transparent);">💻</div>
+            <h3 class="font-semibold text-lg">Programming</h3>
+          </div>
+          <ul class="mt-4 space-y-1 text-sm u-muted list-disc pl-5">
+            <li>Python</li>
+            <li>R</li>
+            <li>SQL</li>
+            <li>JavaScript</li>
+            <li>HTML/CSS</li>
+            <li>TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="u-card rounded-2xl p-6 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center u-border"
+              style="background: color-mix(in oklab, var(--accent) 18%, transparent);">🧠</div>
+            <h3 class="font-semibold text-lg">ML &amp; AI</h3>
+          </div>
+          <ul class="mt-4 space-y-1 text-sm u-muted list-disc pl-5">
+            <li>TensorFlow / Keras</li>
+            <li>PyTorch</li>
+            <li>scikit-learn</li>
+            <li>NLP (BERT/BiLSTM)</li>
+            <li>SHAP / LIME</li>
+            <li>Bayesian Methods</li>
+          </ul>
+        </div>
+
+        <div class="u-card rounded-2xl p-6 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center u-border"
+              style="background: color-mix(in oklab, var(--accent) 18%, transparent);">📊</div>
+            <h3 class="font-semibold text-lg">Data Viz &amp; Analysis</h3>
+          </div>
+          <ul class="mt-4 space-y-1 text-sm u-muted list-disc pl-5">
+            <li>Pandas / NumPy</li>
+            <li>Matplotlib / Plotly</li>
+            <li>Tableau / Power BI</li>
+            <li>EDA &amp; Statistics</li>
+          </ul>
+        </div>
+
+        <div class="u-card rounded-2xl p-6 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center u-border"
+              style="background: color-mix(in oklab, var(--accent) 18%, transparent);">☁️</div>
+            <h3 class="font-semibold text-lg">Cloud &amp; Dev</h3>
+          </div>
+          <ul class="mt-4 space-y-1 text-sm u-muted list-disc pl-5">
+            <li>AWS (EC2, S3)</li>
+            <li>Docker</li>
+            <li>CI/CD</li>
+            <li>Firebase</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-4 sm:grid-cols-2 gap-5 mt-5">
+        <div class="u-card rounded-2xl p-6 transition-transform duration-300 hover:scale-[1.02] lg:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center u-border"
+              style="background: color-mix(in oklab, var(--accent) 18%, transparent);">🤝</div>
+            <h3 class="font-semibold text-lg">Soft Skills</h3>
+          </div>
+          <ul class="mt-4 space-y-1 text-sm u-muted list-disc pl-5 columns-2 md:columns-3">
+            <li>Stakeholder Comms</li>
+            <li>Presentation</li>
+            <li>Leadership</li>
+            <li>Problem-Solving</li>
+            <li>Teamwork</li>
+            <li>Analytical Mindset</li>
+          </ul>
+        </div>
+        <div class="u-card rounded-2xl p-6 transition-transform duration-300 hover:scale-[1.02]">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center u-border"
+              style="background: color-mix(in oklab, var(--accent) 18%, transparent);">🛠️</div>
+            <h3 class="font-semibold text-lg">Tooling</h3>
+          </div>
+          <ul class="mt-4 space-y-1 text-sm u-muted list-disc pl-5">
+            <li>Git &amp; GitHub</li>
+            <li>Linux</li>
+            <li>Jupyter</li>
+            <li>LaTeX</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 04 — WINS -->
-  <section id="wins" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">04</span> Impact & Analytics</div>
-      <h2 class="text-3xl font-extrabold mt-3">Impact & Analytics</h2>
-      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">-40%</div><div class="u-muted">Changeover time</div></div>
-        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">-25%</div><div class="u-muted">Forecast error</div></div>
-        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">R² &gt; 0.90</div><div class="u-muted">EMI targets (13)</div></div>
-        <div class="rounded-2xl p-6 u-card"><div class="text-3xl font-extrabold">7,067</div><div class="u-muted">Post impressions (7 days)</div></div>
+  <!-- 04 — ABOUT -->
+  <section id="about" class="py-16">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="slide-badge"><span class="num">04</span> About</div>
+      <h2 class="text-3xl font-extrabold mt-3">About</h2>
+
+      <p class="mt-4 leading-relaxed u-muted">
+        Hi, I’m Thrisha Rajkumar — MSc Data Science graduate (University of Bristol, Russell Group) with a B.Tech in Computer Science (Data Science & Analytics).
+
+I’m passionate about turning data into impact — from building an NIHR/NHS stroke-rehab app, delivering analytics at Unilever, to advancing physics-informed ML in my dissertation on EMI prediction.
+
+My interests include interpretable ML, ethical AI, and data storytelling that drives real decisions.
+I’m immediately available and open to full-time roles, collaborations, and research opportunities in Data Science, Machine Learning, and AI.
+        <!-- CV-backed facts -->
+        <!-- MSc Data Science (expected Distinction), NIHR/NHS app, EMI thesis, Unilever analytics -->
+      </p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+        <!-- What I'm looking for -->
+        <div class="u-card rounded-xl p-4">
+          <div class="font-semibold">Actively seeking</div>
+          <div class="u-muted mt-1">
+            Data Scientist • ML Engineer/Scientist • AI Scientist • Data/Business Analyst
+          </div>
+        </div>
+
+        <!-- Interests / Strengths -->
+        <div class="u-card rounded-xl p-4">
+          <div class="font-semibold">Interests & strengths</div>
+          <ul class="u-muted mt-1 list-disc pl-5 space-y-1">
+            <li>Interpretable ML &amp; model diagnostics</li>
+            <li>Production-ready data pipelines &amp; ETL</li>
+            <li>Decision-driving dashboards &amp; visuals</li>
+          </ul>
+        </div>
+
+        <!-- Where / When -->
+        <div class="u-card rounded-xl p-4">
+          <div class="font-semibold">Where &amp; when</div>
+          <div class="u-muted mt-1">
+            UK / Ireland (onsite or hybrid) • Remote (global) • <strong>Immediate start</strong>
+          </div>
+        </div>
       </div>
+
+
     </div>
   </section>
 
   <!-- 05 — PROJECTS -->
-  <section id="projects" class="py-16">
+  <section id="projects" class="py-16 border-y u-border">
     <div class="max-w-7xl mx-auto px-4">
       <div class="slide-badge"><span class="num">05</span> Featured Projects</div>
       <div class="flex items-end justify-between mt-3">
         <h2 class="text-3xl font-extrabold">Featured Projects</h2>
-        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank" class="u-accent hover:underline">See all →</a>
+        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank"
+          class="u-accent hover:underline">See all →</a>
       </div>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <!-- CARD 1 -->
         <article id="card-census" class="u-card rounded-2xl overflow-hidden">
-          <img src="assets/census_dashboard.png" alt="UK Census Socio-Economic Analysis" class="w-full h-44 object-cover">
+          <img src="assets/census_dashboard.png" alt="UK Census Socio-Economic Analysis"
+            class="w-full h-44 object-cover">
           <div class="p-5">
             <h3 class="font-bold text-lg">UK Census Socio-Economic (2011→2021)</h3>
-            <p class="mt-2 text-sm u-muted">Bayesian Ridge imputation for 31 LADs; UMAP/t-SNE + KMeans; interactive Tableau dashboards; report linked.</p>
+            <p class="mt-2 text-sm u-muted">Bayesian Ridge imputation for 31 LADs; UMAP/t-SNE + KMeans; interactive
+              Tableau dashboards; report linked.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
               <span class="u-chip">Bayesian</span>
               <span class="u-chip">UMAP</span>
@@ -270,12 +668,13 @@
             </div>
           </div>
         </article>
-        <!-- CARD 2 -->
+
         <article id="card-emi" class="u-card rounded-2xl overflow-hidden">
           <img src="assets/emi_model.png" alt="EMI Surrogate Modelling" class="w-full h-44 object-cover">
           <div class="p-5">
             <h3 class="font-bold text-lg">EMI Surrogate Modelling</h3>
-            <p class="mt-2 text-sm u-muted">Multi-output ANN with physics-informed features; R² &gt; 0.90 across 13 targets; evaluation in seconds.</p>
+            <p class="mt-2 text-sm u-muted">Multi-output ANN with physics-informed features; R² &gt; 0.90 across 13
+              targets; evaluation in seconds.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
               <span class="u-chip">TensorFlow</span>
               <span class="u-chip">Multi-Task</span>
@@ -287,12 +686,13 @@
             </div>
           </div>
         </article>
-        <!-- CARD 3 -->
+
         <article id="card-nhs" class="u-card rounded-2xl overflow-hidden">
           <img src="assets/nhs_app.png" alt="NIHR/NHS Stroke Rehab App" class="w-full h-44 object-cover">
           <div class="p-5">
             <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
-            <p class="mt-2 text-sm u-muted">Flutter app + AI personalisation, co-designed with clinicians & people with stroke for inclusive routines and feedback.</p>
+            <p class="mt-2 text-sm u-muted">Flutter app + AI personalisation, co-designed with clinicians & people with
+              stroke for inclusive routines and feedback.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs">
               <span class="u-chip">Flutter</span>
               <span class="u-chip">Firebase</span>
@@ -309,7 +709,7 @@
   </section>
 
   <!-- 06 — LINKEDIN -->
-  <section id="linkedin" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <section id="linkedin" class="py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">06</span> LinkedIn Spotlight</div>
       <h2 class="text-3xl font-extrabold mt-3">Latest on LinkedIn</h2>
@@ -318,7 +718,7 @@
   </section>
 
   <!-- 07 — EXPERIENCE -->
-  <section id="experience" class="py-16">
+  <section id="experience" class="py-16 border-y u-border">
     <div class="max-w-5xl mx-auto px-4">
       <div class="slide-badge"><span class="num">07</span> Experience Timeline</div>
       <h2 class="text-3xl font-extrabold mt-3">Experience</h2>
@@ -326,12 +726,14 @@
         <div class="relative pl-8">
           <div class="absolute left-1 top-2 w-3 h-3 rounded-full" style="background:var(--accent)"></div>
           <h3 class="font-semibold">Research Support — NIHR/NHS (University of Bristol)</h3>
-          <p class="text-sm u-muted">Apr 2025 – Present • Flutter app + ML pipelines • Co-design with clinicians & PwS • NIHR i4i FAST in ABI (London) presentation</p>
+          <p class="text-sm u-muted">Apr 2025 – Present • Flutter app + ML pipelines • Co-design with clinicians & PwS •
+            NIHR i4i FAST in ABI (London) presentation</p>
         </div>
         <div class="relative pl-8">
           <div class="absolute left-1 top-2 w-3 h-3 rounded-full bg-sky-400"></div>
           <h3 class="font-semibold">Data Science & Analytics Intern — Unilever</h3>
-          <p class="text-sm u-muted">Jan 2024 – May 2024 • 15+ initiatives • −40% changeover • −25% forecast error • +15–20% KPI visibility</p>
+          <p class="text-sm u-muted">Jan 2024 – May 2024 • 15+ initiatives • −40% changeover • −25% forecast error •
+            +15–20% KPI visibility</p>
         </div>
         <div class="relative pl-8">
           <div class="absolute left-1 top-2 w-3 h-3 rounded-full bg-emerald-400"></div>
@@ -343,55 +745,74 @@
   </section>
 
   <!-- 08 — AWARDS -->
-  <section id="awards" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <section id="awards" class="py-16">
     <div class="max-w-6xl mx-auto px-4">
       <div class="slide-badge"><span class="num">08</span> Awards & Certifications</div>
       <h2 class="text-3xl font-extrabold mt-3">Awards & Certifications</h2>
       <ul class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
         <li class="u-card rounded-xl p-4"><strong>Bristol PLUS Award</strong> — Employability & leadership (2025)</li>
-        <li class="u-card rounded-xl p-4"><strong>BILT Highly Commendable</strong> — Student Research Festival (2025)</li>
+        <li class="u-card rounded-xl p-4"><strong>BILT Highly Commendable</strong> — Student Research Festival (2025)
+        </li>
         <li class="u-card rounded-xl p-4"><strong>McKinsey Forward Program</strong> — Oct–Dec 2025</li>
         <li class="u-card rounded-xl p-4"><strong>AWS Academy Graduate</strong> — Cloud Foundations</li>
       </ul>
     </div>
   </section>
 
-  <!-- 09 — TESTIMONIALS -->
-  <section id="testimonials" class="py-16">
+  <!-- 09 — REFERENCES -->
+  <section id="references" class="py-16 border-y u-border">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">09</span> Testimonials</div>
-      <h2 class="text-3xl font-extrabold mt-3">What People Say</h2>
+      <div class="slide-badge"><span class="num">09</span> References</div>
+      <h2 class="text-3xl font-extrabold mt-3">Professional References</h2>
       <div class="mt-6 grid md:grid-cols-2 gap-4 text-sm">
-        <blockquote class="u-card rounded-xl p-5">“Thrisha blends attention to detail, creativity, and real-world orientation. I confidently recommend her for roles in Data Science and AI.” <span class="block mt-3 u-muted">— Telmo de Menezes e Silva Filho, Senior Lecturer</span></blockquote>
-        <blockquote class="u-card rounded-xl p-5">“Exceptional team member on our NIHR project… strong communicator and proactive collaborator.” <span class="block mt-3 u-muted">— James Pope, Senior Lecturer</span></blockquote>
+        <blockquote class="u-card rounded-xl p-5">“Thrisha blends attention to detail, creativity, and real-world
+          orientation. I confidently recommend her for roles in Data Science and AI.” <span class="block mt-3 u-muted">—
+            Telmo de Menezes e Silva Filho, Senior Lecturer</span></blockquote>
+        <blockquote class="u-card rounded-xl p-5">“Exceptional team member on our NIHR project… strong communicator and
+          proactive collaborator.” <span class="block mt-3 u-muted">— James Pope, Senior Lecturer</span></blockquote>
       </div>
     </div>
   </section>
 
-  <!-- 10 — GITHUB STATS -->
-  <section id="stats" class="py-16" style="background: color-mix(in oklab, var(--bg) 92%, #ffffff10); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">10</span> GitHub Stats</div>
-      <h2 class="text-3xl font-extrabold mt-3">GitHub Stats</h2>
-      <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <img alt="GitHub stats" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-stats.vercel.app/api?username=thrisharajkumar&show_icons=true&theme=radical" />
-        <img alt="Top languages" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thrisharajkumar&layout=compact&theme=radical" />
-        <img alt="Streak" class="rounded-xl u-border" style="border-width:1px" src="https://github-readme-streak-stats.herokuapp.com/?user=thrisharajkumar&theme=radical" />
-        <img alt="Activity graph" class="rounded-xl u-border md:col-span-2" style="border-width:1px" src="https://github-readme-activity-graph.vercel.app/graph?username=thrisharajkumar&theme=react-dark&bg_color=20232a&hide_border=true" />
-      </div>
-    </div>
-  </section>
+  <!-- 10 — CONTACT -->
+  <section id="contact" class="py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="slide-badge"><span class="num">10</span> Contact</div>
+      <h2 class="text-4xl font-extrabold mt-3">Let’s Connect</h2>
+      <p class="mt-3 text-lg u-muted">Open to connecting for full-time roles, part-time opportunities, collaborations,
+        or research initiatives.</p>
 
-  <!-- 11 — CONTACT -->
-  <section id="contact" class="py-16">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <div class="slide-badge"><span class="num">11</span> Contact</div>
-      <h2 class="text-3xl font-extrabold mt-3">Let’s Connect</h2>
-      <p class="mt-3 u-muted">Open to full-time roles, collaborations, and research projects in AI/ML & Data Science.</p>
-      <div class="mt-6 flex items-center justify-center gap-4">
-        <a class="px-5 py-2 rounded-xl u-accent-bg font-semibold" href="mailto:thrisharajkumar5@gmail.com">Email</a>
-        <a class="px-5 py-2 rounded-xl" style="background:#0ea5e9;color:#fff" href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="px-5 py-2 rounded-xl u-card font-semibold" href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+      <!-- Simple form (Name, Email, Message) -->
+      <form action="https://formspree.io/f/your-form-id" method="POST"
+        class="mt-10 space-y-4 text-left max-w-2xl mx-auto">
+        <input type="text" name="name" placeholder="Your name" required
+          class="w-full px-5 py-4 rounded-2xl u-card focus:outline-none text-base" />
+        <input type="email" name="email" placeholder="Your email" required
+          class="w-full px-5 py-4 rounded-2xl u-card focus:outline-none text-base" />
+        <textarea name="message" placeholder="Tell me about your project or opportunity..." required rows="5"
+          class="w-full px-5 py-4 rounded-2xl u-card focus:outline-none text-base"></textarea>
+        <button type="submit"
+          class="px-8 py-4 rounded-2xl u-accent-bg font-semibold flex items-center justify-center gap-2 text-lg w-full md:w-auto">✉️
+          Send Message</button>
+      </form>
+
+      <!-- Same three buttons, themed & bigger -->
+      <div class="mt-10">
+        <p class="text-lg font-semibold u-muted">Thank you !</p>
+        <div class="mt-6 flex items-center justify-center gap-6 flex-wrap">
+          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+            href="mailto:thrisharajkumar5@gmail.com">Email</a>
+          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+            href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+            href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="mt-12 text-sm u-muted leading-relaxed">
+        <p><strong>Thrisha Rajkumar</strong> • #OPEN_TO_WORK • She/Her</p>
+        <p>MSc Data Science @ University of Bristol ’25 (Russell Group) | AI/ML Research Support – NIHR | Ex-Unilever |
+          Data Science & Analytics</p>
       </div>
     </div>
   </section>
@@ -401,16 +822,28 @@
   </footer>
 
   <script>
-    // Persisted theme & accent
+    // Defaults & dynamic scroll offset
     const root = document.documentElement;
+    const headerEl = document.querySelector('header');
+
     const applyStored = () => {
-      const t = localStorage.getItem('theme');
-      const a = localStorage.getItem('accent');
-      if (t) root.setAttribute('data-theme', t);
-      if (a) root.setAttribute('data-accent', a);
+      const storedTheme = localStorage.getItem('theme');
+      const storedAccent = localStorage.getItem('accent');
+      root.setAttribute('data-theme', storedTheme ? storedTheme : 'dark'); // default dark
+      if (storedAccent) root.setAttribute('data-accent', storedAccent);
     };
     applyStored();
-    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Compute scroll offset (header height + comfy space)
+    const setScrollOffset = () => {
+      const h = (headerEl?.offsetHeight || 64) + 28;
+      root.style.setProperty('--scroll-offset', h + 'px');
+    };
+    setScrollOffset();
+    window.addEventListener('resize', setScrollOffset);
+
+    // Year
+    const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
 
     // Theme toggle
     document.getElementById('themeToggle').addEventListener('click', () => {
@@ -428,21 +861,53 @@
       });
     });
 
+    // Smooth-scroll with exact offset
+    const smoothTo = (id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const absoluteY = window.pageYOffset + rect.top;
+      const offset = parseFloat(getComputedStyle(root).getPropertyValue('--scroll-offset')) || 96;
+      window.scrollTo({ top: absoluteY - offset, behavior: 'smooth' });
+    };
+
+    // Intercept internal nav clicks
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const hash = a.getAttribute('href');
+        const id = hash && hash.startsWith('#') ? hash.slice(1) : null;
+        if (!id) return;
+        if (document.getElementById(id)) {
+          e.preventDefault();
+          history.pushState(null, '', hash);
+          smoothTo(id);
+        }
+      });
+    });
+
+    // Correct initial load with hash
+    window.addEventListener('load', () => {
+      const h = location.hash && location.hash.slice(1);
+      if (h && document.getElementById(h)) {
+        setTimeout(() => smoothTo(h), 50);
+      }
+    });
+
     // Slide dot activator on scroll
-    const sections = ['home','skills','about','wins','projects','linkedin','experience','awards','testimonials','stats','contact'];
+    const sections = ['home', 'skills', 'expertise', 'about', 'projects', 'linkedin', 'experience', 'awards', 'references', 'contact'];
     const dotsMap = new Map(sections.map(id => [id, document.querySelector(`[data-slide-dot="${id}"]`)]));
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if(e.isIntersecting){
+        if (e.isIntersecting) {
           dotsMap.forEach(d => d && d.classList.remove('active'));
           const dot = dotsMap.get(e.target.id);
-          if(dot) dot.classList.add('active');
+          if (dot) dot.classList.add('active');
         }
       });
     }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-    sections.forEach(id => { const el = document.getElementById(id); if(el) obs.observe(el); });
+    sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
 
-    // LinkedIn Spotlight — replace # with your real post links
+    // LinkedIn Spotlight (placeholder data)
     const posts = [
       { title: 'MSc Data Science — reflections & gratitude', teaser: 'Proud to complete MSc at the University of Bristol.', url: '#', date: '2025-09-15' },
       { title: 'Presenting at i4i FAST in ABI, London', teaser: 'Co-presented NIHR project: AI for personalised stroke rehab.', url: '#', date: '2025-09-19' },
@@ -450,7 +915,7 @@
       { title: 'McKinsey Forward Program — accepted', teaser: 'Building future-ready skills Oct–Dec 2025.', url: '#', date: '2025-09-20' }
     ];
     const ul = document.getElementById('li-posts');
-    ul.innerHTML = posts.map(p => `
+    if (ul) ul.innerHTML = posts.map(p => `
       <li class="u-card rounded-xl p-5">
         <div class="text-xs u-muted">${new Date(p.date).toLocaleDateString()}</div>
         <h3 class="font-semibold mt-1">${p.title}</h3>
@@ -458,45 +923,31 @@
         <a class="u-accent hover:underline text-sm" target="_blank" href="${p.url}">Read on LinkedIn →</a>
       </li>`).join('');
 
-    // ---------------- SKILLS BUBBLES ----------------
-    // Put ALL your resume skills here (order doesn’t matter). Duplicate content is handled.
+    // Skills chips
     const skills = [
-      'Python','R','SQL','Pandas','NumPy','scikit-learn','TensorFlow','Keras','PyTorch','NLP','BERT','BiLSTM',
-      'Bayesian Methods','UMAP','t-SNE','KMeans','Optuna','XGBoost','LightGBM','Random Forest','Ridge','Lasso',
-      'Time Series','EDA','Data Cleaning','ETL','Feature Engineering','Statistics','A/B Testing',
-      'Tableau','Power BI','Matplotlib','Seaborn','Plotly',
-      'AWS EC2','AWS Lambda','S3','DynamoDB','Docker','Grafana','Node-RED',
-      'Git','GitHub','Linux','CI/CD','Flutter','Firebase','React','Angular',
-      'Physics-informed ML','Multi-task Learning','Attention','Embeddings','SHAP','LIME',
-      'SAP','Power Automate','Jupyter','LaTeX'
+      'Python', 'R', 'SQL', 'Pandas', 'NumPy', 'scikit-learn', 'TensorFlow', 'Keras', 'PyTorch', 'NLP', 'BERT', 'BiLSTM',
+      'Bayesian Methods', 'UMAP', 't-SNE', 'KMeans', 'Optuna', 'XGBoost', 'LightGBM', 'Random Forest', 'Ridge', 'Lasso',
+      'Time Series', 'EDA', 'Data Cleaning', 'ETL', 'Feature Engineering', 'Statistics', 'A/B Testing',
+      'Tableau', 'Power BI', 'Matplotlib', 'Seaborn', 'Plotly',
+      'AWS EC2', 'AWS Lambda', 'S3', 'DynamoDB', 'Docker', 'Grafana', 'Node-RED',
+      'Git', 'GitHub', 'Linux', 'CI/CD', 'Flutter', 'Firebase', 'React', 'Angular',
+      'Physics-informed ML', 'Multi-task Learning', 'Attention', 'Embeddings', 'SHAP', 'LIME',
+      'SAP', 'Power Automate', 'Jupyter', 'LaTeX'
     ];
-
-    // Utility to create a chip element
     const chip = (txt) => `<span class="u-chip">${txt}</span>`;
-
-    // Split skills roughly into 3 buckets for visual variety
     const chunkSize = Math.ceil(skills.length / 3);
-    const rows = [skills.slice(0, chunkSize), skills.slice(chunkSize, 2*chunkSize), skills.slice(2*chunkSize)];
+    const rows = [skills.slice(0, chunkSize), skills.slice(chunkSize, 2 * chunkSize), skills.slice(2 * chunkSize)];
+    const mountRow = (id, items) => { const el = document.getElementById(id); if (el) el.innerHTML = items.map(chip).join(''); };
+    mountRow('row1', rows[0]); mountRow('row1_clone', rows[0]);
+    mountRow('row2', rows[1]); mountRow('row2_clone', rows[1]);
+    mountRow('row3', rows[2]); mountRow('row3_clone', rows[2]);
 
-    // Fill each row twice for seamless loop
-    const mountRow = (id, items) => {
-      const el = document.getElementById(id);
-      el.innerHTML = items.map(chip).join('');
-    };
-
-    mountRow('row1', rows[0]);  mountRow('row1_clone', rows[0]);
-    mountRow('row2', rows[1]);  mountRow('row2_clone', rows[1]);
-    mountRow('row3', rows[2]);  mountRow('row3_clone', rows[2]);
-
-    // Start/stop marquee only when #skills is in view (and add subtle highlight)
     const skillsSection = document.getElementById('skills');
     const skillsObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){ skillsSection.classList.add('in-view'); }
-        else { skillsSection.classList.remove('in-view'); }
-      });
+      entries.forEach(e => { if (e.isIntersecting) { skillsSection.classList.add('in-view'); } else { skillsSection.classList.remove('in-view'); } });
     }, { threshold: .2 });
-    skillsObs.observe(skillsSection);
+    if (skillsSection) skillsObs.observe(skillsSection);
   </script>
 </body>
+
 </html>
