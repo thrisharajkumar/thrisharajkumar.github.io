@@ -11,9 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    /* Base */
     html {
       scroll-behavior: smooth;
     }
@@ -23,33 +21,29 @@
       overflow-x: hidden;
     }
 
-    /* Make anchors land lower to clear sticky header + glow */
     section {
       scroll-margin-top: calc(var(--scroll-offset, 96px) + 24px);
     }
 
-    /* THEME VARIABLES */
     :root {
       --bg: #0b1226;
       --text: #e5e7eb;
       --muted: #94a3b8;
-      --card: rgba(255, 255, 255, 0.08);
+      --card: rgba(20, 24, 40, 0.95);
+      /* less transparent for dark */
       --border: rgba(255, 255, 255, 0.10);
       --accent: #d946ef;
-      /* fuchsia */
       --grad-a: color-mix(in oklab, var(--accent) 20%, transparent);
-      /* was 45% */
       --grad-b: rgba(56, 189, 248, .15);
-      /* was .28 */
       --grad-c: color-mix(in oklab, var(--accent) 12%, rgba(99, 102, 241, .12));
-      /* was 22% */
     }
 
     html[data-theme="light"] {
       --bg: #ffffff;
       --text: #0f172a;
       --muted: #334155;
-      --card: rgba(15, 23, 42, 0.05);
+      --card: rgba(255, 255, 255, 0.97);
+      /* less transparent for light */
       --border: rgba(15, 23, 42, 0.12);
       --grad-a: color-mix(in oklab, var(--accent) 18%, transparent);
       --grad-b: rgba(2, 132, 199, .12);
@@ -68,7 +62,6 @@
       --accent: #0ea5e9
     }
 
-    /* Utility classes */
     .u-bg {
       background: var(--bg);
       color: var(--text);
@@ -109,7 +102,6 @@
       opacity: .92;
     }
 
-    /* Continuous gradient background (applied on <body>) */
     .gradient {
       background:
         radial-gradient(1200px 650px at -10% -10%, var(--grad-a), transparent),
@@ -119,14 +111,11 @@
       background-attachment: fixed;
     }
 
-
-    /* Sticky header */
     header.sticky {
       backdrop-filter: blur(8px);
       background: color-mix(in oklab, var(--bg) 78%, transparent);
     }
 
-    /* Slide badges + navigator */
     .slide-badge {
       display: inline-flex;
       align-items: center;
@@ -182,9 +171,6 @@
       box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent)
     }
 
-    /* HERO image wrap */
-    /* --- HERO portrait bigger + tidy --- */
-    /* Portrait resized smaller */
     .hero-portrait {
       width: 260px;
       height: 260px;
@@ -192,19 +178,18 @@
 
     @media (min-width: 768px) {
       .hero-portrait {
-        width: 300px;
-        height: 300px;
+        width: 340px;
+        height: 340px;
       }
     }
 
     @media (max-width: 640px) {
       .hero-portrait {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
       }
     }
 
-    /* Education stack refined */
     .edu-stack {
       margin-top: 1.5rem;
       display: grid;
@@ -252,7 +237,6 @@
       font-size: .85rem;
     }
 
-    /* Skills marquee */
     #skills.in-view .u-chip {
       opacity: 1;
       transform: scale(1);
@@ -322,7 +306,6 @@
       }
     }
 
-    /* Mobile viewport unit fix */
     .vh-section {
       min-height: 92vh;
     }
@@ -337,30 +320,105 @@
       max-width: 100%;
       height: auto;
     }
+
+    /* Mobile nav overlay */
+    .mobile-nav-open {
+      overflow: hidden;
+    }
+
+    .exp-panel ul {
+      color: var(--text);
+      /* Make details text visible */
+    }
+
+    .exp-panel ul li::marker {
+      color: var(--accent);
+      /* Accent color for bullet points */
+    }
   </style>
 </head>
 
 <body class="gradient u-bg">
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 border-b u-border">
+
+  <header class="sticky top-0 z-50 border-b u-border bg-[var(--bg)]">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Left: Logo -->
       <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
-      <nav class="hidden md:flex gap-6 text-sm">
+      <!-- Center: Spacer (flex-1) -->
+      <div class="flex-1"></div>
+      <!-- Desktop nav: all sections, Explore dropdown for specific sections -->
+      <nav class="hidden md:flex gap-6 text-sm items-center">
         <a class="hover:u-accent" href="#home">Home</a>
         <a class="hover:u-accent" href="#skills">Skills</a>
         <a class="hover:u-accent" href="#expertise">Expertise</a>
         <a class="hover:u-accent" href="#about">About</a>
-        <a class="hover:u-accent" href="#projects">Projects</a>
-        <a class="hover:u-accent" href="#linkedin">LinkedIn</a>
-        <a class="hover:u-accent" href="#experience">Experience</a>
-        <a class="hover:u-accent" href="#awards">Awards</a>
+        <!-- Explore Dropdown -->
+        <div class="relative group">
+          <button class="hover:u-accent flex items-center gap-1 focus:outline-none text-sm font-normal" type="button">
+            Explore
+            <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div
+            class="absolute left-0 translate-x-0 mt-2 min-w-[220px] rounded-xl border shadow-xl z-50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity text-sm text-left"
+            style="background:var(--card);color:var(--text);border-color:var(--border);">
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] rounded-t-xl transition text-inherit"
+              href="#education">Education</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#experience">Experience</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#projects">Projects</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#linkedin">LinkedIn</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] rounded-b-xl transition text-inherit"
+              href="#awards">Awards</a>
+          </div>
+        </div>
         <a class="hover:u-accent" href="#references">References</a>
         <a class="hover:u-accent" href="#contact">Contact</a>
       </nav>
-      <div class="flex items-center gap-3">
-        <!-- Theme & Accent -->
+      <!-- Mobile nav: Home | Explore (dropdown) | Contact, NO color dots/accent pickers -->
+      <div class="md:hidden flex gap-2 items-center ml-auto">
+        <a class="hover:u-accent text-sm px-3 py-2 rounded-xl" href="#home">Home</a>
+        <div class="relative">
+          <button id="mobileExploreBtn"
+            class="flex items-center gap-1 px-3 py-2 rounded-xl bg-transparent border-0 text-sm focus:outline-none"
+            aria-label="Open navigation" style="background:none;">
+            Explore
+            <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div id="mobileExploreDropdown"
+            class="absolute left-0 mt-2 min-w-[220px] rounded-xl border shadow-xl z-50 opacity-0 pointer-events-none transition-opacity text-sm text-left"
+            style="background:var(--card);color:var(--text);border-color:var(--border);">
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] rounded-t-xl transition text-inherit"
+              href="#skills">Skills</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#expertise">Expertise</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#about">About</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#education">Education</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#experience">Experience</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#projects">Projects</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#linkedin">LinkedIn</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] rounded-b-xl transition text-inherit"
+              href="#awards">Awards</a>
+            <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
+              href="#references">References</a>
+          </div>
+        </div>
+        <a class="hover:u-accent text-sm px-3 py-2 rounded-xl" href="#contact">Contact</a>
+      </div>
+      <!-- Right: Theme/Accent/Links (hide accent pickers on mobile) -->
+      <div class="flex items-center gap-3 ml-4">
         <button id="themeToggle" class="px-3 py-1.5 rounded-full text-xs font-semibold u-card">Theme</button>
-        <div class="flex items-center gap-2">
+        <div class="hidden md:flex items-center gap-2">
           <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia"
             style="background:#d946ef"></button>
           <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald"
@@ -375,84 +433,98 @@
       </div>
     </div>
   </header>
-
+  <!-- ...existing code... -->
+  <!-- ...existing code... -->
   <!-- SLIDE NAVIGATOR -->
   <nav class="slide-nav" aria-label="Slide navigation">
     <a href="#home" class="slide-dot" title="01 — Hello / Hero" data-slide-dot="home"></a>
-    <a href="#skills" class="slide-dot" title="02 — Skills" data-slide-dot="skills"></a>
-    <a href="#expertise" class="slide-dot" title="03 — Technical Expertise" data-slide-dot="expertise"></a>
-    <a href="#about" class="slide-dot" title="04 — About" data-slide-dot="about"></a>
-    <a href="#projects" class="slide-dot" title="05 — Projects" data-slide-dot="projects"></a>
-    <a href="#linkedin" class="slide-dot" title="06 — LinkedIn" data-slide-dot="linkedin"></a>
-    <a href="#experience" class="slide-dot" title="07 — Experience" data-slide-dot="experience"></a>
-    <a href="#awards" class="slide-dot" title="08 — Awards" data-slide-dot="awards"></a>
-    <a href="#references" class="slide-dot" title="09 — References" data-slide-dot="references"></a>
-    <a href="#contact" class="slide-dot" title="10 — Contact" data-slide-dot="contact"></a>
+    <a href="#education" class="slide-dot" title="02 — Education" data-slide-dot="education"></a>
+    <a href="#skills" class="slide-dot" title="03 — Skills" data-slide-dot="skills"></a>
+    <a href="#expertise" class="slide-dot" title="04 — Technical Expertise" data-slide-dot="expertise"></a>
+    <a href="#about" class="slide-dot" title="05 — About" data-slide-dot="about"></a>
+    <a href="#projects" class="slide-dot" title="06 — Projects" data-slide-dot="projects"></a>
+    <a href="#linkedin" class="slide-dot" title="07 — LinkedIn" data-slide-dot="linkedin"></a>
+    <a href="#experience" class="slide-dot" title="08 — Experience" data-slide-dot="experience"></a>
+    <a href="#awards" class="slide-dot" title="09 — Awards" data-slide-dot="awards"></a>
+    <a href="#references" class="slide-dot" title="10 — References" data-slide-dot="references"></a>
+    <a href="#contact" class="slide-dot" title="11 — Contact" data-slide-dot="contact"></a>
   </nav>
 
   <!-- 01 — HERO -->
+  <!-- ...existing code... -->
   <section id="home" class="relative overflow-hidden vh-section flex items-center">
-    <div class="max-w-7xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+    <div class="max-w-7xl mx-auto px-4 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
       <!-- Left: intro -->
-      <div>
-        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full u-card">
+      <div class="text-center md:text-left flex flex-col items-center md:items-start">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full u-card mb-2">
           <span class="w-2 h-2 rounded-full u-accent-bg" aria-hidden="true"></span>
           <span>#OPEN_TO_WORK</span>
           <span class="u-muted">• She/Her</span>
         </div>
-
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mt-4">
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mt-4">
           Thrisha Rajkumar
         </h1>
-
-        <p class="mt-3 text-lg u-muted">
+        <p class="mt-3 text-base sm:text-lg u-muted max-w-xl mx-auto md:mx-0">
           MSc Data Science @ University of Bristol ’25 (Russell Group) • AI/ML Research Support – NIHR • Ex-Unilever •
           Python · R · SQL · Machine Learning · AI
         </p>
-
-        <div class="mt-6 flex flex-wrap gap-3">
+        <div class="mt-6 flex flex-col sm:flex-row flex-wrap gap-3 justify-center md:justify-start">
           <a href="#projects" class="px-5 py-2 rounded-xl u-accent-bg font-semibold">View Projects</a>
-          <a href="assets/cv/Thrisha_Rajkumar_CV.pdf" class="px-5 py-2 rounded-xl u-card font-semibold">Download CV</a>
           <a href="#contact" class="px-5 py-2 rounded-xl u-card font-semibold">Contact</a>
         </div>
-
-        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-          <span class="u-chip">NIHR/NHS</span>
-          <span class="u-chip">Unilever</span>
-          <span class="u-chip">University of Bristol</span>
-          <span class="u-chip">Sapienza</span>
+        <!-- Logos row -->
+        <div class="mt-8 flex flex-wrap gap-4 items-center justify-center md:justify-start">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/NHS_logo.svg" alt="NHS" class="h-8 md:h-10"
+            title="NHS/NIHR">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Unilever.svg" alt="Unilever" class="h-8 md:h-10"
+            title="Unilever">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/University_of_Bristol_logo.svg"
+            alt="University of Bristol" class="h-8 md:h-10" title="University of Bristol">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Sapienza_University_of_Rome_logo.svg"
+            alt="Sapienza" class="h-8 md:h-10" title="Sapienza">
         </div>
       </div>
-
-      <!-- Right: large portrait + education (badges removed) -->
-      <div class="relative justify-self-center">
-        <div class="hero-portrait rounded-3xl hero-img-wrap u-border border p-2">
+      <!-- Right: large portrait -->
+      <div class="relative flex justify-center md:block mt-10 md:mt-0">
+        <div class="hero-portrait rounded-3xl hero-img-wrap u-border border p-2 flex items-center justify-center">
           <img src="assets/profile.jpg" alt="Thrisha Rajkumar" class="w-full h-full object-cover rounded-2xl">
         </div>
+      </div>
+    </div>
+  </section>
+  <!-- ...existing code... -->
 
-        <!-- Education mini-cards -->
-        <div class="edu-stack max-w-sm">
-          <div class="edu-card">
-            <div class="edu-ico">🎓</div>
-            <div class="edu-meta">
-              <div class="edu-title">MSc Data Science</div>
-              <div class="edu-sub">University of Bristol · Sep 2024 – Sep 2025<br />Expected Distinction</div>
-            </div>
-          </div>
-          <div class="edu-card">
-            <div class="edu-ico">📘</div>
-            <div class="edu-meta">
-              <div class="edu-title">B.Tech Computer Science (Data Science & Analytics)</div>
-              <div class="edu-sub">DIT University · Aug 2020 – Aug 2024<br />First-Class Honours (81.13%)</div>
+  <!-- 02 — EDUCATION -->
+  <section id="education" class="py-20 vh-section flex items-center border-y u-border">
+    <div class="max-w-4xl mx-auto px-4 w-full">
+      <div class="slide-badge"><span class="num">02</span> Education</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3">Education</h2>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="edu-card flex gap-4 items-center p-6 rounded-xl u-card">
+          <div class="edu-ico text-2xl">🎓</div>
+          <div class="edu-meta">
+            <div class="edu-title font-bold">MSc Data Science</div>
+            <div class="edu-sub u-muted text-sm mt-1">
+              University of Bristol · Sep 2024 – Sep 2025<br>
+              Expected Distinction
             </div>
           </div>
         </div>
-
+        <div class="edu-card flex gap-4 items-center p-6 rounded-xl u-card">
+          <div class="edu-ico text-2xl">📘</div>
+          <div class="edu-meta">
+            <div class="edu-title font-bold">B.Tech Computer Science (Data Science & Analytics)</div>
+            <div class="edu-sub u-muted text-sm mt-1">
+              DIT University · Aug 2020 – Aug 2024<br>
+              First-Class Honours (81.13%)
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-
+  <!-- ...existing code... -->
   <!-- 02 — SKILLS -->
   <section id="skills" class="py-20 vh-section flex items-center relative border-y u-border">
     <div class="absolute inset-0 pointer-events-none">
@@ -597,12 +669,15 @@
       <h2 class="text-3xl font-extrabold mt-3">About</h2>
 
       <p class="mt-4 leading-relaxed u-muted">
-        Hi, I’m Thrisha Rajkumar — MSc Data Science graduate (University of Bristol, Russell Group) with a B.Tech in Computer Science (Data Science & Analytics).
+        Hi, I’m Thrisha Rajkumar — MSc Data Science graduate (University of Bristol, Russell Group) with a B.Tech in
+        Computer Science (Data Science & Analytics).
 
-I’m passionate about turning data into impact — from building an NIHR/NHS stroke-rehab app, delivering analytics at Unilever, to advancing physics-informed ML in my dissertation on EMI prediction.
+        I’m passionate about turning data into impact — from building an NIHR/NHS stroke-rehab app, delivering analytics
+        at Unilever, to advancing physics-informed ML in my dissertation on EMI prediction.
 
-My interests include interpretable ML, ethical AI, and data storytelling that drives real decisions.
-I’m immediately available and open to full-time roles, collaborations, and research opportunities in Data Science, Machine Learning, and AI.
+        My interests include interpretable ML, ethical AI, and data storytelling that drives real decisions.
+        I’m immediately available and open to full-time roles, collaborations, and research opportunities in Data
+        Science, Machine Learning, and AI.
         <!-- CV-backed facts -->
         <!-- MSc Data Science (expected Distinction), NIHR/NHS app, EMI thesis, Unilever analytics -->
       </p>
@@ -718,226 +793,244 @@ I’m immediately available and open to full-time roles, collaborations, and res
   </section>
 
   <!-- 07 — EXPERIENCE -->
-<section id="experience" class="py-16 border-y u-border">
-  <div class="max-w-5xl mx-auto px-4">
-    <div class="slide-badge"><span class="num">07</span> Experience</div>
-    <h2 class="text-3xl font-extrabold mt-3">Experience</h2>
+  <section id="experience" class="py-16 border-y u-border">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="slide-badge"><span class="num">07</span> Experience</div>
+      <h2 class="text-3xl font-extrabold mt-3">Experience</h2>
 
-    <div class="mt-8 space-y-6">
+      <div class="mt-8 space-y-6">
 
-      <!-- 1) NIHR/NHS — Research Support -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full" style="background:var(--accent)"></span>
-        <h3 class="font-semibold">
-          Research Support — NIHR/NHS (University of Bristol)
-        </h3>
-        <p class="text-sm u-muted">
-          Apr 2025 – Present • Flutter app + ML pipelines • Co-design with clinicians & PwS • NIHR i4i FAST in ABI (London)
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-nihr">Show details</button>
-        <div id="exp-nihr" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>NIHR-funded project to support NHS community-based stroke rehab via co-designed AI solutions.</li>
-            <li><strong>Project:</strong> Co-design an AI algorithm for personalised exercise videos for people with stroke.</li>
-            <li>Developed ML models to personalise routines from patient feedback (feature engineering, supervised learning, evaluation).</li>
-            <li>Designed ethical data collection protocols; engineered features from structured feedback & clinician input.</li>
-            <li>Co-designed with PwS & clinicians through interviews/workshops to ensure clinical relevance & accessibility.</li>
-            <li>Structured app workflows and integrated ML into a cross-platform <strong>Flutter</strong> app for real-time recommendations.</li>
-            <li>Presented prototypes & technical solutions to clinical teams; supported inclusive, user-centred innovation.</li>
-            <li>Collaborated across Bristol, Cardiff, Plymouth, and UWE (AI × healthcare × HCI).</li>
-            <li><em>Since Jul 2025:</em> continuing as a voluntary contributor on publications, AI/ML refinement, software, and co-creation workshops.</li>
-          </ul>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs">
-            <span class="u-chip">Flutter</span><span class="u-chip">Python</span><span class="u-chip">TensorFlow</span>
-            <span class="u-chip">Feature Engineering</span><span class="u-chip">HCI</span>
+        <!-- 1) NIHR/NHS — Research Support -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full" style="background:var(--accent)"></span>
+          <h3 class="font-semibold">
+            Research Support — NIHR/NHS (University of Bristol)
+          </h3>
+          <p class="text-sm u-muted">
+            Apr 2025 – Present • Flutter app + ML pipelines • Co-design with clinicians & PwS • NIHR i4i FAST in ABI
+            (London)
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-nihr">Show details</button>
+          <div id="exp-nihr" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>NIHR-funded project to support NHS community-based stroke rehab via co-designed AI solutions.</li>
+              <li><strong>Project:</strong> Co-design an AI algorithm for personalised exercise videos for people with
+                stroke.</li>
+              <li>Developed ML models to personalise routines from patient feedback (feature engineering, supervised
+                learning, evaluation).</li>
+              <li>Designed ethical data collection protocols; engineered features from structured feedback & clinician
+                input.</li>
+              <li>Co-designed with PwS & clinicians through interviews/workshops to ensure clinical relevance &
+                accessibility.</li>
+              <li>Structured app workflows and integrated ML into a cross-platform <strong>Flutter</strong> app for
+                real-time recommendations.</li>
+              <li>Presented prototypes & technical solutions to clinical teams; supported inclusive, user-centred
+                innovation.</li>
+              <li>Collaborated across Bristol, Cardiff, Plymouth, and UWE (AI × healthcare × HCI).</li>
+              <li><em>Since Jul 2025:</em> continuing as a voluntary contributor on publications, AI/ML refinement,
+                software, and co-creation workshops.</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">Flutter</span><span class="u-chip">Python</span><span
+                class="u-chip">TensorFlow</span>
+              <span class="u-chip">Feature Engineering</span><span class="u-chip">HCI</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 2) MSc Thesis — EMI in EV Converters -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-sky-400"></span>
-        <h3 class="font-semibold">
-          AI/ML Research (MSc Thesis) — EMI in EV Power Converters
-        </h3>
-        <p class="text-sm u-muted">
-          Jun 2025 – Sep 2025 • Multi-output regression • Physics-informed features • TensorFlow/Optuna
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-emi">Show details</button>
-        <div id="exp-emi" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Built ML models of wide-bandgap generated EMI in EV power electronic converters.</li>
-            <li>Implemented <strong>multi-output ANN</strong> with physics-informed features; tuned with <strong>Optuna</strong>.</li>
-            <li>Achieved high R² across 13 targets; compared deep models vs. tree-based baselines.</li>
-            <li>Delivered reproducible Python pipeline (TensorFlow, scikit-learn) and clear evaluation/visuals.</li>
-          </ul>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs">
-            <span class="u-chip">TensorFlow</span><span class="u-chip">Optuna</span>
-            <span class="u-chip">Multi-task Learning</span><span class="u-chip">Model Evaluation</span>
+        <!-- 2) MSc Thesis — EMI in EV Converters -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-sky-400"></span>
+          <h3 class="font-semibold">
+            AI/ML Research (MSc Thesis) — EMI in EV Power Converters
+          </h3>
+          <p class="text-sm u-muted">
+            Jun 2025 – Sep 2025 • Multi-output regression • Physics-informed features • TensorFlow/Optuna
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-emi">Show details</button>
+          <div id="exp-emi" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Built ML models of wide-bandgap generated EMI in EV power electronic converters.</li>
+              <li>Implemented <strong>multi-output ANN</strong> with physics-informed features; tuned with
+                <strong>Optuna</strong>.
+              </li>
+              <li>Achieved high R² across 13 targets; compared deep models vs. tree-based baselines.</li>
+              <li>Delivered reproducible Python pipeline (TensorFlow, scikit-learn) and clear evaluation/visuals.</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">TensorFlow</span><span class="u-chip">Optuna</span>
+              <span class="u-chip">Multi-task Learning</span><span class="u-chip">Model Evaluation</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 3) Sapienza × Bristol — Applied Neural Networks -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-emerald-400"></span>
-        <h3 class="font-semibold">
-          Applied Neural Networks — Sapienza × Bristol
-        </h3>
-        <p class="text-sm u-muted">
-          Jan 2025 – May 2025 • CIRNet improvements • PCA + hydropathy • 78% accuracy
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-sapienza">Show details</button>
-        <div id="exp-sapienza" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Led a 4-member international team on protein–protein interaction prediction (CIRNet).</li>
-            <li>Evaluated & enhanced CNN using 28 hydropathy scales; unified biochemical data with <strong>PCA</strong>.</li>
-            <li>Reached <strong>78% accuracy</strong> with robust low variance across residue types.</li>
-            <li>Coordinated tasks, code reviews, GitHub flow; authored major report & presentation sections.</li>
-          </ul>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs">
-            <span class="u-chip">Python</span><span class="u-chip">CNN</span><span class="u-chip">PCA</span>
-            <span class="u-chip">scikit-learn</span><span class="u-chip">Matplotlib</span>
+        <!-- 3) Sapienza × Bristol — Applied Neural Networks -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-emerald-400"></span>
+          <h3 class="font-semibold">
+            Applied Neural Networks — Sapienza × Bristol
+          </h3>
+          <p class="text-sm u-muted">
+            Jan 2025 – May 2025 • CIRNet improvements • PCA + hydropathy • 78% accuracy
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-sapienza">Show details</button>
+          <div id="exp-sapienza" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Led a 4-member international team on protein–protein interaction prediction (CIRNet).</li>
+              <li>Evaluated & enhanced CNN using 28 hydropathy scales; unified biochemical data with
+                <strong>PCA</strong>.
+              </li>
+              <li>Reached <strong>78% accuracy</strong> with robust low variance across residue types.</li>
+              <li>Coordinated tasks, code reviews, GitHub flow; authored major report & presentation sections.</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">Python</span><span class="u-chip">CNN</span><span class="u-chip">PCA</span>
+              <span class="u-chip">scikit-learn</span><span class="u-chip">Matplotlib</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 4) Bristol Data Science Society — Postgrad Rep -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-fuchsia-400"></span>
-        <h3 class="font-semibold">
-          Postgraduate Representative — Bristol Data Science Society
-        </h3>
-        <p class="text-sm u-muted">
-          Oct 2024 – Mar 2025 • Faculty liaison • Student engagement • Workshop coordination
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-bdss">Show details</button>
-        <div id="exp-bdss" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Represented postgraduates and engaged with senior faculty.</li>
-            <li>Encouraged MSc Data Science student participation and community building.</li>
-            <li>Organised a workshop with a Senior Data Science Professor; supported event planning.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- 5) Unilever — Data Science & Analytics Intern -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-cyan-400"></span>
-        <h3 class="font-semibold">
-          Data Science & Analytics Intern — Unilever
-        </h3>
-        <p class="text-sm u-muted">
-          Jan 2024 – May 2024 • 15+ initiatives • −40% changeover • −25% forecast error • +15–20% KPI visibility
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-unilever">Show details</button>
-        <div id="exp-unilever" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li><strong>ManEx:</strong> BuildApp & factory digitalisation.</li>
-            <li><strong>Manufacturing:</strong> Spectrophotometer optimisation; OMSAI line defect analysis; shade-matching formula; FDA batch deviation; master recipe rework study.</li>
-            <li><strong>Supply Chain:</strong> Rolling forecast planner; technical efficiency automation (SFG/RM/PM/FG); E-way Bill (RGP/NRGP) automation with SAP + Python + Power Automate.</li>
-            <li><strong>Engineering:</strong> Energy Management System with ML + Python, Node-RED, Grafana.</li>
-            <li><strong>Safety:</strong> UA/UC analytics for USEAT; ML-based Safety Management System.</li>
-          </ul>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs">
-            <span class="u-chip">Python</span><span class="u-chip">Tableau/Power BI</span>
-            <span class="u-chip">Power Automate</span><span class="u-chip">Node-RED</span><span class="u-chip">Grafana</span>
+        <!-- 4) Bristol Data Science Society — Postgrad Rep -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-fuchsia-400"></span>
+          <h3 class="font-semibold">
+            Postgraduate Representative — Bristol Data Science Society
+          </h3>
+          <p class="text-sm u-muted">
+            Oct 2024 – Mar 2025 • Faculty liaison • Student engagement • Workshop coordination
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-bdss">Show details</button>
+          <div id="exp-bdss" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Represented postgraduates and engaged with senior faculty.</li>
+              <li>Encouraged MSc Data Science student participation and community building.</li>
+              <li>Organised a workshop with a Senior Data Science Professor; supported event planning.</li>
+            </ul>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 6) Oneline Works — Flutter Intern -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-indigo-400"></span>
-        <h3 class="font-semibold">
-          Frontend Flutter App Developer Intern — Oneline Works
-        </h3>
-        <p class="text-sm u-muted">
-          Sep 2023 • Remote • Figma → Flutter • Zoom SDK integration
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-oneline">Show details</button>
-        <div id="exp-oneline" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Developed responsive mobile UI in <strong>Flutter</strong> from Figma designs.</li>
-            <li>Integrated <strong>Zoom SDK</strong> for seamless meeting participation.</li>
-            <li>Handled client communication and coordination for smooth collaboration.</li>
-          </ul>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs">
-            <span class="u-chip">Flutter</span><span class="u-chip">Figma</span><span class="u-chip">SDKs</span>
+        <!-- 5) Unilever — Data Science & Analytics Intern -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-cyan-400"></span>
+          <h3 class="font-semibold">
+            Data Science & Analytics Intern — Unilever
+          </h3>
+          <p class="text-sm u-muted">
+            Jan 2024 – May 2024 • 15+ initiatives • −40% changeover • −25% forecast error • +15–20% KPI visibility
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-unilever">Show details</button>
+          <div id="exp-unilever" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li><strong>ManEx:</strong> BuildApp & factory digitalisation.</li>
+              <li><strong>Manufacturing:</strong> Spectrophotometer optimisation; OMSAI line defect analysis;
+                shade-matching formula; FDA batch deviation; master recipe rework study.</li>
+              <li><strong>Supply Chain:</strong> Rolling forecast planner; technical efficiency automation
+                (SFG/RM/PM/FG); E-way Bill (RGP/NRGP) automation with SAP + Python + Power Automate.</li>
+              <li><strong>Engineering:</strong> Energy Management System with ML + Python, Node-RED, Grafana.</li>
+              <li><strong>Safety:</strong> UA/UC analytics for USEAT; ML-based Safety Management System.</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">Python</span><span class="u-chip">Tableau/Power BI</span>
+              <span class="u-chip">Power Automate</span><span class="u-chip">Node-RED</span><span
+                class="u-chip">Grafana</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 7) Infosys — AI Primer -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-amber-400"></span>
-        <h3 class="font-semibold">
-          Infosys Training — Artificial Intelligence Primer
-        </h3>
-        <p class="text-sm u-muted">
-          Jul 2023 – Aug 2023 • Remote • AI, DL, NLP, RPA, CV (certifications)
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-infosys">Show details</button>
-        <div id="exp-infosys" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Completed virtual internship covering AI, Deep Learning, Data Science, NLP, RPA, and Computer Vision.</li>
-            <li>Validated proficiency via graded quizzes and certifications.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- 8) Salesforce Virtual Internship -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-rose-400"></span>
-        <h3 class="font-semibold">
-          Salesforce Developer — Virtual Internship (SmartInternz)
-        </h3>
-        <p class="text-sm u-muted">
-          Jun 2023 – Aug 2023 • LWC, Apex, APIs • Flows, security, testing & debugging
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-salesforce">Show details</button>
-        <div id="exp-salesforce" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Trailhead modules & Superbadges: Org setup, Flows & Security, Apex dev, testing, debugging.</li>
-            <li>Built with <strong>Lightning Web Components</strong> and API integration.</li>
-          </ul>
-        </div>
-      </article>
-
-      <!-- 9) DLithe — Web Developer -->
-      <article class="relative pl-8">
-        <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-lime-400"></span>
-        <h3 class="font-semibold">
-          Web Developer — DLithe
-        </h3>
-        <p class="text-sm u-muted">
-          Jul 2022 – Aug 2022 • HTML/CSS/JS/Angular • Ad-serving platform & e-commerce site
-        </p>
-        <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
-                data-target="#exp-dlithe">Show details</button>
-        <div id="exp-dlithe" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
-          <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
-            <li>Designed & developed web apps using HTML, CSS, JavaScript, and Angular.</li>
-            <li>Built a scalable ad-serving prototype and an e-commerce shopping site.</li>
-            <li>Worked cross-functionally on requirements, solutions, and custom components.</li>
-          </ul>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs">
-            <span class="u-chip">HTML/CSS/JS</span><span class="u-chip">Angular</span><span class="u-chip">Bootstrap</span>
+        <!-- 6) Oneline Works — Flutter Intern -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-indigo-400"></span>
+          <h3 class="font-semibold">
+            Frontend Flutter App Developer Intern — Oneline Works
+          </h3>
+          <p class="text-sm u-muted">
+            Sep 2023 • Remote • Figma → Flutter • Zoom SDK integration
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-oneline">Show details</button>
+          <div id="exp-oneline" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Developed responsive mobile UI in <strong>Flutter</strong> from Figma designs.</li>
+              <li>Integrated <strong>Zoom SDK</strong> for seamless meeting participation.</li>
+              <li>Handled client communication and coordination for smooth collaboration.</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">Flutter</span><span class="u-chip">Figma</span><span class="u-chip">SDKs</span>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
 
+        <!-- 7) Infosys — AI Primer -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-amber-400"></span>
+          <h3 class="font-semibold">
+            Infosys Training — Artificial Intelligence Primer
+          </h3>
+          <p class="text-sm u-muted">
+            Jul 2023 – Aug 2023 • Remote • AI, DL, NLP, RPA, CV (certifications)
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-infosys">Show details</button>
+          <div id="exp-infosys" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Completed virtual internship covering AI, Deep Learning, Data Science, NLP, RPA, and Computer Vision.
+              </li>
+              <li>Validated proficiency via graded quizzes and certifications.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 8) Salesforce Virtual Internship -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-rose-400"></span>
+          <h3 class="font-semibold">
+            Salesforce Developer — Virtual Internship (SmartInternz)
+          </h3>
+          <p class="text-sm u-muted">
+            Jun 2023 – Aug 2023 • LWC, Apex, APIs • Flows, security, testing & debugging
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-salesforce">Show details</button>
+          <div id="exp-salesforce" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Trailhead modules & Superbadges: Org setup, Flows & Security, Apex dev, testing, debugging.</li>
+              <li>Built with <strong>Lightning Web Components</strong> and API integration.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 9) DLithe — Web Developer -->
+        <article class="relative pl-8">
+          <span class="absolute left-1 top-2 w-3 h-3 rounded-full bg-lime-400"></span>
+          <h3 class="font-semibold">
+            Web Developer — DLithe
+          </h3>
+          <p class="text-sm u-muted">
+            Jul 2022 – Aug 2022 • HTML/CSS/JS/Angular • Ad-serving platform & e-commerce site
+          </p>
+          <button class="exp-toggle mt-3 u-card u-border px-3 py-1.5 rounded-lg text-sm font-semibold"
+            data-target="#exp-dlithe">Show details</button>
+          <div id="exp-dlithe" class="exp-panel u-card u-border rounded-xl mt-3 p-4 hidden">
+            <ul class="u-muted text-sm leading-relaxed list-disc pl-5 space-y-1">
+              <li>Designed & developed web apps using HTML, CSS, JavaScript, and Angular.</li>
+              <li>Built a scalable ad-serving prototype and an e-commerce shopping site.</li>
+              <li>Worked cross-functionally on requirements, solutions, and custom components.</li>
+            </ul>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs">
+              <span class="u-chip">HTML/CSS/JS</span><span class="u-chip">Angular</span><span
+                class="u-chip">Bootstrap</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
@@ -957,75 +1050,78 @@ I’m immediately available and open to full-time roles, collaborations, and res
   </section>
 
   <!-- 09 — REFERENCES -->
- <section id="references" class="py-16 border-y u-border">
-  <div class="max-w-6xl mx-auto px-4 text-center">
-    <div class="slide-badge"><span class="num">09</span> References</div>
-    <h2 class="text-3xl font-extrabold mt-3">Professional References</h2>
-    <p class="u-muted mt-2">
-      Endorsements from mentors, supervisors, and colleagues I’ve had the privilege to work with.
-    </p>
+  <section id="references" class="py-16 border-y u-border">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="slide-badge"><span class="num">09</span> References</div>
+      <h2 class="text-3xl font-extrabold mt-3">Professional References</h2>
+      <p class="u-muted mt-2">
+        Endorsements from mentors, supervisors, and colleagues I’ve had the privilege to work with.
+      </p>
 
-    <div class="mt-8 grid md:grid-cols-2 gap-6 text-left">
-      <!-- Telmo -->
-      <blockquote class="u-card rounded-xl p-6">
-        “I had the pleasure of mentoring Thrisha during her MSc at Bristol. She stood out for her 
-        initiative, curiosity, and consistent follow-through, always coming prepared with thoughtful 
-        questions and eagerness to take on more research. Her performance in demanding modules, 
-        including achieving one of the highest marks (77) in the TIBS exam and excelling in Large Scale 
-        Data Engineering (87), is proof of her academic strength. Her dissertation on EMI prediction 
-        showed deep skills in Python, TensorFlow, and end-to-end ML pipelines.”
-        <span class="block mt-3 font-semibold">— Telmo de Menezes e Silva Filho, Senior Lecturer, University of Bristol</span>
-      </blockquote>
+      <div class="mt-8 grid md:grid-cols-2 gap-6 text-left">
+        <!-- Telmo -->
+        <blockquote class="u-card rounded-xl p-6">
+          “I had the pleasure of mentoring Thrisha during her MSc at Bristol. She stood out for her
+          initiative, curiosity, and consistent follow-through, always coming prepared with thoughtful
+          questions and eagerness to take on more research. Her performance in demanding modules,
+          including achieving one of the highest marks (77) in the TIBS exam and excelling in Large Scale
+          Data Engineering (87), is proof of her academic strength. Her dissertation on EMI prediction
+          showed deep skills in Python, TensorFlow, and end-to-end ML pipelines.”
+          <span class="block mt-3 font-semibold">— Telmo de Menezes e Silva Filho, Senior Lecturer, University of
+            Bristol</span>
+        </blockquote>
 
-      <!-- James -->
-      <blockquote class="u-card rounded-xl p-6">
-        “Thrisha has been an exceptional team member on our NIHR project. She combined strong 
-        technical ability with the communication skills needed for collaboration. Her work on the 
-        minimum viable app and ML pipelines has significantly advanced the project’s aims. She’s 
-        proactive, reliable, and demonstrates the kind of initiative that makes her a valued contributor 
-        to both research and applied work.”
-        <span class="block mt-3 font-semibold">— James Pope, Senior Lecturer in Data Science, University of Bristol</span>
-      </blockquote>
+        <!-- James -->
+        <blockquote class="u-card rounded-xl p-6">
+          “Thrisha has been an exceptional team member on our NIHR project. She combined strong
+          technical ability with the communication skills needed for collaboration. Her work on the
+          minimum viable app and ML pipelines has significantly advanced the project’s aims. She’s
+          proactive, reliable, and demonstrates the kind of initiative that makes her a valued contributor
+          to both research and applied work.”
+          <span class="block mt-3 font-semibold">— James Pope, Senior Lecturer in Data Science, University of
+            Bristol</span>
+        </blockquote>
 
-      <!-- Dr Praveen -->
-      <blockquote class="u-card rounded-xl p-6">
-        “It is a great pleasure to work with Thrisha on our NIHR i4i Fast funded project. She brings 
-        expertise in AI and app development, engaging with service users with empathy and professionalism. 
-        At the NIHR Showcase in London, she presented confidently, demonstrating strong technical insight 
-        and communication skills. Thrisha is highly reliable, collaborative, and a genuine asset to the team.”
-        <span class="block mt-3 font-semibold">— Dr Praveen Kumar, Associate Professor, University of the West of England</span>
-      </blockquote>
+        <!-- Dr Praveen -->
+        <blockquote class="u-card rounded-xl p-6">
+          “It is a great pleasure to work with Thrisha on our NIHR i4i Fast funded project. She brings
+          expertise in AI and app development, engaging with service users with empathy and professionalism.
+          At the NIHR Showcase in London, she presented confidently, demonstrating strong technical insight
+          and communication skills. Thrisha is highly reliable, collaborative, and a genuine asset to the team.”
+          <span class="block mt-3 font-semibold">— Dr Praveen Kumar, Associate Professor, University of the West of
+            England</span>
+        </blockquote>
 
-      <!-- Reena -->
-      <blockquote class="u-card rounded-xl p-6">
-        “During her internship with our Unilever production team, Thrisha impressed us from day one with 
-        her eagerness to learn and ability to adapt quickly. She contributed significantly to digitisation 
-        projects including automation and process optimisation, bringing innovative ideas to the table. 
-        Her technical skill combined with strong collaboration and communication made her a valued member 
-        of the team, and I am confident she will continue to excel.”
-        <span class="block mt-3 font-semibold">— Reena Singh, Head VLPC Procurement & Private Label, Ex-Unilever</span>
-      </blockquote>
+        <!-- Reena -->
+        <blockquote class="u-card rounded-xl p-6">
+          “During her internship with our Unilever production team, Thrisha impressed us from day one with
+          her eagerness to learn and ability to adapt quickly. She contributed significantly to digitisation
+          projects including automation and process optimisation, bringing innovative ideas to the table.
+          Her technical skill combined with strong collaboration and communication made her a valued member
+          of the team, and I am confident she will continue to excel.”
+          <span class="block mt-3 font-semibold">— Reena Singh, Head VLPC Procurement & Private Label,
+            Ex-Unilever</span>
+        </blockquote>
 
-      <!-- Namita -->
-      <blockquote class="u-card rounded-xl p-6">
-        “I had the pleasure of working with Thrisha during her internship at Unilever. She consistently 
-        delivered high-quality work, taking full ownership of her projects. Her proactive approach and 
-        willingness to learn quickly made her stand out. Thrisha’s dedication and positive energy were 
-        invaluable to the team, and I am confident she will thrive in any future role.”
-        <span class="block mt-3 font-semibold">— Namita Dudeja, Supply Chain, Unilever</span>
-      </blockquote>
+        <!-- Namita -->
+        <blockquote class="u-card rounded-xl p-6">
+          “I had the pleasure of working with Thrisha during her internship at Unilever. She consistently
+          delivered high-quality work, taking full ownership of her projects. Her proactive approach and
+          willingness to learn quickly made her stand out. Thrisha’s dedication and positive energy were
+          invaluable to the team, and I am confident she will thrive in any future role.”
+          <span class="block mt-3 font-semibold">— Namita Dudeja, Supply Chain, Unilever</span>
+        </blockquote>
+      </div>
+
+      <!-- Full LinkedIn references link -->
+      <div class="mt-10">
+        <a href="https://www.linkedin.com/in/thrisha-rajkumar/details/recommendations/" target="_blank" rel="noopener"
+          class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg inline-block">
+          📖 View all LinkedIn Recommendations
+        </a>
+      </div>
     </div>
-
-    <!-- Full LinkedIn references link -->
-    <div class="mt-10">
-      <a href="https://www.linkedin.com/in/thrisha-rajkumar/details/recommendations/" 
-         target="_blank" rel="noopener"
-         class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg inline-block">
-        📖 View all LinkedIn Recommendations
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- 10 — CONTACT -->
@@ -1204,16 +1300,54 @@ I’m immediately available and open to full-time roles, collaborations, and res
   </script>
 
   <script>
-  document.querySelectorAll('.exp-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const sel = btn.getAttribute('data-target');
-      const panel = document.querySelector(sel);
-      if (!panel) return;
-      panel.classList.toggle('hidden');
-      btn.textContent = panel.classList.contains('hidden') ? 'Show details' : 'Hide details';
+    document.querySelectorAll('.exp-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sel = btn.getAttribute('data-target');
+        const panel = document.querySelector(sel);
+        if (!panel) return;
+        panel.classList.toggle('hidden');
+        btn.textContent = panel.classList.contains('hidden') ? 'Show details' : 'Hide details';
+      });
     });
-  });
-</script>
+  </script>
+  <!-- ...existing code... -->
+
+  <!-- ...existing code... -->
+  <script>
+    // Mobile Explore Dropdown logic
+    const mobileExploreBtn = document.getElementById('mobileExploreBtn');
+    const mobileExploreDropdown = document.getElementById('mobileExploreDropdown');
+    let mobileDropdownOpen = false;
+    mobileExploreBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      mobileDropdownOpen = !mobileDropdownOpen;
+      if (mobileDropdownOpen) {
+        mobileExploreDropdown.classList.remove('opacity-0', 'pointer-events-none');
+        mobileExploreDropdown.classList.add('opacity-100');
+      } else {
+        mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
+        mobileExploreDropdown.classList.remove('opacity-100');
+      }
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+      if (mobileDropdownOpen && !mobileExploreDropdown.contains(e.target) && !mobileExploreBtn.contains(e.target)) {
+        mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
+        mobileExploreDropdown.classList.remove('opacity-100');
+        mobileDropdownOpen = false;
+      }
+    });
+    // Close dropdown on link click
+    mobileExploreDropdown.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
+        mobileExploreDropdown.classList.remove('opacity-100');
+        mobileDropdownOpen = false;
+      });
+    });
+  </script>
+  <!-- ...existing code... -->
+
 
 </body>
 
