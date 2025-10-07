@@ -1123,35 +1123,25 @@
     </div>
   </section>
 
-
   <!-- 10 — CONTACT -->
   <section id="contact" class="py-24">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <div class="slide-badge"><span class="num">10</span> Contact</div>
       <h2 class="text-4xl font-extrabold mt-3">Let’s Connect</h2>
-      <p class="mt-3 text-lg u-muted">Open to connecting for full-time roles, part-time opportunities, collaborations,
-        or research initiatives.</p>
+      <p class="mt-3 text-lg u-muted">
+        Open to connecting for full-time roles, part-time opportunities, collaborations, or research initiatives.
+      </p>
 
-      <!-- Simple form (Name, Email, Message) -->
-      <form action="https://formspree.io/f/your-form-id" method="POST"
-        class="mt-10 space-y-4 text-left max-w-2xl mx-auto">
-        <input type="text" name="name" placeholder="Your name" required
-          class="w-full px-5 py-4 rounded-2xl u-card focus:outline-none text-base" />
-        <input type="email" name="email" placeholder="Your email" required
-          class="w-full px-5 py-4 rounded-2xl u-card focus:outline-none text-base" />
-        <textarea name="message" placeholder="Tell me about your project or opportunity..." required rows="5"
-          class="w-full px-5 py-4 rounded-2xl u-card focus:outline-none text-base"></textarea>
-        <button type="submit"
-          class="px-8 py-4 rounded-2xl u-accent-bg font-semibold flex items-center justify-center gap-2 text-lg w-full md:w-auto">✉️
-          Send Message</button>
-      </form>
-
-      <!-- Same three buttons, themed & bigger -->
+      <!-- Buttons -->
       <div class="mt-10">
         <p class="text-lg font-semibold u-muted">Thank you !</p>
         <div class="mt-6 flex items-center justify-center gap-6 flex-wrap">
-          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
-            href="mailto:thrisharajkumar5@gmail.com">Email</a>
+          <!-- Opens a tiny JS modal, then uses mailto: -->
+          <button id="contactMeBtn" class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg">
+            Contact me
+          </button>
+
+          <!-- Social -->
           <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
             href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
@@ -1165,11 +1155,165 @@
           Data Science & Analytics</p>
       </div>
     </div>
+
+    <!-- Minimal contact modal (JS-only, no backend) -->
+    <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/60"></div>
+
+      <!-- Card -->
+      <div class="relative u-card rounded-2xl p-6 w-full max-w-md">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-lg">Send a message</h3>
+          <button id="closeModal" class="u-chip" aria-label="Close">✕</button>
+        </div>
+
+        <div class="mt-4 space-y-3 text-left">
+          <input id="cm_name" type="text" placeholder="Your name (optional)"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+
+          <!-- Required email with validation -->
+          <div>
+            <input id="cm_email" type="email" placeholder="Your email (required)"
+              class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required>
+            <p id="cm_email_err" class="text-sm mt-1" style="color:#f43f5e; display:none;">
+              Please enter a valid email address.
+            </p>
+          </div>
+
+          <!-- Optional fields -->
+          <input id="cm_role" type="text" placeholder="Occupation (optional)"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+          <input id="cm_company" type="text" placeholder="Company / Organization (optional)"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+
+          <input id="cm_subject" type="text" placeholder="Subject"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" value="Hello Thrisha">
+
+          <textarea id="cm_message" rows="5" placeholder="Your message"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required></textarea>
+        </div>
+
+        <div class="mt-5">
+          <button id="sendMail"
+            class="px-5 py-3 rounded-xl u-accent-bg font-semibold w-full opacity-50 cursor-not-allowed" disabled>
+            ✉️ Send
+          </button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer class="py-10 text-center text-xs u-muted">
-    © <span id="y"></span> Thrisha Rajkumar — Built with Tailwind on GitHub Pages
-  </footer>
+  <script>
+    // ===== Config (obfuscated): your real email =====
+    const EMAIL_USER = "thrisharajkumar11";
+    const EMAIL_DOMAIN = "gmail.com";
+    const ADDRESS = `${EMAIL_USER}@${EMAIL_DOMAIN}`;
+
+    (function () {
+      const modal = document.getElementById("contactModal");
+      const openBtn = document.getElementById("contactMeBtn");
+      const closeBtn = document.getElementById("closeModal");
+      const sendBtn = document.getElementById("sendMail");
+
+      const $ = (id) => document.getElementById(id);
+
+      const emailInput = $("cm_email");
+      const emailErr = $("cm_email_err");
+      const msgInput = $("cm_message");
+
+      // === Show/Hide modal
+      const show = () => { modal.classList.remove("hidden"); modal.classList.add("flex"); updateSendState(); };
+      const hide = () => { modal.classList.add("hidden"); modal.classList.remove("flex"); };
+
+      openBtn?.addEventListener("click", show);
+      closeBtn?.addEventListener("click", hide);
+      modal?.addEventListener("click", (e) => { if (e.target === modal) hide(); });
+
+      // === Smarter email validation (broad but realistic)
+      function isValidEmail(emailRaw) {
+        const email = (emailRaw || "").trim().toLowerCase();
+        // basic RFC-ish shape
+        const basic = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/i.test(email);
+        if (!basic) return false;
+
+        const domain = email.split("@")[1];
+        const parts = domain.split(".");
+        if (parts.length < 2) return false;
+
+        const tld = parts[parts.length - 1]; // e.g., "uk" or "com"
+        const sld = parts[parts.length - 2]; // e.g., "bristol" in bristol.ac.uk
+
+        // allow common TLDs + country codes + .edu
+        const allowedTLDs = new Set([
+          "com", "org", "net", "io", "ai", "dev", "app", "tech", "co", "me",
+          "uk", "in", "us", "ca", "de", "fr", "it", "nl", "es", "ie", "ch", "se", "no", "au", "nz", "sg",
+          "edu"
+        ]);
+        const commonProviders = new Set([
+          "gmail.com", "outlook.com", "hotmail.com", "yahoo.com", "icloud.com",
+          "proton.me", "protonmail.com", "live.com", "gmx.com", "mail.com", "pm.me"
+        ]);
+
+        const isAcademicUK = domain.endsWith(".ac.uk");
+        const isEdu = domain.endsWith(".edu");
+        const isCommonProv = commonProviders.has(domain);
+        const tldAllowed = allowedTLDs.has(tld);
+
+        // block ultra-short second-level on .com (e.g., ga.com), except real providers
+        const blockShortCom = (tld === "com" && sld && sld.length < 3 && !isCommonProv);
+
+        if (isAcademicUK || isEdu || isCommonProv || tldAllowed) {
+          return !blockShortCom;
+        }
+        return false;
+      }
+
+      // === Enable/disable Send
+      function updateSendState() {
+        const emailOk = isValidEmail(emailInput.value);
+        const msgOk = (msgInput.value || "").trim().length > 0;
+
+        emailErr.style.display = emailInput.value ? (emailOk ? "none" : "block") : "none";
+
+        const allOk = emailOk && msgOk;
+        sendBtn.disabled = !allOk;
+        sendBtn.classList.toggle("opacity-50", !allOk);
+        sendBtn.classList.toggle("cursor-not-allowed", !allOk);
+      }
+
+      ["input", "change", "keyup"].forEach(evt => {
+        emailInput?.addEventListener(evt, updateSendState);
+        msgInput?.addEventListener(evt, updateSendState);
+      });
+
+      // === Compose & send via mailto:
+      sendBtn?.addEventListener("click", () => {
+        if (sendBtn.disabled) return;
+
+        const name = ($("cm_name")?.value || "").trim();
+        const email = (emailInput?.value || "").trim();
+        const role = ($("cm_role")?.value || "").trim();
+        const company = ($("cm_company")?.value || "").trim();
+        const subjRaw = ($("cm_subject")?.value || "Hello Thrisha").trim();
+        const msgRaw = (msgInput?.value || "").trim();
+
+        const subject = encodeURIComponent(subjRaw);
+        const metaLines = [
+          name ? `From: ${name}` : null,
+          `Email: ${email}`,
+          role ? `Occupation: ${role}` : null,
+          company ? `Company: ${company}` : null
+        ].filter(Boolean).join("\n");
+
+        const body = encodeURIComponent(`${metaLines}\n\n${msgRaw}`);
+
+        window.location.href = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
+        hide();
+      });
+    })();
+  </script>
+
 
   <script>
     // Defaults & dynamic scroll offset
