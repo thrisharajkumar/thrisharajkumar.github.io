@@ -1122,217 +1122,241 @@
       </div>
     </div>
   </section>
+<!-- 10 — CONTACT -->
+<section id="contact" class="py-24">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <div class="slide-badge"><span class="num">10</span> Contact</div>
+    <h2 class="text-4xl font-extrabold mt-3">Let’s Connect</h2>
+    <p class="mt-3 text-lg u-muted">
+      Open to connecting for full-time roles, part-time opportunities, collaborations, or research initiatives.
+    </p>
 
-  <!-- 10 — CONTACT -->
-  <section id="contact" class="py-24">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <div class="slide-badge"><span class="num">10</span> Contact</div>
-      <h2 class="text-4xl font-extrabold mt-3">Let’s Connect</h2>
-      <p class="mt-3 text-lg u-muted">
-        Open to connecting for full-time roles, part-time opportunities, collaborations, or research initiatives.
-      </p>
-
-      <!-- Buttons -->
-      <div class="mt-10">
-        <p class="text-lg font-semibold u-muted">Thank you !</p>
-        <div class="mt-6 flex items-center justify-center gap-6 flex-wrap">
-          <!-- Opens a tiny JS modal, then uses mailto: -->
-          <button id="contactMeBtn" class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg">
-            Contact me
-          </button>
-
-          <!-- Social -->
-          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
-            href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
-            href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-
-      <div class="mt-12 text-sm u-muted leading-relaxed">
-        <p><strong>Thrisha Rajkumar</strong> • #OPEN_TO_WORK • She/Her</p>
-        <p>MSc Data Science @ University of Bristol ’25 (Russell Group) | AI/ML Research Support – NIHR | Ex-Unilever |
-          Data Science & Analytics</p>
+    <!-- Buttons -->
+    <div class="mt-10">
+      <p class="text-lg font-semibold u-muted">Thank you !</p>
+      <div class="mt-6 flex items-center justify-center gap-6 flex-wrap">
+        <button id="contactMeBtn" class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg">
+          Contact me
+        </button>
+        <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+           href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+           href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
 
-    <!-- Minimal contact modal (JS-only, no backend) -->
-    <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
-      <!-- Backdrop -->
-      <div class="absolute inset-0 bg-black/60"></div>
+    <div class="mt-12 text-sm u-muted leading-relaxed">
+      <p><strong>Thrisha Rajkumar</strong> • #OPEN_TO_WORK • She/Her</p>
+      <p>MSc Data Science @ University of Bristol ’25 (Russell Group) | AI/ML Research Support – NIHR | Ex-Unilever |
+        Data Science & Analytics</p>
+    </div>
+  </div>
 
-      <!-- Card -->
-      <div class="relative u-card rounded-2xl p-6 w-full max-w-md">
-        <div class="flex items-center justify-between">
-          <h3 class="font-semibold text-lg">Send a message</h3>
-          <button id="closeModal" class="u-chip" aria-label="Close">✕</button>
+  <!-- Modal -->
+  <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <div class="relative u-card rounded-2xl p-6 w-full max-w-md">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-lg">Send a message</h3>
+        <button id="closeModal" class="u-chip" aria-label="Close">✕</button>
+      </div>
+
+      <div class="mt-4 space-y-3 text-left">
+        <input id="cm_name" type="text" placeholder="Your name (optional)"
+               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+
+        <div>
+          <input id="cm_email" type="email" placeholder="Your email (required)"
+                 class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required>
+          <p id="cm_email_err" class="text-sm mt-1" style="color:#f43f5e; display:none;">
+            Please enter a valid email address.
+          </p>
         </div>
 
-        <div class="mt-4 space-y-3 text-left">
-          <input id="cm_name" type="text" placeholder="Your name (optional)"
-            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+        <input id="cm_role" type="text" placeholder="Occupation (optional)"
+               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+        <input id="cm_company" type="text" placeholder="Company / Organization (optional)"
+               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
 
-          <!-- Required email with validation -->
-          <div>
-            <input id="cm_email" type="email" placeholder="Your email (required)"
-              class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required>
-            <p id="cm_email_err" class="text-sm mt-1" style="color:#f43f5e; display:none;">
-              Please enter a valid email address.
-            </p>
-          </div>
+        <input id="cm_subject" type="text" placeholder="Subject"
+               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base"
+               value="Professional inquiry">
 
-          <!-- Optional fields -->
-          <input id="cm_role" type="text" placeholder="Occupation (optional)"
-            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
-          <input id="cm_company" type="text" placeholder="Company / Organization (optional)"
-            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+        <textarea id="cm_message" rows="5" placeholder="Your message"
+                  class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required></textarea>
+      </div>
 
-          <input id="cm_subject" type="text" placeholder="Subject"
-            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" value="Hello Thrisha">
+      <div class="mt-5 space-y-2">
+        <!-- Primary: opens Gmail in same tab (no popup) -->
+        <button id="sendMail"
+                class="px-5 py-3 rounded-xl u-accent-bg font-semibold w-full opacity-50 cursor-not-allowed"
+                disabled>
+          ✉️ Send with Gmail
+        </button>
 
-          <textarea id="cm_message" rows="5" placeholder="Your message"
-            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required></textarea>
-        </div>
-
-        <div class="mt-5">
-          <button id="sendMail"
-            class="px-5 py-3 rounded-xl u-accent-bg font-semibold w-full opacity-50 cursor-not-allowed" disabled>
-            ✉️ Send
-          </button>
-        </div>
+        <!-- Secondary: use device email app (mailto) -->
+        <button id="sendViaApp" class="w-full text-sm u-muted underline">
+          Use my email app instead
+        </button>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <script>
-    // ===== Config (obfuscated): your real email =====
-    const EMAIL_USER = "thrisharajkumar11";
-    const EMAIL_DOMAIN = "gmail.com";
-    const ADDRESS = `${EMAIL_USER}@${EMAIL_DOMAIN}`;
+<script>
+  // ===== Your email (lightly obfuscated) =====
+  const EMAIL_USER = "thrisharajkumar11";
+  const EMAIL_DOMAIN = "gmail.com";
+  const ADDRESS = `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 
-    (function () {
-      const modal = document.getElementById("contactModal");
-      const openBtn = document.getElementById("contactMeBtn");
-      const closeBtn = document.getElementById("closeModal");
-      const sendBtn = document.getElementById("sendMail");
+  (function () {
+    const modal   = document.getElementById("contactModal");
+    const openBtn = document.getElementById("contactMeBtn");
+    const closeBtn= document.getElementById("closeModal");
+    const sendBtn = document.getElementById("sendMail");
+    const appBtn  = document.getElementById("sendViaApp");
 
-      const $ = (id) => document.getElementById(id);
+    const $ = (id) => document.getElementById(id);
+    const emailInput = $("cm_email");
+    const emailErr   = $("cm_email_err");
+    const msgInput   = $("cm_message");
 
-      const emailInput = $("cm_email");
-      const emailErr = $("cm_email_err");
-      const msgInput = $("cm_message");
+    // ——— modal show/hide
+    const show = () => { modal.classList.remove("hidden"); modal.classList.add("flex"); updateSendState(); };
+    const hide = () => { modal.classList.add("hidden"); modal.classList.remove("flex"); };
 
-      // === Show/Hide modal
-      const show = () => { modal.classList.remove("hidden"); modal.classList.add("flex"); updateSendState(); };
-      const hide = () => { modal.classList.add("hidden"); modal.classList.remove("flex"); };
+    openBtn?.addEventListener("click", show);
+    closeBtn?.addEventListener("click", hide);
+    modal?.addEventListener("click", (e) => { if (e.target === modal) hide(); });
 
-      openBtn?.addEventListener("click", show);
-      closeBtn?.addEventListener("click", hide);
-      modal?.addEventListener("click", (e) => { if (e.target === modal) hide(); });
+    // ——— email validation (balanced)
+    function isValidEmail(emailRaw) {
+      const email = (emailRaw || "").trim().toLowerCase();
+      const basic = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/i.test(email);
+      if (!basic) return false;
 
-      // === Smarter email validation (broad but realistic)
-      function isValidEmail(emailRaw) {
-        const email = (emailRaw || "").trim().toLowerCase();
-        // basic RFC-ish shape
-        const basic = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/i.test(email);
-        if (!basic) return false;
+      const domain = email.split("@")[1];
+      const parts = domain.split(".");
+      if (parts.length < 2) return false;
 
-        const domain = email.split("@")[1];
-        const parts = domain.split(".");
-        if (parts.length < 2) return false;
+      const tld = parts[parts.length - 1];
+      const sld = parts[parts.length - 2];
 
-        const tld = parts[parts.length - 1]; // e.g., "uk" or "com"
-        const sld = parts[parts.length - 2]; // e.g., "bristol" in bristol.ac.uk
+      const allowedTLDs = new Set([
+        "com","org","net","io","ai","dev","app","tech","co","me",
+        "uk","in","us","ca","de","fr","it","nl","es","ie","ch","se","no","au","nz","sg",
+        "edu"
+      ]);
+      const commonProviders = new Set([
+        "gmail.com","outlook.com","hotmail.com","yahoo.com","icloud.com",
+        "proton.me","protonmail.com","live.com","gmx.com","mail.com","pm.me"
+      ]);
 
-        // allow common TLDs + country codes + .edu
-        const allowedTLDs = new Set([
-          "com", "org", "net", "io", "ai", "dev", "app", "tech", "co", "me",
-          "uk", "in", "us", "ca", "de", "fr", "it", "nl", "es", "ie", "ch", "se", "no", "au", "nz", "sg",
-          "edu"
-        ]);
-        const commonProviders = new Set([
-          "gmail.com", "outlook.com", "hotmail.com", "yahoo.com", "icloud.com",
-          "proton.me", "protonmail.com", "live.com", "gmx.com", "mail.com", "pm.me"
-        ]);
+      const isAcademicUK = domain.endsWith(".ac.uk");
+      const isEdu        = domain.endsWith(".edu");
+      const isCommonProv = commonProviders.has(domain);
+      const tldAllowed   = allowedTLDs.has(tld);
+      const blockShortCom = (tld === "com" && sld && sld.length < 3 && !isCommonProv);
 
-        const isAcademicUK = domain.endsWith(".ac.uk");
-        const isEdu = domain.endsWith(".edu");
-        const isCommonProv = commonProviders.has(domain);
-        const tldAllowed = allowedTLDs.has(tld);
+      if (isAcademicUK || isEdu || isCommonProv || tldAllowed) return !blockShortCom;
+      return false;
+    }
 
-        // block ultra-short second-level on .com (e.g., ga.com), except real providers
-        const blockShortCom = (tld === "com" && sld && sld.length < 3 && !isCommonProv);
+    // ——— enable/disable primary button
+    function updateSendState() {
+      const emailOk = isValidEmail(emailInput.value);
+      const msgOk   = (msgInput.value || "").trim().length > 0;
 
-        if (isAcademicUK || isEdu || isCommonProv || tldAllowed) {
-          return !blockShortCom;
-        }
-        return false;
+      emailErr.style.display = emailInput.value ? (emailOk ? "none" : "block") : "none";
+
+      const allOk = emailOk && msgOk;
+      sendBtn.disabled = !allOk;
+      sendBtn.classList.toggle("opacity-50", !allOk);
+      sendBtn.classList.toggle("cursor-not-allowed", !allOk);
+    }
+    ["input","change","keyup"].forEach(evt => {
+      emailInput?.addEventListener(evt, updateSendState);
+      msgInput?.addEventListener(evt, updateSendState);
+    });
+
+    // ——— helpers to build a clean subject & body
+    function buildSubject() {
+      const base = ($("cm_subject")?.value || "Professional inquiry").trim();
+      const name = ($("cm_name")?.value || "").trim();
+      const role = ($("cm_role")?.value || "").trim();
+      const company = ($("cm_company")?.value || "").trim();
+
+      // Tail like: " — Jane Doe • Data Scientist @ Acme"
+      const parts = [];
+      if (name) parts.push(name);
+      if (role && company) parts.push(`${role} @ ${company}`);
+      else if (role) parts.push(role);
+      else if (company) parts.push(company);
+
+      const tail = parts.length ? ` — ${parts.join(" • ")}` : "";
+      return (base + tail).slice(0, 120);
+    }
+
+    function buildBody() {
+      const name    = ($("cm_name")?.value || "").trim();
+      const email   = (emailInput?.value || "").trim();
+      const role    = ($("cm_role")?.value || "").trim();
+      const company = ($("cm_company")?.value || "").trim();
+      const msgRaw  = (msgInput?.value || "").trim();
+
+      const lines = [
+        "Hi Thrisha,",
+        "",
+        msgRaw,
+        "",
+        "—",
+        "Contact details",
+        name ? `Name: ${name}` : null,
+        `Email: ${email}`,
+        role ? `Occupation: ${role}` : null,
+        company ? `Company: ${company}` : null
+      ].filter(Boolean);
+
+      return lines.join("\n");
+    }
+
+    // ——— primary: open Gmail in the SAME TAB (avoids popup blockers)
+    sendBtn?.addEventListener("click", () => {
+      if (sendBtn.disabled) return;
+
+      const subject = encodeURIComponent(buildSubject());
+      const body    = encodeURIComponent(buildBody());
+
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ADDRESS)}&su=${subject}&body=${body}`;
+
+      // no _blank → same tab → no popup block
+      window.location.href = gmailUrl;
+      hide();
+    });
+
+    // ——— secondary: use default email app (mailto)
+    appBtn?.addEventListener("click", (e) => {
+      e.preventDefault();
+      const subject = encodeURIComponent(buildSubject());
+      const body    = encodeURIComponent(buildBody());
+
+      const mailtoUrl = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
+
+      // hidden anchor for reliable triggering
+      let a = document.getElementById("hiddenMailto");
+      if (!a) {
+        a = document.createElement("a");
+        a.id = "hiddenMailto";
+        a.style.display = "none";
+        document.body.appendChild(a);
       }
-
-      // === Enable/disable Send
-      function updateSendState() {
-        const emailOk = isValidEmail(emailInput.value);
-        const msgOk = (msgInput.value || "").trim().length > 0;
-
-        emailErr.style.display = emailInput.value ? (emailOk ? "none" : "block") : "none";
-
-        const allOk = emailOk && msgOk;
-        sendBtn.disabled = !allOk;
-        sendBtn.classList.toggle("opacity-50", !allOk);
-        sendBtn.classList.toggle("cursor-not-allowed", !allOk);
-      }
-
-      ["input", "change", "keyup"].forEach(evt => {
-        emailInput?.addEventListener(evt, updateSendState);
-        msgInput?.addEventListener(evt, updateSendState);
-      });
-
-      // === Compose & send via mailto with Gmail fallback:
-      sendBtn?.addEventListener("click", () => {
-        if (sendBtn.disabled) return;
-
-        const name = ($("cm_name")?.value || "").trim();
-        const email = (emailInput?.value || "").trim();
-        const role = ($("cm_role")?.value || "").trim();
-        const company = ($("cm_company")?.value || "").trim();
-        const subjRaw = ($("cm_subject")?.value || "Hello Thrisha").trim();
-        const msgRaw = (msgInput?.value || "").trim();
-
-        const subject = encodeURIComponent(subjRaw);
-        const metaLines = [
-          name ? `From: ${name}` : null,
-          `Email: ${email}`,
-          role ? `Occupation: ${role}` : null,
-          company ? `Company: ${company}` : null
-        ].filter(Boolean).join("\n");
-
-        const body = encodeURIComponent(`${metaLines}\n\n${msgRaw}`);
-
-        const mailtoUrl = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ADDRESS)}&su=${subject}&body=${body}`;
-
-        // Use a hidden anchor to fire mailto more reliably
-        let a = document.getElementById("hiddenMailto");
-        if (!a) {
-          a = document.createElement("a");
-          a.id = "hiddenMailto";
-          a.style.display = "none";
-          document.body.appendChild(a);
-        }
-        a.setAttribute("href", mailtoUrl);
-        a.click();
-
-        // Fallback: if page still has focus shortly after, assume no handler → open Gmail compose
-        setTimeout(() => {
-          if (document.hasFocus()) {
-            window.open(gmailUrl, "_blank", "noopener");
-          }
-        }, 600);
-
-        hide();
-      });
-    })();
-  </script>
+      a.setAttribute("href", mailtoUrl);
+      a.click();
+      hide();
+    });
+  })();
+</script>
 
   <script>
     // Defaults & dynamic scroll offset
