@@ -1287,7 +1287,7 @@
         msgInput?.addEventListener(evt, updateSendState);
       });
 
-      // === Compose & send via mailto:
+      // === Compose & send via mailto with Gmail fallback:
       sendBtn?.addEventListener("click", () => {
         if (sendBtn.disabled) return;
 
@@ -1308,12 +1308,31 @@
 
         const body = encodeURIComponent(`${metaLines}\n\n${msgRaw}`);
 
-        window.location.href = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
+        const mailtoUrl = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ADDRESS)}&su=${subject}&body=${body}`;
+
+        // Use a hidden anchor to fire mailto more reliably
+        let a = document.getElementById("hiddenMailto");
+        if (!a) {
+          a = document.createElement("a");
+          a.id = "hiddenMailto";
+          a.style.display = "none";
+          document.body.appendChild(a);
+        }
+        a.setAttribute("href", mailtoUrl);
+        a.click();
+
+        // Fallback: if page still has focus shortly after, assume no handler → open Gmail compose
+        setTimeout(() => {
+          if (document.hasFocus()) {
+            window.open(gmailUrl, "_blank", "noopener");
+          }
+        }, 600);
+
         hide();
       });
     })();
   </script>
-
 
   <script>
     // Defaults & dynamic scroll offset
