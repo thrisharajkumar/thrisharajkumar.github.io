@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-accent="fuchsia">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery — Thrisha Rajkumar</title>
+
+  <!-- Tailwind CDN (matches your main site) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Base theme tokens (copy matches from your site so cards look identical) -->
+  <style>
+    :root{
+      --bg:#0b1226; --text:#e5e7eb; --muted:#94a3b8; --card:rgba(20,24,40,.95); --border:rgba(255,255,255,.10);
+      --accent:#d946ef;
+    }
+    html[data-theme="light"]{
+      --bg:#fff; --text:#0f172a; --muted:#334155; --card:rgba(255,255,255,.97); --border:rgba(15,23,42,.12);
+      --accent:#d946ef;
+    }
+    body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    .u-card{background:var(--card);border:1px solid var(--border)}
+    .u-accent{color:var(--accent)}
+    .u-border{border-color:var(--border)}
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
+    <a href="index.html#gallery" class="u-accent hover:opacity-90 text-sm">← Back</a>
+    <h1 class="text-xl sm:text-2xl font-extrabold">All Gallery</h1>
+    <div class="w-10"></div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 pb-16">
+    <!-- Filters -->
+    <div id="galFilters" class="mb-6 flex flex-wrap gap-2 text-sm"></div>
+
+    <!-- Grid -->
+    <ul id="galleryAll" class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"></ul>
+  </main>
+
+  <!-- One script powers both the homepage preview and this page -->
+  <script src="gallery.js"></script>
+</body>
+</html>

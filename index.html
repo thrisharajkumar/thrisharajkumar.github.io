@@ -335,13 +335,54 @@
       color: var(--accent);
       /* Accent color for bullet points */
     }
+
+    /* --- Mobile header icon buttons --- */
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      font-size: 20px;
+      /* emoji size */
+    }
+
+    @media (min-width: 768px) {
+
+      /* desktop keeps your current buttons */
+      .icon-btn {
+        width: auto;
+        height: auto;
+        font-size: inherit;
+      }
+    }
+
+    /* Tighten header on phones */
+    @media (max-width: 767px) {
+      header .bar {
+        padding-top: .4rem;
+        padding-bottom: .4rem;
+      }
+    }
+
+    .icon-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .icon-btn {
+      color: var(--text);
+    }
+
+    /* inherit current theme color */
   </style>
 </head>
 
 <body class="gradient u-bg">
 
   <header class="sticky top-0 z-50 border-b u-border bg-[var(--bg)]">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="bar max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
       <!-- Left: Logo -->
       <a href="#home" class="font-extrabold tracking-tight text-xl">TR</a>
       <!-- Center: Spacer (flex-1) -->
@@ -411,26 +452,57 @@
               href="#awards">Awards</a>
             <a class="block px-5 py-3 hover:bg-[color-mix(in_oklab,var(--accent)_18%,transparent)] hover:text-[var(--accent)] transition text-inherit"
               href="#references">References</a>
+
           </div>
         </div>
         <a class="hover:u-accent text-sm px-3 py-2 rounded-xl" href="#contact">Contact</a>
       </div>
-      <!-- Right: Theme/Accent/Links (hide accent pickers on mobile) -->
-      <div class="flex items-center gap-3 ml-4">
-        <button id="themeToggle" class="px-3 py-1.5 rounded-full text-xs font-semibold u-card">Theme</button>
-        <div class="hidden md:flex items-center gap-2">
-          <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia"
-            style="background:#d946ef"></button>
-          <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald"
-            style="background:#34d399"></button>
-          <button class="w-4 h-4 rounded-full border u-border" data-accent="sky" title="Sky"
-            style="background:#0ea5e9"></button>
+      <!-- Right: Theme & Links (logo icons on mobile, pills on desktop) -->
+        <div class="flex items-center gap-2 ml-4">
+          <!-- Theme -->
+          <button id="themeToggle" class="icon-btn u-card md:px-3 md:py-1.5 md:rounded-full md:text-xs md:font-semibold"
+            aria-label="Toggle theme">
+            <span id="themeEmoji" class="md:hidden" aria-hidden="true">🌙</span>
+            <span class="hidden md:inline">Theme</span>
+          </button>
+
+          <!-- Accent dots: desktop only -->
+          <div class="hidden md:flex items-center gap-2">
+            <button class="w-4 h-4 rounded-full border u-border" data-accent="fuchsia" title="Fuchsia"
+              style="background:#d946ef"></button>
+            <button class="w-4 h-4 rounded-full border u-border" data-accent="emerald" title="Emerald"
+              style="background:#34d399"></button>
+            <button class="w-4 h-4 rounded-full border u-border" data-accent="sky" title="Sky"
+              style="background:#0ea5e9"></button>
+          </div>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/thrisha-rajkumar/"
+            class="icon-btn u-card md:px-3 md:py-1.5 md:rounded-full md:text-xs md:font-semibold" target="_blank"
+            rel="noopener" aria-label="LinkedIn">
+            <!-- mobile: logo -->
+            <svg class="md:hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9.5h3.41v1.49h.05c.47-.9 1.61-1.85 3.31-1.85 3.54 0 4.19 2.33 4.19 5.36v5.95zM5.34 8.01a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9.5h3.57v10.95zM22 2H2v20h20V2z" />
+            </svg>
+            <!-- desktop: label -->
+            <span class="hidden md:inline">LinkedIn</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/thrisharajkumar"
+            class="icon-btn u-card md:px-3 md:py-1.5 md:rounded-full md:text-xs md:font-semibold" target="_blank"
+            rel="noopener" aria-label="GitHub">
+            <!-- mobile: logo -->
+            <svg class="md:hidden" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.33-1.77-1.33-1.77-1.09-.75.08-.74.08-.74 1.21.08 1.85 1.25 1.85 1.25 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.92 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.46 11.46 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.6-2.81 5.61-5.49 5.91.43.37.82 1.11.82 2.25v3.33c0 .32.21.7.83.58A12 12 0 0 0 12 .5z" />
+            </svg>
+            <!-- desktop: label -->
+            <span class="hidden md:inline">GitHub</span>
+          </a>
         </div>
-        <a href="https://www.linkedin.com/in/thrisha-rajkumar/"
-          class="px-3 py-1.5 rounded-full text-xs font-semibold u-accent-bg" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/thrisharajkumar" class="px-3 py-1.5 rounded-full text-xs font-semibold"
-          style="background:#0ea5e9;color:#fff" target="_blank" rel="noopener">GitHub</a>
-      </div>
+
     </div>
   </header>
   <!-- ...existing code... -->
@@ -472,17 +544,7 @@
           <a href="#projects" class="px-5 py-2 rounded-xl u-accent-bg font-semibold">View Projects</a>
           <a href="#contact" class="px-5 py-2 rounded-xl u-card font-semibold">Contact</a>
         </div>
-        <!-- Logos row -->
-        <div class="mt-8 flex flex-wrap gap-4 items-center justify-center md:justify-start">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/NHS_logo.svg" alt="NHS" class="h-8 md:h-10"
-            title="NHS/NIHR">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Unilever.svg" alt="Unilever" class="h-8 md:h-10"
-            title="Unilever">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/University_of_Bristol_logo.svg"
-            alt="University of Bristol" class="h-8 md:h-10" title="University of Bristol">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Sapienza_University_of_Rome_logo.svg"
-            alt="Sapienza" class="h-8 md:h-10" title="Sapienza">
-        </div>
+
       </div>
       <!-- Right: large portrait -->
       <div class="relative flex justify-center md:block mt-10 md:mt-0">
@@ -782,6 +844,29 @@
       </div>
     </div>
   </section>
+<!-- 
+<section id="gallery" class="py-16 border-y u-border">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="slide-badge"><span class="num">06</span> Gallery</div>
+    <div class="flex items-end justify-between mt-3">
+      <h2 class="text-3xl font-extrabold">Gallery</h2>
+      <a href="gallery.html" class="u-accent hover:underline text-sm">See more →</a>
+    </div>
+
+    <!-- 3-col square grid (shows first 6) 
+    <ul id="galleryPreview"
+        class="mt-6 grid gap-4 grid-cols-2 sm:grid-cols-3">
+    </ul>
+
+    <div class="mt-6 text-center">
+      <a href="gallery.html" class="inline-block px-5 py-2 rounded-xl u-card font-semibold">
+        Open full gallery →
+      </a>
+    </div>
+  </div>
+</section>
+-->
+
 
   <!-- 06 — LINKEDIN -->
   <section id="linkedin" class="py-16">
@@ -1122,418 +1207,402 @@
       </div>
     </div>
   </section>
-<!-- 10 — CONTACT -->
-<section id="contact" class="py-24">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <div class="slide-badge"><span class="num">10</span> Contact</div>
-    <h2 class="text-4xl font-extrabold mt-3">Let’s Connect</h2>
-    <p class="mt-3 text-lg u-muted">
-      Open to connecting for full-time roles, part-time opportunities, collaborations, or research initiatives.
-    </p>
+  <!-- 10 — CONTACT -->
+  <section id="contact" class="py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="slide-badge"><span class="num">10</span> Contact</div>
+      <h2 class="text-4xl font-extrabold mt-3">Let’s Connect</h2>
+      <p class="mt-3 text-lg u-muted">
+        Open to connecting for full-time roles, part-time opportunities, collaborations, or research initiatives.
+      </p>
 
-    <!-- Buttons -->
-    <div class="mt-10">
-      <p class="text-lg font-semibold u-muted">Thank you !</p>
-      <div class="mt-6 flex items-center justify-center gap-6 flex-wrap">
-        <button id="contactMeBtn" class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg">
-          Contact me
-        </button>
-        <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
-           href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
-           href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+      <!-- Buttons -->
+      <div class="mt-10">
+        <p class="text-lg font-semibold u-muted">Thank you !</p>
+        <div class="mt-6 flex items-center justify-center gap-6 flex-wrap">
+          <button id="contactMeBtn" class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg">
+            Contact me
+          </button>
+          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+            href="https://www.linkedin.com/in/thrisha-rajkumar/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="px-6 py-3 rounded-2xl u-accent-bg font-semibold text-white text-lg"
+            href="https://github.com/thrisharajkumar" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="mt-12 text-sm u-muted leading-relaxed">
+        <p><strong>Thrisha Rajkumar</strong> • #OPEN_TO_WORK • She/Her</p>
+        <p>MSc Data Science @ University of Bristol ’25 (Russell Group) | AI/ML Research Support – NIHR | Ex-Unilever |
+          Data Science & Analytics</p>
       </div>
     </div>
 
-    <div class="mt-12 text-sm u-muted leading-relaxed">
-      <p><strong>Thrisha Rajkumar</strong> • #OPEN_TO_WORK • She/Her</p>
-      <p>MSc Data Science @ University of Bristol ’25 (Russell Group) | AI/ML Research Support – NIHR | Ex-Unilever |
-        Data Science & Analytics</p>
-    </div>
-  </div>
+    <!-- Modal -->
+    <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/60"></div>
 
-  <!-- Modal -->
-  <div id="contactModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/60"></div>
-
-    <div class="relative u-card rounded-2xl p-6 w-full max-w-md">
-      <div class="flex items-center justify-between">
-        <h3 class="font-semibold text-lg">Send a message</h3>
-        <button id="closeModal" class="u-chip" aria-label="Close">✕</button>
-      </div>
-
-      <div class="mt-4 space-y-3 text-left">
-        <input id="cm_name" type="text" placeholder="Your name (optional)"
-               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
-
-        <div>
-          <input id="cm_email" type="email" placeholder="Your email (required)"
-                 class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required>
-          <p id="cm_email_err" class="text-sm mt-1" style="color:#f43f5e; display:none;">
-            Please enter a valid email address.
-          </p>
+      <div class="relative u-card rounded-2xl p-6 w-full max-w-md">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-lg">Send a message</h3>
+          <button id="closeModal" class="u-chip" aria-label="Close">✕</button>
         </div>
 
-        <input id="cm_role" type="text" placeholder="Occupation (optional)"
-               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
-        <input id="cm_company" type="text" placeholder="Company / Organization (optional)"
-               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+        <div class="mt-4 space-y-3 text-left">
+          <input id="cm_name" type="text" placeholder="Your name (optional)"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
 
-        <input id="cm_subject" type="text" placeholder="Subject"
-               class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base"
-               value="Professional inquiry">
+          <div>
+            <input id="cm_email" type="email" placeholder="Your email (required)"
+              class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required>
+            <p id="cm_email_err" class="text-sm mt-1" style="color:#f43f5e; display:none;">
+              Please enter a valid email address.
+            </p>
+          </div>
 
-        <textarea id="cm_message" rows="5" placeholder="Your message"
-                  class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required></textarea>
-      </div>
+          <input id="cm_role" type="text" placeholder="Occupation (optional)"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
+          <input id="cm_company" type="text" placeholder="Company / Organization (optional)"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base">
 
-      <div class="mt-5 space-y-2">
-        <!-- Primary: opens Gmail in same tab (no popup) -->
-        <button id="sendMail"
-                class="px-5 py-3 rounded-xl u-accent-bg font-semibold w-full opacity-50 cursor-not-allowed"
-                disabled>
-          ✉️ Send with Gmail
-        </button>
+          <input id="cm_subject" type="text" placeholder="Subject"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" value="Professional inquiry">
 
-        <!-- Secondary: use device email app (mailto) -->
-        <button id="sendViaApp" class="w-full text-sm u-muted underline">
-          Use my email app instead
-        </button>
+          <textarea id="cm_message" rows="5" placeholder="Your message"
+            class="w-full px-4 py-3 rounded-xl u-card focus:outline-none text-base" required></textarea>
+        </div>
+
+        <div class="mt-5 space-y-2">
+          <!-- Primary: opens Gmail in same tab (no popup) -->
+          <button id="sendMail"
+            class="px-5 py-3 rounded-xl u-accent-bg font-semibold w-full opacity-50 cursor-not-allowed" disabled>
+            ✉️ Send with Gmail
+          </button>
+
+          <!-- Secondary: use device email app (mailto) -->
+          <button id="sendViaApp" class="w-full text-sm u-muted underline">
+            Use my email app instead
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<script>
-  // ===== Your email (lightly obfuscated) =====
-  const EMAIL_USER = "thrisharajkumar11";
-  const EMAIL_DOMAIN = "gmail.com";
-  const ADDRESS = `${EMAIL_USER}@${EMAIL_DOMAIN}`;
-
-  (function () {
-    const modal   = document.getElementById("contactModal");
-    const openBtn = document.getElementById("contactMeBtn");
-    const closeBtn= document.getElementById("closeModal");
-    const sendBtn = document.getElementById("sendMail");
-    const appBtn  = document.getElementById("sendViaApp");
-
-    const $ = (id) => document.getElementById(id);
-    const emailInput = $("cm_email");
-    const emailErr   = $("cm_email_err");
-    const msgInput   = $("cm_message");
-
-    // ——— modal show/hide
-    const show = () => { modal.classList.remove("hidden"); modal.classList.add("flex"); updateSendState(); };
-    const hide = () => { modal.classList.add("hidden"); modal.classList.remove("flex"); };
-
-    openBtn?.addEventListener("click", show);
-    closeBtn?.addEventListener("click", hide);
-    modal?.addEventListener("click", (e) => { if (e.target === modal) hide(); });
-
-    // ——— email validation (balanced)
-    function isValidEmail(emailRaw) {
-      const email = (emailRaw || "").trim().toLowerCase();
-      const basic = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/i.test(email);
-      if (!basic) return false;
-
-      const domain = email.split("@")[1];
-      const parts = domain.split(".");
-      if (parts.length < 2) return false;
-
-      const tld = parts[parts.length - 1];
-      const sld = parts[parts.length - 2];
-
-      const allowedTLDs = new Set([
-        "com","org","net","io","ai","dev","app","tech","co","me",
-        "uk","in","us","ca","de","fr","it","nl","es","ie","ch","se","no","au","nz","sg",
-        "edu"
-      ]);
-      const commonProviders = new Set([
-        "gmail.com","outlook.com","hotmail.com","yahoo.com","icloud.com",
-        "proton.me","protonmail.com","live.com","gmx.com","mail.com","pm.me"
-      ]);
-
-      const isAcademicUK = domain.endsWith(".ac.uk");
-      const isEdu        = domain.endsWith(".edu");
-      const isCommonProv = commonProviders.has(domain);
-      const tldAllowed   = allowedTLDs.has(tld);
-      const blockShortCom = (tld === "com" && sld && sld.length < 3 && !isCommonProv);
-
-      if (isAcademicUK || isEdu || isCommonProv || tldAllowed) return !blockShortCom;
-      return false;
-    }
-
-    // ——— enable/disable primary button
-    function updateSendState() {
-      const emailOk = isValidEmail(emailInput.value);
-      const msgOk   = (msgInput.value || "").trim().length > 0;
-
-      emailErr.style.display = emailInput.value ? (emailOk ? "none" : "block") : "none";
-
-      const allOk = emailOk && msgOk;
-      sendBtn.disabled = !allOk;
-      sendBtn.classList.toggle("opacity-50", !allOk);
-      sendBtn.classList.toggle("cursor-not-allowed", !allOk);
-    }
-    ["input","change","keyup"].forEach(evt => {
-      emailInput?.addEventListener(evt, updateSendState);
-      msgInput?.addEventListener(evt, updateSendState);
-    });
-
-    // ——— helpers to build a clean subject & body
-    function buildSubject() {
-      const base = ($("cm_subject")?.value || "Professional inquiry").trim();
-      const name = ($("cm_name")?.value || "").trim();
-      const role = ($("cm_role")?.value || "").trim();
-      const company = ($("cm_company")?.value || "").trim();
-
-      // Tail like: " — Jane Doe • Data Scientist @ Acme"
-      const parts = [];
-      if (name) parts.push(name);
-      if (role && company) parts.push(`${role} @ ${company}`);
-      else if (role) parts.push(role);
-      else if (company) parts.push(company);
-
-      const tail = parts.length ? ` — ${parts.join(" • ")}` : "";
-      return (base + tail).slice(0, 120);
-    }
-
-    function buildBody() {
-      const name    = ($("cm_name")?.value || "").trim();
-      const email   = (emailInput?.value || "").trim();
-      const role    = ($("cm_role")?.value || "").trim();
-      const company = ($("cm_company")?.value || "").trim();
-      const msgRaw  = (msgInput?.value || "").trim();
-
-      const lines = [
-        "Hi Thrisha,",
-        "",
-        msgRaw,
-        "",
-        "—",
-        "Contact details",
-        name ? `Name: ${name}` : null,
-        `Email: ${email}`,
-        role ? `Occupation: ${role}` : null,
-        company ? `Company: ${company}` : null
-      ].filter(Boolean);
-
-      return lines.join("\n");
-    }
-
-    // ——— primary: open Gmail in the SAME TAB (avoids popup blockers)
-    sendBtn?.addEventListener("click", () => {
-      if (sendBtn.disabled) return;
-
-      const subject = encodeURIComponent(buildSubject());
-      const body    = encodeURIComponent(buildBody());
-
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ADDRESS)}&su=${subject}&body=${body}`;
-
-      // no _blank → same tab → no popup block
-      window.location.href = gmailUrl;
-      hide();
-    });
-
-    // ——— secondary: use default email app (mailto)
-    appBtn?.addEventListener("click", (e) => {
-      e.preventDefault();
-      const subject = encodeURIComponent(buildSubject());
-      const body    = encodeURIComponent(buildBody());
-
-      const mailtoUrl = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
-
-      // hidden anchor for reliable triggering
-      let a = document.getElementById("hiddenMailto");
-      if (!a) {
-        a = document.createElement("a");
-        a.id = "hiddenMailto";
-        a.style.display = "none";
-        document.body.appendChild(a);
-      }
-      a.setAttribute("href", mailtoUrl);
-      a.click();
-      hide();
-    });
-  })();
-</script>
+  </section>
 
   <script>
-    // Defaults & dynamic scroll offset
-    const root = document.documentElement;
-    const headerEl = document.querySelector('header');
+    (() => {
+      const EMAIL_USER = "thrisharajkumar11";
+      const EMAIL_DOMAIN = "gmail.com";
+      const ADDRESS = `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 
-    const applyStored = () => {
-      const storedTheme = localStorage.getItem('theme');
-      const storedAccent = localStorage.getItem('accent');
-      root.setAttribute('data-theme', storedTheme ? storedTheme : 'dark'); // default dark
-      if (storedAccent) root.setAttribute('data-accent', storedAccent);
-    };
-    applyStored();
+      const modal = document.getElementById("contactModal");
+      const openBtn = document.getElementById("contactMeBtn");
+      const closeBtn = document.getElementById("closeModal");
+      const sendBtn = document.getElementById("sendMail");
+      const appBtn = document.getElementById("sendViaApp");
 
-    // Compute scroll offset (header height + comfy space)
-    const setScrollOffset = () => {
-      const h = (headerEl?.offsetHeight || 64) + 28;
-      root.style.setProperty('--scroll-offset', h + 'px');
-    };
-    setScrollOffset();
-    window.addEventListener('resize', setScrollOffset);
+      const $ = (id) => document.getElementById(id);
+      const emailInput = $("cm_email");
+      const emailErr = $("cm_email_err");
+      const msgInput = $("cm_message");
 
-    // Year
-    const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+      const show = () => { modal.classList.remove("hidden"); modal.classList.add("flex"); updateSendState(); };
+      const hide = () => { modal.classList.add("hidden"); modal.classList.remove("flex"); };
 
-    // Theme toggle
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
+      openBtn?.addEventListener("click", show);
+      closeBtn?.addEventListener("click", hide);
+      modal?.addEventListener("click", (e) => { if (e.target === modal) hide(); });
 
-    // Accent picker
-    document.querySelectorAll('[data-accent]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const v = btn.getAttribute('data-accent');
-        root.setAttribute('data-accent', v);
-        localStorage.setItem('accent', v);
-      });
-    });
+      function isValidEmail(emailRaw) {
+        const email = (emailRaw || "").trim().toLowerCase();
+        const basic = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/i.test(email);
+        if (!basic) return false;
 
-    // Smooth-scroll with exact offset
-    const smoothTo = (id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const absoluteY = window.pageYOffset + rect.top;
-      const offset = parseFloat(getComputedStyle(root).getPropertyValue('--scroll-offset')) || 96;
-      window.scrollTo({ top: absoluteY - offset, behavior: 'smooth' });
-    };
+        const domain = email.split("@")[1];
+        const parts = domain.split(".");
+        if (parts.length < 2) return false;
 
-    // Intercept internal nav clicks
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const hash = a.getAttribute('href');
-        const id = hash && hash.startsWith('#') ? hash.slice(1) : null;
-        if (!id) return;
-        if (document.getElementById(id)) {
-          e.preventDefault();
-          history.pushState(null, '', hash);
-          smoothTo(id);
-        }
-      });
-    });
+        const tld = parts[parts.length - 1];
+        const sld = parts[parts.length - 2];
 
-    // Correct initial load with hash
-    window.addEventListener('load', () => {
-      const h = location.hash && location.hash.slice(1);
-      if (h && document.getElementById(h)) {
-        setTimeout(() => smoothTo(h), 50);
+        const allowedTLDs = new Set([
+          "com", "org", "net", "io", "ai", "dev", "app", "tech", "co", "me",
+          "uk", "in", "us", "ca", "de", "fr", "it", "nl", "es", "ie", "ch", "se", "no", "au", "nz", "sg", "edu"
+        ]);
+        const commonProviders = new Set([
+          "gmail.com", "outlook.com", "hotmail.com", "yahoo.com", "icloud.com",
+          "proton.me", "protonmail.com", "live.com", "gmx.com", "mail.com", "pm.me"
+        ]);
+
+        const isAcademicUK = domain.endsWith(".ac.uk");
+        const isEdu = domain.endsWith(".edu");
+        const isCommonProv = commonProviders.has(domain);
+        const tldAllowed = allowedTLDs.has(tld);
+        const blockShortCom = (tld === "com" && sld && sld.length < 3 && !isCommonProv);
+
+        if (isAcademicUK || isEdu || isCommonProv || tldAllowed) return !blockShortCom;
+        return false;
       }
-    });
 
-    // Slide dot activator on scroll
-    const sections = ['home', 'skills', 'expertise', 'about', 'projects', 'linkedin', 'experience', 'awards', 'references', 'contact'];
-    const dotsMap = new Map(sections.map(id => [id, document.querySelector(`[data-slide-dot="${id}"]`)]));
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          dotsMap.forEach(d => d && d.classList.remove('active'));
-          const dot = dotsMap.get(e.target.id);
-          if (dot) dot.classList.add('active');
-        }
+      function updateSendState() {
+        const emailOk = isValidEmail(emailInput.value);
+        const msgOk = (msgInput.value || "").trim().length > 0;
+
+        emailErr.style.display = emailInput.value ? (emailOk ? "none" : "block") : "none";
+
+        const allOk = emailOk && msgOk;
+        sendBtn.disabled = !allOk;
+        sendBtn.classList.toggle("opacity-50", !allOk);
+        sendBtn.classList.toggle("cursor-not-allowed", !allOk);
+      }
+      ["input", "change", "keyup"].forEach(evt => {
+        emailInput?.addEventListener(evt, updateSendState);
+        msgInput?.addEventListener(evt, updateSendState);
       });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
-    sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
 
-    // LinkedIn Spotlight (placeholder data)
-    const posts = [
-      { title: 'MSc Data Science — reflections & gratitude', teaser: 'Proud to complete MSc at the University of Bristol.', url: '#', date: '2025-09-15' },
-      { title: 'Presenting at i4i FAST in ABI, London', teaser: 'Co-presented NIHR project: AI for personalised stroke rehab.', url: '#', date: '2025-09-19' },
-      { title: 'Turing GW4 — AI & Net Zero (Bath)', teaser: 'Highlights from research talks and climate AI applications.', url: '#', date: '2025-07-14' },
-      { title: 'McKinsey Forward Program — accepted', teaser: 'Building future-ready skills Oct–Dec 2025.', url: '#', date: '2025-09-20' }
-    ];
-    const ul = document.getElementById('li-posts');
-    if (ul) ul.innerHTML = posts.map(p => `
-      <li class="u-card rounded-xl p-5">
-        <div class="text-xs u-muted">${new Date(p.date).toLocaleDateString()}</div>
-        <h3 class="font-semibold mt-1">${p.title}</h3>
-        <p class="text-sm u-muted mt-1">${p.teaser}</p>
-        <a class="u-accent hover:underline text-sm" target="_blank" href="${p.url}">Read on LinkedIn →</a>
-      </li>`).join('');
+      function buildSubject() {
+        const base = ($("cm_subject")?.value || "Professional inquiry").trim();
+        const name = ($("cm_name")?.value || "").trim();
+        const role = ($("cm_role")?.value || "").trim();
+        const company = ($("cm_company")?.value || "").trim();
+        const parts = [];
+        if (name) parts.push(name);
+        if (role && company) parts.push(`${role} @ ${company}`);
+        else if (role) parts.push(role);
+        else if (company) parts.push(company);
+        const tail = parts.length ? ` — ${parts.join(" • ")}` : "";
+        return (base + tail).slice(0, 120);
+      }
 
-    // Skills chips
-    const skills = [
-      'Python', 'R', 'SQL', 'Pandas', 'NumPy', 'scikit-learn', 'TensorFlow', 'Keras', 'PyTorch', 'NLP', 'BERT', 'BiLSTM',
-      'Bayesian Methods', 'UMAP', 't-SNE', 'KMeans', 'Optuna', 'XGBoost', 'LightGBM', 'Random Forest', 'Ridge', 'Lasso',
-      'Time Series', 'EDA', 'Data Cleaning', 'ETL', 'Feature Engineering', 'Statistics', 'A/B Testing',
-      'Tableau', 'Power BI', 'Matplotlib', 'Seaborn', 'Plotly',
-      'AWS EC2', 'AWS Lambda', 'S3', 'DynamoDB', 'Docker', 'Grafana', 'Node-RED',
-      'Git', 'GitHub', 'Linux', 'CI/CD', 'Flutter', 'Firebase', 'React', 'Angular',
-      'Physics-informed ML', 'Multi-task Learning', 'Attention', 'Embeddings', 'SHAP', 'LIME',
-      'SAP', 'Power Automate', 'Jupyter', 'LaTeX'
-    ];
-    const chip = (txt) => `<span class="u-chip">${txt}</span>`;
-    const chunkSize = Math.ceil(skills.length / 3);
-    const rows = [skills.slice(0, chunkSize), skills.slice(chunkSize, 2 * chunkSize), skills.slice(2 * chunkSize)];
-    const mountRow = (id, items) => { const el = document.getElementById(id); if (el) el.innerHTML = items.map(chip).join(''); };
-    mountRow('row1', rows[0]); mountRow('row1_clone', rows[0]);
-    mountRow('row2', rows[1]); mountRow('row2_clone', rows[1]);
-    mountRow('row3', rows[2]); mountRow('row3_clone', rows[2]);
+      function buildBody() {
+        const name = ($("cm_name")?.value || "").trim();
+        const email = (emailInput?.value || "").trim();
+        const role = ($("cm_role")?.value || "").trim();
+        const company = ($("cm_company")?.value || "").trim();
+        const msgRaw = (msgInput?.value || "").trim();
 
-    const skillsSection = document.getElementById('skills');
-    const skillsObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { skillsSection.classList.add('in-view'); } else { skillsSection.classList.remove('in-view'); } });
-    }, { threshold: .2 });
-    if (skillsSection) skillsObs.observe(skillsSection);
+        const lines = [
+          "Hi Thrisha,",
+          "",
+          msgRaw,
+          "",
+          "—",
+          "Contact details",
+          name ? `Name: ${name}` : null,
+          `Email: ${email}`,
+          role ? `Occupation: ${role}` : null,
+          company ? `Company: ${company}` : null
+        ].filter(Boolean);
+
+        return lines.join("\n");
+      }
+
+      sendBtn?.addEventListener("click", () => {
+        if (sendBtn.disabled) return;
+        const subject = encodeURIComponent(buildSubject());
+        const body = encodeURIComponent(buildBody());
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ADDRESS)}&su=${subject}&body=${body}`;
+        window.location.href = gmailUrl;
+        hide();
+      });
+
+      appBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const subject = encodeURIComponent(buildSubject());
+        const body = encodeURIComponent(buildBody());
+        const mailtoUrl = `mailto:${ADDRESS}?subject=${subject}&body=${body}`;
+        let a = document.getElementById("hiddenMailto");
+        if (!a) {
+          a = document.createElement("a");
+          a.id = "hiddenMailto";
+          a.style.display = "none";
+          document.body.appendChild(a);
+        }
+        a.setAttribute("href", mailtoUrl);
+        a.click();
+        hide();
+      });
+    })();
   </script>
 
   <script>
-    document.querySelectorAll('.exp-toggle').forEach(btn => {
-      btn.addEventListener('click', () => {
+    (() => {
+      const root = document.documentElement;
+      const headerEl = document.querySelector('header');
+      const themeBtn = document.getElementById('themeToggle');
+      const themeEmoji = document.getElementById('themeEmoji');
+
+      // Apply stored theme & accent
+      (function applyStored() {
+        const storedTheme = localStorage.getItem('theme');
+        const storedAccent = localStorage.getItem('accent');
+        root.setAttribute('data-theme', storedTheme ? storedTheme : 'dark');
+        if (storedAccent) root.setAttribute('data-accent', storedAccent);
+      })();
+
+      function setThemeEmoji() {
+        const isDark = root.getAttribute('data-theme') !== 'light';
+        if (themeEmoji) themeEmoji.textContent = isDark ? '🌙' : '☀️';
+      }
+      setThemeEmoji();
+
+      function setScrollOffset() {
+        const h = (headerEl?.offsetHeight || 64) + 28;
+        root.style.setProperty('--scroll-offset', h + 'px');
+      }
+      setScrollOffset();
+      window.addEventListener('resize', setScrollOffset);
+
+      themeBtn?.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        setThemeEmoji();
+        setScrollOffset();
+      });
+
+      document.querySelectorAll('[data-accent]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const v = btn.getAttribute('data-accent');
+          root.setAttribute('data-accent', v);
+          localStorage.setItem('accent', v);
+        });
+      });
+
+      // Smooth scroll w/ header offset
+      const smoothTo = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const absoluteY = window.pageYOffset + rect.top;
+        const offset = parseFloat(getComputedStyle(root).getPropertyValue('--scroll-offset')) || 96;
+        window.scrollTo({ top: absoluteY - offset, behavior: 'smooth' });
+      };
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const hash = a.getAttribute('href');
+          const id = hash && hash.startsWith('#') ? hash.slice(1) : null;
+          if (!id) return;
+          if (document.getElementById(id)) {
+            e.preventDefault();
+            history.pushState(null, '', hash);
+            smoothTo(id);
+          }
+        });
+      });
+      window.addEventListener('load', () => {
+        const h = location.hash && location.hash.slice(1);
+        if (h && document.getElementById(h)) setTimeout(() => smoothTo(h), 50);
+      });
+
+      // Slide-dot highlight on scroll
+      const sections = ['home', 'education', 'skills', 'expertise', 'about', 'projects', 'linkedin', 'experience', 'awards', 'references', 'contact'];
+      const dotsMap = new Map(sections.map(id => [id, document.querySelector(`[data-slide-dot="${id}"]`)]));
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            dotsMap.forEach(d => d && d.classList.remove('active'));
+            const dot = dotsMap.get(e.target.id);
+            if (dot) dot.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+      sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+
+      // LinkedIn Spotlight (placeholder)
+      const posts = [
+        { title: 'MSc Data Science — reflections & gratitude', teaser: 'Proud to complete MSc at the University of Bristol.', url: '#', date: '2025-09-15' },
+        { title: 'Presenting at i4i FAST in ABI, London', teaser: 'Co-presented NIHR project: AI for personalised stroke rehab.', url: '#', date: '2025-09-19' },
+        { title: 'Turing GW4 — AI & Net Zero (Bath)', teaser: 'Highlights from research talks and climate AI applications.', url: '#', date: '2025-07-14' },
+        { title: 'McKinsey Forward Program — accepted', teaser: 'Building future-ready skills Oct–Dec 2025.', url: '#', date: '2025-09-20' }
+      ];
+      const ul = document.getElementById('li-posts');
+      if (ul) ul.innerHTML = posts.map(p => `
+    <li class="u-card rounded-xl p-5">
+      <div class="text-xs u-muted">${new Date(p.date).toLocaleDateString()}</div>
+      <h3 class="font-semibold mt-1">${p.title}</h3>
+      <p class="text-sm u-muted mt-1">${p.teaser}</p>
+      <a class="u-accent hover:underline text-sm" target="_blank" href="${p.url}">Read on LinkedIn →</a>
+    </li>`).join('');
+
+      // Skills chips + marquee
+      const skills = [
+        'Python', 'R', 'SQL', 'Pandas', 'NumPy', 'scikit-learn', 'TensorFlow', 'Keras', 'PyTorch', 'NLP', 'BERT', 'BiLSTM',
+        'Bayesian Methods', 'UMAP', 't-SNE', 'KMeans', 'Optuna', 'XGBoost', 'LightGBM', 'Random Forest', 'Ridge', 'Lasso',
+        'Time Series', 'EDA', 'Data Cleaning', 'ETL', 'Feature Engineering', 'Statistics', 'A/B Testing',
+        'Tableau', 'Power BI', 'Matplotlib', 'Seaborn', 'Plotly',
+        'AWS EC2', 'AWS Lambda', 'S3', 'DynamoDB', 'Docker', 'Grafana', 'Node-RED',
+        'Git', 'GitHub', 'Linux', 'CI/CD', 'Flutter', 'Firebase', 'React', 'Angular',
+        'Physics-informed ML', 'Multi-task Learning', 'Attention', 'Embeddings', 'SHAP', 'LIME',
+        'SAP', 'Power Automate', 'Jupyter', 'LaTeX'
+      ];
+      const chip = (txt) => `<span class="u-chip">${txt}</span>`;
+      const chunkSize = Math.ceil(skills.length / 3);
+      const rows = [skills.slice(0, chunkSize), skills.slice(chunkSize, 2 * chunkSize), skills.slice(2 * chunkSize)];
+      const mountRow = (id, items) => { const el = document.getElementById(id); if (el) el.innerHTML = items.map(chip).join(''); };
+      mountRow('row1', rows[0]); mountRow('row1_clone', rows[0]);
+      mountRow('row2', rows[1]); mountRow('row2_clone', rows[1]);
+      mountRow('row3', rows[2]); mountRow('row3_clone', rows[2]);
+
+      const skillsSection = document.getElementById('skills');
+      const skillsObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) skillsSection.classList.add('in-view');
+          else skillsSection.classList.remove('in-view');
+        });
+      }, { threshold: .2 });
+      if (skillsSection) skillsObs.observe(skillsSection);
+    })();
+  </script>
+
+  <script>
+    (() => {
+      // Event delegation keeps it lightweight
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.exp-toggle');
+        if (!btn) return;
         const sel = btn.getAttribute('data-target');
-        const panel = document.querySelector(sel);
+        const panel = sel ? document.querySelector(sel) : null;
         if (!panel) return;
         panel.classList.toggle('hidden');
         btn.textContent = panel.classList.contains('hidden') ? 'Show details' : 'Hide details';
       });
-    });
+    })();
   </script>
-  <!-- ...existing code... -->
-
-  <!-- ...existing code... -->
   <script>
-    // Mobile Explore Dropdown logic
-    const mobileExploreBtn = document.getElementById('mobileExploreBtn');
-    const mobileExploreDropdown = document.getElementById('mobileExploreDropdown');
-    let mobileDropdownOpen = false;
-    mobileExploreBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      mobileDropdownOpen = !mobileDropdownOpen;
-      if (mobileDropdownOpen) {
-        mobileExploreDropdown.classList.remove('opacity-0', 'pointer-events-none');
-        mobileExploreDropdown.classList.add('opacity-100');
-      } else {
-        mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
-        mobileExploreDropdown.classList.remove('opacity-100');
-      }
-    });
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-      if (mobileDropdownOpen && !mobileExploreDropdown.contains(e.target) && !mobileExploreBtn.contains(e.target)) {
-        mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
-        mobileExploreDropdown.classList.remove('opacity-100');
-        mobileDropdownOpen = false;
-      }
-    });
-    // Close dropdown on link click
-    mobileExploreDropdown.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
-        mobileExploreDropdown.classList.remove('opacity-100');
-        mobileDropdownOpen = false;
+    (() => {
+      const mobileExploreBtn = document.getElementById('mobileExploreBtn');
+      const mobileExploreDropdown = document.getElementById('mobileExploreDropdown');
+      let mobileDropdownOpen = false;
+
+      mobileExploreBtn?.addEventListener('click', function (e) {
+        e.stopPropagation();
+        mobileDropdownOpen = !mobileDropdownOpen;
+        if (mobileDropdownOpen) {
+          mobileExploreDropdown.classList.remove('opacity-0', 'pointer-events-none');
+          mobileExploreDropdown.classList.add('opacity-100');
+        } else {
+          mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
+          mobileExploreDropdown.classList.remove('opacity-100');
+        }
       });
-    });
+
+      document.addEventListener('click', function (e) {
+        if (!mobileDropdownOpen) return;
+        if (!mobileExploreDropdown.contains(e.target) && !mobileExploreBtn.contains(e.target)) {
+          mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
+          mobileExploreDropdown.classList.remove('opacity-100');
+          mobileDropdownOpen = false;
+        }
+      });
+
+      mobileExploreDropdown?.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          mobileExploreDropdown.classList.add('opacity-0', 'pointer-events-none');
+          mobileExploreDropdown.classList.remove('opacity-100');
+          mobileDropdownOpen = false;
+        });
+      });
+    })();
   </script>
-  <!-- ...existing code... -->
 
 
 </body>
