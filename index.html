@@ -776,74 +776,88 @@
     </div>
   </section>
 
-  <!-- 05 — PROJECTS -->
-  <section id="projects" class="py-16 border-y u-border">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="slide-badge"><span class="num">05</span> Featured Projects</div>
-      <div class="flex items-end justify-between mt-3">
-        <h2 class="text-3xl font-extrabold">Featured Projects</h2>
-        <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank"
-          class="u-accent hover:underline">See all →</a>
-      </div>
-      <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <article id="card-census" class="u-card rounded-2xl overflow-hidden">
-          <img src="assets/census_dashboard.png" alt="UK Census Socio-Economic Analysis"
-            class="w-full h-44 object-cover">
-          <div class="p-5">
-            <h3 class="font-bold text-lg">UK Census Socio-Economic (2011→2021)</h3>
-            <p class="mt-2 text-sm u-muted">Bayesian Ridge imputation for 31 LADs; UMAP/t-SNE + KMeans; interactive
-              Tableau dashboards; report linked.</p>
-            <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              <span class="u-chip">Bayesian</span>
-              <span class="u-chip">UMAP</span>
-              <span class="u-chip">Tableau</span>
-            </div>
-            <div class="mt-4 flex gap-4 text-sm">
-              <a href="#" class="u-accent hover:underline">Repo</a>
-              <a href="#" class="u-accent hover:underline">Dashboards</a>
-              <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="hover:underline">Report</a>
-            </div>
-          </div>
-        </article>
-
-        <article id="card-emi" class="u-card rounded-2xl overflow-hidden">
-          <img src="assets/emi_model.png" alt="EMI Surrogate Modelling" class="w-full h-44 object-cover">
-          <div class="p-5">
-            <h3 class="font-bold text-lg">EMI Surrogate Modelling</h3>
-            <p class="mt-2 text-sm u-muted">Multi-output ANN with physics-informed features; R² &gt; 0.90 across 13
-              targets; evaluation in seconds.</p>
-            <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              <span class="u-chip">TensorFlow</span>
-              <span class="u-chip">Multi-Task</span>
-              <span class="u-chip">Optuna</span>
-            </div>
-            <div class="mt-4 flex gap-4 text-sm">
-              <a href="#" class="u-accent hover:underline">Repo</a>
-              <a href="#" class="u-accent hover:underline">Notebook</a>
-            </div>
-          </div>
-        </article>
-
-        <article id="card-nhs" class="u-card rounded-2xl overflow-hidden">
-          <img src="assets/nhs_app.png" alt="NIHR/NHS Stroke Rehab App" class="w-full h-44 object-cover">
-          <div class="p-5">
-            <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
-            <p class="mt-2 text-sm u-muted">Flutter app + AI personalisation, co-designed with clinicians & people with
-              stroke for inclusive routines and feedback.</p>
-            <div class="mt-3 flex flex-wrap gap-2 text-xs">
-              <span class="u-chip">Flutter</span>
-              <span class="u-chip">Firebase</span>
-              <span class="u-chip">NHS/NIHR</span>
-            </div>
-            <div class="mt-4 flex gap-4 text-sm">
-              <a href="#" class="u-accent hover:underline">Repo</a>
-              <a href="#" class="u-accent hover:underline">Demo</a>
-            </div>
-          </div>
-        </article>
-      </div>
+ <!-- 05 — PROJECTS -->
+<section id="projects" class="py-16 border-y u-border">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="slide-badge"><span class="num">05</span> Featured Projects</div>
+    <div class="flex items-end justify-between mt-3">
+      <h2 class="text-3xl font-extrabold">Featured Projects</h2>
+      <a href="https://github.com/thrisharajkumar?tab=repositories" target="_blank"
+        class="u-accent hover:underline">See all →</a>
     </div>
-  </section>
+    <div class="mt-8 grid md:grid-cols-3 gap-6">
+
+      <!-- Master Thesis: EMI Surrogate Modelling -->
+      <article id="card-emi" class="u-card rounded-2xl overflow-hidden">
+        <div class="p-5">
+          <h3 class="font-bold text-lg">Master’s Thesis – EMI Surrogate Modelling</h3>
+          <p class="mt-2 text-sm u-muted">
+            Jun 2025 – Sept 2025 | University of Bristol<br>
+            Developed multi-output surrogate models predicting 13 EMI characteristics from LTSpice simulations and semiconductor parameters, using classical ML (Ridge, SVR, XGBoost, LightGBM) and deep learning (Deep MLP, Masked Branch, Multi-Head, Attention-based ANNs), achieving R² = 0.956 on seen MOSFETs and 0.625 on unseen MOSFETs. Applied responsible ML interpretability (SHAP, LIME) and integrated MLOps pipelines to analyse feature influence and support reproducible deployment. Implemented simulation-to-real transfer learning and “what-if” scenario modelling to optimise EMI behaviour; lead author of research on generalizable neural networks for power electronics. Conducted hardware-in-the-loop-style validation, confirming model performance under real converter dynamics with modular, reproducible pipelines and Git-based version control.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs">
+            <span class="u-chip">Python</span>
+            <span class="u-chip">TensorFlow</span>
+            <span class="u-chip">ML</span>
+            <span class="u-chip">MLOps</span>
+            <span class="u-chip">Explainable AI</span>
+          </div>
+          <div class="mt-4 flex gap-4 text-sm">
+            <a href="#" class="u-accent hover:underline">Repo</a>
+            <a href="#" class="u-accent hover:underline">Notebook</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- NIHR/NHS Stroke Rehab App -->
+      <article id="card-nhs" class="u-card rounded-2xl overflow-hidden">
+        <div class="p-5">
+          <h3 class="font-bold text-lg">NIHR/NHS Stroke Rehab App</h3>
+          <p class="mt-2 text-sm u-muted">
+            Mar 2025 – May 2025 | University of Bristol<br>
+            Flutter app + AI personalisation, co-designed with clinicians & people with stroke for inclusive routines and feedback. Integrated predictive ML routines, real-time progress tracking, and patient-specific recommendations.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs">
+            <span class="u-chip">Flutter</span>
+            <span class="u-chip">Firebase</span>
+            <span class="u-chip">NIHR</span>
+            <span class="u-chip">AI/ML</span>
+          </div>
+          <div class="mt-4 flex gap-4 text-sm">
+            <a href="#" class="u-accent hover:underline">Repo</a>
+            <a href="#" class="u-accent hover:underline">Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Socio-Economic Analytics -->
+      <article id="card-census" class="u-card rounded-2xl overflow-hidden">
+        <div class="p-5">
+          <h3 class="font-bold text-lg">Exploring Socio-Economic Analytics – Bayesian Modelling & Tableau</h3>
+          <p class="mt-2 text-sm u-muted">
+            Mar 2025 – May 2025 | University of Bristol<br>
+            Analyzed and visualized changes in education, employment, occupation, and immigration across 348 UK Local Authority Districts using 2011 & 2021 census data. Standardized LAD codes, harmonized 10 datasets, imputed missing values with Bayesian Ridge Regression, applied UMAP/t-SNE for dimensionality reduction, clustered with KMeans, and built interactive Tableau dashboards. Key insight: rise in Level 4+ education and stronger correlation between education & skilled work in migrant-dense regions.
+          </p>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs">
+            <span class="u-chip">Python</span>
+            <span class="u-chip">Tableau</span>
+            <span class="u-chip">Bayesian Regression</span>
+            <span class="u-chip">Dimensionality Reduction</span>
+            <span class="u-chip">Clustering</span>
+          </div>
+          <div class="mt-4 flex gap-4 text-sm">
+            <a href="#" class="u-accent hover:underline">Repo</a>
+            <a href="#" class="u-accent hover:underline">Dashboards</a>
+            <a href="reports/Visual_Analytics_Report_Thrisha_Rajkumar.pdf" class="hover:underline">Report</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
 <!-- 
 <section id="gallery" class="py-16 border-y u-border">
   <div class="max-w-7xl mx-auto px-4">
